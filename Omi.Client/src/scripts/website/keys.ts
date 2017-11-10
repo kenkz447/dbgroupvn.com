@@ -1,0 +1,1 @@
+export const LAYOUT_COMMON = "LAYOUT_COMMON"

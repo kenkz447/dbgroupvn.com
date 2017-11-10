@@ -1,0 +1,16 @@
+//App
+html {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+html,
+body,
+#root {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+}
+
+.layout {
+    min-height: 100%;
+}
