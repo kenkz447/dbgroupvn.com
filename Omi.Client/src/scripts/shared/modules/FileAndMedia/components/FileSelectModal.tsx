@@ -5,6 +5,8 @@ import * as React from 'react'
 import { uploadURL } from '../settings'
 import { FileEntityInfo } from '../Types'
 
+import { FileList } from './FileList'
+
 export interface FileSelectModalDispatchProps {
     handleOk?: (selected: FileEntityInfo | Array<FileEntityInfo>) => void
     handleCancel?: (e: React.MouseEvent<any>) => void
@@ -53,7 +55,7 @@ export class FileSelectModalComponent extends React.Component<FileSelectModalSta
         const status = info.file.status
         if (status !== 'uploading') {
             console.log(info.file, info.fileList)
-        }
+        } 
         if (status === 'done') {
             message.success(`${info.file.name} file uploaded successfully.`)
             const recentFileList = info.fileList.map((o) => o.response.result[0])
