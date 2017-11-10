@@ -9,7 +9,7 @@
         "classnames": "2.2.5",
         "core-decorators": "^0.20.0",
         "font-awesome": "^4.7.0",
-        "google-map-react": "^0.24.0",
+        "google-map-react": "^0.25.0",
         "history": "^4.6.3",
         "html-hint": "^0.2.4",
         "immutable": "^4.0.0-rc.4",
