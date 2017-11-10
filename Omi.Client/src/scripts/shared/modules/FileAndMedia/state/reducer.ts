@@ -1,11 +1,14 @@
-import { Map, fromJS, List } from 'immutable'
+import { fromJS, List, Map } from 'immutable'
 
 import { statePipe, statePipeWithAction } from '../../../core'
-import { FileEntityInfo } from './../Types'
-
 import {
-    MODAL_OPEN, MODAL_CLOSE, MODAL_OK, FILES_ITEM_CLICK,
-    OpenModalAction, OkModalAction, FileItemClickAction
+    FileItemClickAction,
+    FILES_ITEM_CLICK,
+    MODAL_CLOSE,
+    MODAL_OK,
+    MODAL_OPEN,
+    OkModalAction,
+    OpenModalAction,
 } from './actions'
 
 const openModal = (action: OpenModalAction) => (state: Map<any, any>) => state.set('visible', true)

@@ -1,13 +1,9 @@
+import { Icon, message, Modal, Upload } from 'antd'
+import { autobind } from 'core-decorators'
 import * as React from 'react'
 
-import { Modal, Upload, Icon, message } from 'antd'
-
-import { FileList } from './FileList'
-
-import { FileEntityInfo } from '../Types'
 import { uploadURL } from '../settings'
-import { FileItem } from './FileItem'
-import { autobind } from 'core-decorators';
+import { FileEntityInfo } from '../Types'
 
 export interface FileSelectModalDispatchProps {
     handleOk?: (selected: FileEntityInfo | Array<FileEntityInfo>) => void

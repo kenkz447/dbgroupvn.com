@@ -1,19 +1,19 @@
 import * as React from 'react'
-import { default as PropTypes } from 'prop-types'
-
-import * as classnames from 'classnames'
 import * as controllable from 'react-controllables'
-
+import * as classnames from 'classnames'
 import shouldPureComponentUpdate from 'react-pure-render/function'
-import { getHintBottomOffsetClass, getHintBaloonVerticalPosClass, getHintBaloonHorizontalPosStyle } from './helpers/balloon-pos'
+
+import {
+    getHintBaloonHorizontalPosStyle,
+    getHintBaloonVerticalPosClass,
+    getHintBottomOffsetClass,
+} from './helpers/balloon-pos'
 import { getMarkerHolderStyle, getMarkerStyle, getMarkerTextStyle } from './helpers/marker-styles'
 
 const K_HINT_HTML_DEFAULT_Z_INDEX = 1000000
 const K_SCALE_HOVER = 1
-const K_SCALE_TABLE_HOVER = 1
 const K_SCALE_NORMAL = 0.65
 const K_MIN_CONTRAST = 0.4
-
 
 function calcMarkerMarkerStyle(scale, zIndexStyle, markerStyle, imageStyle) {
     const contrast = K_MIN_CONTRAST + (1 - K_MIN_CONTRAST) * Math.min(scale / K_SCALE_NORMAL, 1)

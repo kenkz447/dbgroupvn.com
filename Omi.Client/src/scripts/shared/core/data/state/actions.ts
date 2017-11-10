@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { REQUEST_SEND, REQUEST_RESPONSE, REQUEST_FAILED } from './keys'
+import { REQUEST_FAILED, REQUEST_RESPONSE, REQUEST_SEND } from './keys'
 
 export interface RequestSendAction extends Action {
     dataKey: string

@@ -1,5 +1,5 @@
+import { isImmutable } from 'immutable'
 import * as React from 'react'
-import { isCollection, isImmutable } from 'immutable'
 
 export const ExtractImmutableHOC = (WrappedComponent) => (wrappedComponentProps) => {
   const KEY = 0
@@ -10,7 +10,7 @@ export const ExtractImmutableHOC = (WrappedComponent) => (wrappedComponentProps)
   ).reduce((newProps, wrappedComponentProp) => { 
     newProps[wrappedComponentProp[KEY]] = isImmutable(
       wrappedComponentProp[VALUE]
-    )
+    ) 
       ? wrappedComponentProp[VALUE].toJS()
       : wrappedComponentProp[VALUE]
     return newProps

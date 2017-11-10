@@ -1,14 +1,9 @@
 import { connect } from 'react-redux'
-import { Map } from 'immutable'
 
 import { ExtractImmutableHOC, SetTempValue } from '../../../core'
-
-import { ModuleRootState, FileEntityInfo } from '../types'
-import { FILES_DATA_KEY } from '../settings'
-
-import { FileSelectModalComponent, FileSelectModalStateProps, FileSelectModalDispatchProps } from '../components'
-
+import { FileSelectModalComponent, FileSelectModalDispatchProps, FileSelectModalStateProps } from '../components'
 import { closeModal, okModal } from '../state'
+import { ModuleRootState } from '../types'
 
 const mapStateToProps = (state: ModuleRootState): FileSelectModalStateProps => {
     return {

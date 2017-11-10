@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { Icon, Input } from 'antd'
+import { Icon } from 'antd'
 import differenceBy = require('lodash/differenceBy')
+import * as React from 'react'
 
 import { FileEntityInfo } from '../Types'
 

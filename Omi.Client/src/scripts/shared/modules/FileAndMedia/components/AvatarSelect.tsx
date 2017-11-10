@@ -1,5 +1,5 @@
+import { Icon } from 'antd'
 import * as React from 'react'
-import { Icon, Input } from 'antd'
 
 import { FileEntityInfo } from '../Types'
 
@@ -27,7 +27,7 @@ export class AvatarSelectComponent extends React.Component<AvatarSelectProps> {
     }
 
     render() {
-        const { selectedValue, inputName, onClick, onChange, value } = this.props
+        const { selectedValue, inputName, onClick, value } = this.props
         const currentValue = selectedValue.fileId ? selectedValue : value
         return (
             <div className="avatar-select">

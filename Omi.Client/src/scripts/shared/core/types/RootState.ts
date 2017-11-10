@@ -1,5 +1,3 @@
-import { Reducer } from 'redux'
-import { RouterState } from 'react-router-redux'
 import { List, Map } from 'immutable'
 
 export interface ReducerRootState {

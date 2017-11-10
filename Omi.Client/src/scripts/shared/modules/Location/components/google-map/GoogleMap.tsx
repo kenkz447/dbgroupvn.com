@@ -1,22 +1,17 @@
-import * as React from 'react'
 import { autobind } from 'core-decorators'
-import PropTypes from 'prop-types'
-
+import GoogleMapReact from 'google-map-react'
+import * as React from 'react'
 import * as controllable from 'react-controllables'
 import shouldPureComponentUpdate from 'react-pure-render/function'
 
-import GoogleMapReact from 'google-map-react'
-
-import { Marker } from './Marker'
 import { markerDescriptions } from './constants/marker-descriptions'
 import { customDistanceToMouse } from './helpers/custom-distance'
+import { Marker } from './Marker'
 
 const K_MARGIN_TOP = 30
 const K_MARGIN_RIGHT = 30
 const K_MARGIN_BOTTOM = 30
 const K_MARGIN_LEFT = 30
-
-const K_HOVER_DISTANCE = 30
 
 const styles = [{ 'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#444444' }] }, { 'featureType': 'landscape', 'elementType': 'all', 'stylers': [{ 'color': '#f2f2f2' }] }, { 'featureType': 'poi', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'all', 'stylers': [{ 'saturation': -100 }, { 'lightness': 45 }] }, { 'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{ 'visibility': 'simplified' }] }, { 'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'water', 'elementType': 'all', 'stylers': [{ 'color': '#878787' }, { 'visibility': 'on' }] }, { 'featureType': 'water', 'elementType': 'geometry', 'stylers': [{ 'invert_lightness': true }, { 'weight': '3.37' }, { 'gamma': '5' }, { 'saturation': '0' }, { 'lightness': '0' }] }]
 
