@@ -7,7 +7,6 @@ import 'react-hot-loader/patch'
 // Import main
 import initStartup from './shared/startup'
 
-
 initStartup()
 
 if (module.hot) {
