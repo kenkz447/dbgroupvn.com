@@ -1,0 +1,10 @@
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\bin\Release\netcoreapp2.0\Omi.Services.deps.json
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\bin\Release\netcoreapp2.0\Omi.Services.dll
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\bin\Release\netcoreapp2.0\Omi.Services.pdb
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\bin\Release\netcoreapp2.0\Omi.Packages.dll
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\bin\Release\netcoreapp2.0\Omi.Packages.pdb
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\obj\Release\netcoreapp2.0\Omi.Services.csproj.CoreCompileInputs.cache
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\obj\Release\netcoreapp2.0\Omi.Services.AssemblyInfoInputs.cache
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\obj\Release\netcoreapp2.0\Omi.Services.AssemblyInfo.cs
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\obj\Release\netcoreapp2.0\Omi.Services.dll
+C:\Users\kenkz\Documents\Visual Studio 2017\Projects\Omi\Omi.Server\Omi.Core\Omi.Services\obj\Release\netcoreapp2.0\Omi.Services.pdb
