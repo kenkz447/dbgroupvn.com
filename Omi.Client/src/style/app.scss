@@ -1,8 +1,8 @@
-// Style reboot from bootstrap
 // Use bootstrap's utilities only
-@import "vendor/bootstrap/variables";
-@import "vendor/bootstrap/mixins";
-@import "vendor/bootstrap/utilities";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
 // Font awesome
 @import "~font-awesome/scss/font-awesome.scss";
 // App Font 
