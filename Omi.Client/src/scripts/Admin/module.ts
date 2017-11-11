@@ -1,4 +1,4 @@
-import { CRModule } from '../../../shared/core'
+import { CRModule } from '../shared/core'
 
 import { AdminRoute, HomeSettingRoute } from './pages'
 

@@ -4,7 +4,7 @@ import { ConfigurationService } from './core/app'
 import { Module as Main } from '../website'
 import { Module as Account } from './modules/Account'
 import { Module as  FileAndMedia} from './modules/FileAndMedia'
-import { Module as  Admin} from './modules/Admin'
+import { Module as  Admin} from '../Admin'
 
 function startup() {
     const configuration = new ConfigurationService()

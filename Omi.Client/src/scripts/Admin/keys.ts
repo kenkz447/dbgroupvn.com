@@ -1,4 +1,4 @@
-import { WebsiteRoutePath } from '../website'
+import { WebsiteRoutePath } from '../shared/modules/website'
 
 
 export const ADMIN_ROUTE_PATH = `${WebsiteRoutePath}/admin`

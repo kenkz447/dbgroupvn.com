@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Layout, Menu, Breadcrumb, Icon, } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-import { FileSelectModal } from '../../../FileAndMedia/index'
+import { FileSelectModal } from '../../../shared/modules/FileAndMedia/index'
 
 import { HeaderMenu } from '../containers/HeaderMenu'
 

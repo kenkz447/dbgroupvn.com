@@ -1,4 +1,4 @@
-import { ViewRoute } from '../../../../../shared/core'
+import { ViewRoute } from '../../../shared/core'
 import { ADMIN_ROUTE_NAME, MENU_HEADER } from '../../keys'
 import Page from './Page'
 

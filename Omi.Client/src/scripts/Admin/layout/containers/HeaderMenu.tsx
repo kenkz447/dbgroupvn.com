@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 
-import { MenuInjector, MenuHOCProps, getAllActivePath } from '../../../../core'
+import { MenuInjector, MenuHOCProps, getAllActivePath } from '../../../shared/core'
 
 import { MENU_HEADER } from '../../keys'
 
