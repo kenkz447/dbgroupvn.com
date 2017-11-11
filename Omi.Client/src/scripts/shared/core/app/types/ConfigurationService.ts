@@ -30,7 +30,7 @@ export class ConfigurationService implements IConfigurationService {
             this.sagaMiddleWares = concat(this.sagaMiddleWares, module.middlewares.sagas)
         
         this.reducers = merge(this.reducers, module.reducers)
-        this.layouts = merge(this.layouts, module.layouts)
+        this.layouts = merge(this.layouts, module.masterPages)
     }
 
     @autobind

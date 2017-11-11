@@ -12,7 +12,7 @@ import { MainMaster } from './layout'
 
 export const Module: CRModule = {
     routes: [Home],
-    layouts: {
+    masterPages: {
         [LAYOUT_COMMON]: MainMaster
     }
 }

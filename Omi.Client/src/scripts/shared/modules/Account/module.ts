@@ -5,7 +5,7 @@ import { Blank } from './layout'
 import { LAYOUT_BLANK } from './settings'
 export const Module: CRModule = {
     routes: [MainRoute, LoginRoute, RegisterRoute],
-    layouts: {
+    masterPages: {
         [LAYOUT_BLANK]: Blank,
     }
 }

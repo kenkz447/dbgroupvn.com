@@ -12,5 +12,5 @@ export interface CRModule {
     reducers?: {
         [name: string]: (state, action) => void
     }
-    layouts?: LayoutCollection
+    masterPages?: LayoutCollection
 }

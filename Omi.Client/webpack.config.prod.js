@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyESPlugin = require('uglify-es-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const pkg = require('./package.json');
 
@@ -19,7 +19,7 @@ module.exports = {
     },
     output: {
         publicPath: '/',
-        path: path.join(__dirname, '../Omi.Server/Omi.Host/Omi', 'wwwroot'),
+        path: path.join(__dirname, '../Omi.Host/Omi', 'wwwroot'),
         filename: 'app.js'
     },
     plugins: [
