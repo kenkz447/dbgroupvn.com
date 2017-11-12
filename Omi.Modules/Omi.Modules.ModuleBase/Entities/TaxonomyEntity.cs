@@ -10,7 +10,8 @@ namespace Omi.Modules.ModuleBase.Entities
     public class TaxonomyEntity :
         BaseEntity,
         IEntityWithName,
-        IEntityWithDetails<TaxonomyDetail>
+        IEntityWithDetails<TaxonomyDetail>,
+        IEntityWithChildren<IEnumerable<TaxonomyEntity>, TaxonomyEntity>
     {
         public TaxonomyEntity(): base()
         {
@@ -21,8 +22,12 @@ namespace Omi.Modules.ModuleBase.Entities
         public string Name { get; set; }
 
         public long TaxonomyTypeId { get; set; }
+        public long? ParentId { get; set; }
 
         public TaxonomyType TaxonomyType { get; set; }
+        public TaxonomyEntity Parent { get; set; }
+
         public IEnumerable<TaxonomyDetail> Details { get; set; }
+        public IEnumerable<TaxonomyEntity> Children { get; set; }
     }
 }

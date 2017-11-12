@@ -1,13 +1,14 @@
 import { Action } from 'redux'
 import { Map, fromJS } from 'immutable'
-import { statePipe } from '../../utilities'
-import { REQUEST_SEND, REQUEST_RESPONSE, REQUEST_FAILED } from './keys'
+import { statePipe, statePipeWithAction } from '../../utilities'
+import { REQUEST_SEND, REQUEST_RESPONSE, REQUEST_FAILED, REQUEST_CACHE_DELETE } from './keys'
 import { RequestResponseAction, RequestFailedAction, RequestSendAction } from './actions'
 
 const initReponse = (dataKey: string) => (state: Map<any, any>) => {
     return state.setIn([dataKey, 'response'], fromJS({}))
 }
 
+const deleteResponse = ({ dataKey }) => (state: Map<any, any>) => state.removeIn([dataKey, 'response'])
 const setReponse = ({ dataKey, response }: RequestResponseAction) => (state: Map<any, any>) => state.setIn([dataKey, 'response'], fromJS(response))
 const setStatus = ({ dataKey, status }) => (state: Map<any, any>) => state.setIn([dataKey, 'status'], fromJS(status))
 
@@ -28,6 +29,8 @@ export const reducer = (state = initState, action: Action) => {
         case REQUEST_FAILED:
             const { dataKey, error } = action as RequestFailedAction
             return statePipe([setStatus({ dataKey, status: { processing: false, error } })], state)
+        case REQUEST_CACHE_DELETE:
+            return statePipeWithAction([deleteResponse], state, action)
     }
     return state
 }

@@ -6,8 +6,10 @@ using System.Text;
 namespace Omi.Modules.Dbgroup.Construction.Entities
 {
     public class ConstructionDetail : 
-        BaseEntityDetail<ConstructionEntity ,long>
+        BaseEntityDetail<long, ConstructionEntity>
     {
-
+        public string Title { get; set; }
+        public string Customer { get; set; }
+        public int Area { get; set; }
     }
 }

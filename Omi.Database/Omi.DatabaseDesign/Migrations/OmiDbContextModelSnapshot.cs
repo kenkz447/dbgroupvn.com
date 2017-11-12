@@ -184,9 +184,13 @@ namespace Omi.DatabaseDesign.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Area");
+
                     b.Property<string>("CreateByUserId");
 
                     b.Property<DateTime?>("CreateDate");
+
+                    b.Property<string>("Customer");
 
                     b.Property<long>("Entity");
 
@@ -412,6 +416,8 @@ namespace Omi.DatabaseDesign.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<long?>("ParentId");
+
                     b.Property<int>("Status");
 
                     b.Property<long>("TaxonomyTypeId");
@@ -425,6 +431,8 @@ namespace Omi.DatabaseDesign.Migrations
                     b.HasIndex("DeleteByUserId");
 
                     b.HasIndex("LastUpdateByUserId");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("TaxonomyTypeId");
 
@@ -684,6 +692,10 @@ namespace Omi.DatabaseDesign.Migrations
                     b.HasOne("Omi.Data.ApplicationUser", "LastUpdateByUser")
                         .WithMany()
                         .HasForeignKey("LastUpdateByUserId");
+
+                    b.HasOne("Omi.Modules.ModuleBase.Entities.TaxonomyEntity", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("Omi.Modules.ModuleBase.Entities.TaxonomyType", "TaxonomyType")
                         .WithMany()

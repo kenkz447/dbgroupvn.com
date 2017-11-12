@@ -7,20 +7,12 @@ import { Form, Input, Button, Tabs, Row, Col, Card } from 'antd'
 import { ExtractImmutableHOC, RequestSend, ShowNotification, NotificationType } from '../../../../shared/core'
 import { PictureWall } from '../../../../shared/modules/FileAndMedia'
 
-import { AdminRootState } from '../../../Types'
+import { AdminRootState, HomeFormValue } from '../../../Types'
 import { SettingValueViewModel } from '../../../../shared/modules/website'
 
 
-interface FormValue {
-    slideImages?: SettingValueViewModel
-    storyHtml?: SettingValueViewModel
-    howItWorkBuildHtml?: SettingValueViewModel
-    howItWorkDesignHtml?: SettingValueViewModel
-    whatDoIWillReceive?: SettingValueViewModel
-}
-
 interface StateProps {
-    formValue?: FormValue,
+    formValue?: HomeFormValue,
     submitResponseCode?: string
 }
 
@@ -87,14 +79,14 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
     renderSlideImages() {
         return (
             <div>
-                {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.slideImages.id), {
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideImages.id), {
                     initialValue: this.props.formValue.slideImages.id
                 })(<Input type="hidden" />)}
-                {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.slideImages.name), {
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideImages.name), {
                     initialValue: this.props.formValue.slideImages.name
                 })(<Input type="hidden" />)}
                 <Form.Item>
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.slideImages.value), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideImages.value), {
                         initialValue: this.props.formValue.slideImages.value
                     })(<PictureWall />)}
                 </Form.Item>
@@ -105,14 +97,14 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
     renderStory() {
         return (
             <div>
-                {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.storyHtml.id), {
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.storyHtml.id), {
                     initialValue: this.props.formValue.storyHtml.id
                 })(<Input type="hidden" />)}
-                {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.storyHtml.name), {
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.storyHtml.name), {
                     initialValue: this.props.formValue.storyHtml.name
                 })(<Input type="hidden" />)}
                 <Form.Item>
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.storyHtml.value), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.storyHtml.value), {
                         initialValue: this.props.formValue.storyHtml.value
                     })(<Input.TextArea rows={6} />)}
                 </Form.Item>
@@ -124,27 +116,27 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
         return (
             <Row gutter={30}>
                 <Col span={8}>
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkDesignHtml.id), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.id), {
                         initialValue: this.props.formValue.howItWorkDesignHtml.id
                     })(<Input type="hidden" />)}
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkDesignHtml.name), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.name), {
                         initialValue: this.props.formValue.howItWorkDesignHtml.name
                     })(<Input type="hidden" />)}
                     <Form.Item label="Design">
-                        {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkDesignHtml.value), {
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.value), {
                             initialValue: this.props.formValue.howItWorkDesignHtml.value
                         })(<Input.TextArea rows={12} />)}
                     </Form.Item>
                 </Col>
                 <Col span={8}>
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkBuildHtml.id), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.id), {
                         initialValue: this.props.formValue.howItWorkBuildHtml.id
                     })(<Input type="hidden" />)}
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkBuildHtml.name), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.name), {
                         initialValue: this.props.formValue.howItWorkBuildHtml.name
                     })(<Input type="hidden" />)}
                     <Form.Item label="build">
-                        {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.howItWorkBuildHtml.value), {
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.value), {
                             initialValue: this.props.formValue.howItWorkBuildHtml.value
                         })(<Input.TextArea rows={12} />)}
                     </Form.Item>
@@ -157,14 +149,14 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
         return (
             <Row gutter={30}>
                 <Col span={8}>
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.whatDoIWillReceive.id), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.id), {
                         initialValue: this.props.formValue.whatDoIWillReceive.id
                     })(<Input type="hidden" />)}
-                    {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.whatDoIWillReceive.name), {
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.name), {
                         initialValue: this.props.formValue.whatDoIWillReceive.name
                     })(<Input type="hidden" />)}
                     <Form.Item>
-                        {this.props.form.getFieldDecorator(nameof.full<FormValue>((o) => o.whatDoIWillReceive.value), {
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.value), {
                             initialValue: this.props.formValue.whatDoIWillReceive.value
                         })(<Input.TextArea rows={12} />)}
                     </Form.Item>
@@ -175,7 +167,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.form.validateFields((err, values: FormValue) => {
+        this.props.form.validateFields((err, values: HomeFormValue) => {
             if (!err)
                 this.props.onPost(values)
         })

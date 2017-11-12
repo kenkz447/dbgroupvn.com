@@ -1,6 +1,6 @@
 import { Action } from 'redux'
 
-import { REQUEST_FAILED, REQUEST_RESPONSE, REQUEST_SEND } from './keys'
+import { REQUEST_FAILED, REQUEST_RESPONSE, REQUEST_SEND, REQUEST_CACHE_DELETE } from './keys'
 
 export interface RequestSendAction extends Action {
     dataKey: string
@@ -44,4 +44,8 @@ export interface RequestFailedAction extends Action {
 
 export const RequestFailed = (dataKey: string, error: string): RequestFailedAction => ({
     type: REQUEST_FAILED, dataKey, error
+})
+
+export const RequestCacheDelete = (dataKey: string) => ({
+    type: REQUEST_CACHE_DELETE, dataKey
 })

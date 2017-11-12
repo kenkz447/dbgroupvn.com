@@ -1,6 +1,6 @@
 import { RootState } from '../shared/core'
 
 
-export interface ModuleRootState extends RootState {
+export interface WebsiteRootState extends RootState {
     
 }

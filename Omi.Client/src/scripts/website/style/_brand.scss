@@ -1,5 +1,5 @@
 $brand-gutter: 30px;
-$brand-max-width: 1280px;
+$brand-max-width: 1500px;
 .brand {
     &-container {
         margin: 0 auto;
@@ -17,13 +17,16 @@ $brand-max-width: 1280px;
         line-height: auto;
     }
     &-footer {
-        background: $gray-light;
-        &-text {
-            font-size: 1rem;
+        background: #272727;
+        color: white;
+        &-copyright {
+            font-size: 1.3rem;
+            font-weight: 300;
+            text-transform: uppercase;
         }
     }
     &-logo {
-        height: 50px;
+        height: 130px;
         &-image {
             max-height: 100%;
         }
@@ -57,17 +60,17 @@ $brand-max-width: 1280px;
         float: left;
         &:not(:last-child) {
             .header-menu-link {
-                border-right: 1px solid;
-                padding-right: 15px;
+                border-right: 2px solid #5D5E5E;
+                padding-right: 30px;
             }
         }
     }
+    &-text {
+        font-size: 1.05rem;
+        color: #5D5E5E;
+    }
     &-link {
-        font-size: 1rem;
-        padding-left: 15px;
-        padding-bottom: 4px;
-        padding-top: 4px;
-        color: #000;
+        padding-left: 30px;
     }
     .active {
         font-weight: bold;
@@ -135,5 +138,16 @@ $brand-max-width: 1280px;
             text-align: left;
             margin-bottom: 5px;
         }
+    }
+}
+
+// Override
+.header-menu {
+    .ant-menu-submenu-title {
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+    .anticon-caret-down {
+        transform: scale(.6);
     }
 }

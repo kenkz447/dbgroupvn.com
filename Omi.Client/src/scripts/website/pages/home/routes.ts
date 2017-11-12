@@ -1,6 +1,6 @@
 import { ViewRoute } from '../../../shared/core'
 
-import IndexComponent from './MainView'
+import IndexComponent from './Page'
 
 import { indexRouteName } from './keys'
 

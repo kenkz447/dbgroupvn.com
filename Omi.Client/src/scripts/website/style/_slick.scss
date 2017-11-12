@@ -18,7 +18,11 @@
         left: 10px!important;
     }
     &-dots {
-        text-align: right!important;
-        padding: 15px 30px!important;
+        height: unset!important;
+        bottom: 30px!important;
+        button {
+            height: 24px!important;
+            border-radius: 50%!important;
+        }
     }
 }
