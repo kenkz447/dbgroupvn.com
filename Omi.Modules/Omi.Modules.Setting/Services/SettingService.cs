@@ -51,11 +51,15 @@ namespace Omi.Modules.Setting.Services
             _context.Entry(exitsEntity).CurrentValues.SetValues(new SettingEntity
             {
                 Id = exitsEntity.Id,
+                Name = exitsEntity.Name,
                 LastUpdateByUser = serviceModel.UpdateBy,
                 LastUpdateDate = DateTime.Now
             });
 
             var currentLanguage = Thread.CurrentThread.CurrentCulture.Name;
+
+            foreach (var settingValues in serviceModel.SettingValues)
+                settingValues.SettingEntityId = exitsEntity.Id;
 
             _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.Language == currentLanguage), serviceModel.SettingValues, o => o.Id);
 

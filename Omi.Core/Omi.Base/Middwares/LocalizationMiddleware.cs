@@ -17,10 +17,10 @@ namespace Omi.Base.Middwares
 
         public async Task Invoke(HttpContext context)
         {
-            if(context.Request.Form.ContainsKey("language"))
+            if(context.Request.Method == "POST" && context.Request.Query.ContainsKey("input-language"))
             {
-                var inputLanguage = new StringValues();
-                context.Request.Form.TryGetValue("language", out inputLanguage);
+                var inputLanguage = context.Request.Query["input-language"];
+
                 var targetCulture = CultureInfo.GetCultureInfo(inputLanguage);
                 Thread.CurrentThread.CurrentCulture = targetCulture;
             }

@@ -11,6 +11,12 @@ namespace Omi.Modules.Dbgroup
         {
             builder.Entity<ConstructionEntity>()
                 .HasAlternateKey(o => o.Name);
+
+            builder.Entity<ConstructionFile>()
+                .HasKey(o => new { o.EntityId, o.FileEntityId });
+
+            builder.Entity<ConstructionTaxonomy>()
+                .HasKey(o => new { o.EntityId, o.TaxonomyId });
         }
     }
 }

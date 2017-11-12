@@ -11,9 +11,10 @@ using System;
 namespace Omi.DatabaseDesign.Migrations
 {
     [DbContext(typeof(OmiDbContext))]
-    partial class OmiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171111085627_InitSettingModule")]
+    partial class InitSettingModule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,93 +178,6 @@ namespace Omi.DatabaseDesign.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionDetail", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CreateByUserId");
-
-                    b.Property<DateTime?>("CreateDate");
-
-                    b.Property<long>("Entity");
-
-                    b.Property<long?>("EntityIdId");
-
-                    b.Property<string>("Language");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateByUserId");
-
-                    b.HasIndex("EntityIdId");
-
-                    b.ToTable("ConstructionDetail");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("CreateByUserId");
-
-                    b.Property<DateTime?>("CreateDate");
-
-                    b.Property<string>("DeleteByUserId");
-
-                    b.Property<DateTime?>("DeleteDate");
-
-                    b.Property<string>("LastUpdateByUserId");
-
-                    b.Property<DateTime?>("LastUpdateDate");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("Status");
-
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("Name");
-
-                    b.HasIndex("CreateByUserId");
-
-                    b.HasIndex("DeleteByUserId");
-
-                    b.HasIndex("LastUpdateByUserId");
-
-                    b.ToTable("ConstructionEntity");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionFile", b =>
-                {
-                    b.Property<long>("EntityId");
-
-                    b.Property<long>("FileEntityId");
-
-                    b.Property<int>("UsingType");
-
-                    b.HasKey("EntityId", "FileEntityId");
-
-                    b.HasIndex("FileEntityId");
-
-                    b.ToTable("ConstructionFile");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionTaxonomy", b =>
-                {
-                    b.Property<long>("EntityId");
-
-                    b.Property<long>("TaxonomyId");
-
-                    b.HasKey("EntityId", "TaxonomyId");
-
-                    b.HasIndex("TaxonomyId");
-
-                    b.ToTable("ConstructionTaxonomy");
                 });
 
             modelBuilder.Entity("Omi.Modules.FileAndMedia.Entities.FileEntity", b =>
@@ -510,9 +424,9 @@ namespace Omi.DatabaseDesign.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Language");
+                    b.Property<string>("Key");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Language");
 
                     b.Property<long>("SettingEntityId");
 
@@ -567,58 +481,6 @@ namespace Omi.DatabaseDesign.Migrations
                     b.HasOne("Omi.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionDetail", b =>
-                {
-                    b.HasOne("Omi.Data.ApplicationUser", "CreateByUser")
-                        .WithMany()
-                        .HasForeignKey("CreateByUserId");
-
-                    b.HasOne("Omi.Modules.Dbgroup.Construction.Entities.ConstructionEntity", "EntityId")
-                        .WithMany("Details")
-                        .HasForeignKey("EntityIdId");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionEntity", b =>
-                {
-                    b.HasOne("Omi.Data.ApplicationUser", "CreateByUser")
-                        .WithMany()
-                        .HasForeignKey("CreateByUserId");
-
-                    b.HasOne("Omi.Data.ApplicationUser", "DeleteByUser")
-                        .WithMany()
-                        .HasForeignKey("DeleteByUserId");
-
-                    b.HasOne("Omi.Data.ApplicationUser", "LastUpdateByUser")
-                        .WithMany()
-                        .HasForeignKey("LastUpdateByUserId");
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionFile", b =>
-                {
-                    b.HasOne("Omi.Modules.Dbgroup.Construction.Entities.ConstructionEntity", "Entity")
-                        .WithMany("EnitityFiles")
-                        .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Omi.Modules.FileAndMedia.Entities.FileEntity", "FileEntity")
-                        .WithMany()
-                        .HasForeignKey("FileEntityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Omi.Modules.Dbgroup.Construction.Entities.ConstructionTaxonomy", b =>
-                {
-                    b.HasOne("Omi.Modules.Dbgroup.Construction.Entities.ConstructionEntity", "Entity")
-                        .WithMany("EntityTaxonomies")
-                        .HasForeignKey("EntityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Omi.Modules.ModuleBase.Entities.TaxonomyEntity", "Taxonomy")
-                        .WithMany()
-                        .HasForeignKey("TaxonomyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

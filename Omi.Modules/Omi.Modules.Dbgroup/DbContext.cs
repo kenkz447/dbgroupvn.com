@@ -2,7 +2,9 @@
 using Omi.Data;
 using Omi.Modular;
 using Omi.Modules.Dbgroup.Construction.Entities;
+using Omi.Modules.ModuleBase;
 using Omi.Modules.ModuleBase.Entities;
+using Omi.Modules.Setting;
 using System.Collections.Generic;
 
 namespace Omi.Modules.Dbgroup
@@ -19,6 +21,7 @@ namespace Omi.Modules.Dbgroup
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.RegisterCustomMappings<SettingModelBuilder>();
             builder.RegisterCustomMappings<DbgroupModelBuilder>();
             base.OnModelCreating(builder);
         }

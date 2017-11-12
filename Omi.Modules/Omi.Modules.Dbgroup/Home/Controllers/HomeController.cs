@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Omi.Base;
 using Omi.Data;
@@ -16,13 +17,13 @@ namespace Omi.Modules.Dbgroup.Home.Controllers
         public readonly HomeService _homeService;
         public HomeController(
             HomeService homeService,
-            ILogger logger, 
+            ILogger<HomeService> logger, 
             UserManager<ApplicationUser> userManager) : base(logger, userManager)
         {
             _homeService = homeService;
         }
 
-        public async Task<BaseJsonResult> UpdateSetting(HomeSettingViewModel viewModel)
+        public async Task<BaseJsonResult> UpdateSetting([FromBody]HomeSettingViewModel viewModel)
         {
             var updateHomeSettingServiceModel = UpdateHomeSettingServiceModelExt.FromViewModel(viewModel);
             updateHomeSettingServiceModel.UpdateBy = CurrentUser;

@@ -12,13 +12,12 @@ namespace Omi.Modules.Dbgroup.Home.ServiceModels
         public static UpdateHomeSettingServiceModel FromViewModel(HomeSettingViewModel viewModel)
         {
             var settingValues = new List<SettingValue>();
-            settingValues.AddRange(viewModel.SettingValues.Select(o => new SettingValue
-            {
-                SettingEntityId = viewModel.SettingEntityId,
-                Id = o.Id,
-                Key = o.Key,
-                Value = JsonConvert.SerializeObject(o.Value)
-            }));
+
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.HowItWorkBuildHtml));
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.HowItWorkDesignHtml));
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.SlideImages));
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.StoryHtml));
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.WhatDoIWillReceive));
 
             return new UpdateHomeSettingServiceModel
             {

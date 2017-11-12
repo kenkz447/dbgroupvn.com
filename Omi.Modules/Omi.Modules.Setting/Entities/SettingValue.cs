@@ -1,14 +1,26 @@
 ﻿using Omi.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Omi.Modules.Setting.ViewModels;
+using System.Threading;
 
 namespace Omi.Modules.Setting.Entities
 {
-    public class SettingValue : 
-        EntityWithTypeId<long>
+    public static class SettingValueExt
     {
-        public string Key { get; set; }
+        public static SettingValue FromViewModel(SettingValueViewModel viewModel)
+            => new SettingValue
+            {
+                Id = viewModel.Id,
+                Name = viewModel.Name,
+                Value = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Value),
+                Language = Thread.CurrentThread.CurrentCulture.Name
+            };
+    }
+
+    public class SettingValue : 
+        EntityWithTypeId<long>,
+        IEntityWithName
+    {
+        public string Name { get; set; }
         public string Value { get; set; }
 
         public string Language { get; set; }

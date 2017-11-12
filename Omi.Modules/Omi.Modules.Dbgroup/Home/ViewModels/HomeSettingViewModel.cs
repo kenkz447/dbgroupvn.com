@@ -1,6 +1,7 @@
 ﻿using Omi.Modules.Setting.Entities;
 using Omi.Modules.Setting.ViewModels;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 
@@ -8,15 +9,14 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
 {
     public class HomeSettingViewModel
     {
-        public HomeSettingViewModel()
-        {
-            SettingValues = new List<SettingValueViewModel>();
-        }
-
         public long SettingEntityId { get; set; }
         public string Language { get; set; }
 
-        public IEnumerable<SettingValueViewModel> SettingValues { get; set; }
+        public SettingValueViewModel SlideImages { get; set; }
+        public SettingValueViewModel StoryHtml { get; set; }
+        public SettingValueViewModel HowItWorkBuildHtml { get; set; }
+        public SettingValueViewModel HowItWorkDesignHtml { get; set; }
+        public SettingValueViewModel WhatDoIWillReceive { get; set; }
     }
 
     public static class HomeSettingViewModelExt {
@@ -24,19 +24,21 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
         {
             var settingValues = entity.SettingValues;
 
-            var SettingValueViewModels = new List<SettingValueViewModel>();
-
-            SettingValueViewModels.AddRange(settingValues.Select(o => new SettingValueViewModel {
-                Id = o.Id,
-                Key = o.Key,
-                Value = Newtonsoft.Json.JsonConvert.DeserializeObject(o.Value)
-            }));
+            var slideImages = entity.SettingValues.FirstOrDefault(o => o.Name == "SlideImages");
+            var storyHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "StoryHtml");
+            var howItWorkBuildHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkBuildHtml");
+            var howItWorkDesignHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkDesignHtml");
+            var whatDoIWillReceive = entity.SettingValues.FirstOrDefault(o => o.Name == "WhatDoIWillReceive");
 
             return new HomeSettingViewModel
             {
                 SettingEntityId = entity.Id,
                 Language = Thread.CurrentThread.CurrentCulture.Name,
-                SettingValues = SettingValueViewModels
+                SlideImages = SettingValueViewModelExt.FromEntity(slideImages),
+                StoryHtml = SettingValueViewModelExt.FromEntity(storyHtml),
+                HowItWorkBuildHtml = SettingValueViewModelExt.FromEntity(howItWorkBuildHtml),
+                HowItWorkDesignHtml = SettingValueViewModelExt.FromEntity(howItWorkDesignHtml),
+                WhatDoIWillReceive = SettingValueViewModelExt.FromEntity(whatDoIWillReceive)
             };
         }
     }
