@@ -22,7 +22,11 @@ namespace Omi.Modules.Dbgroup.Services
         }
 
         public IEnumerable<TaxonomyEntity> GetAllConstructionType()
-            => _context.TaxonomyEntity.Include(o => o.Details).Where(o => o.TaxonomyTypeId == ConstructionCategoriesSeed.ConstructionType.Id).AsNoTracking();
+            => _context.TaxonomyEntity
+            .Include(o => o.Details)
+            .Include(o => o.Children)
+            .ThenInclude(o => o.Details)
+            .Where(o => o.TaxonomyTypeId == ConstructionCategoriesSeed.ConstructionType.Id).AsNoTracking();
 
         public IEnumerable<TaxonomyEntity> GetAllConstructionStatus()
             => _context.TaxonomyEntity.Include(o => o.Details).Where(o => o.TaxonomyTypeId == ConstructionStatusSeed.ConstructionStatus.Id).AsNoTracking();
@@ -99,6 +103,9 @@ namespace Omi.Modules.Dbgroup.Services
             foreach (var newDetail in newConstruction.Details)
             {
                 var oldDetail = construction.Details.FirstOrDefault(o => o.Language == currentInputLanguage);
+                if(oldDetail == null)
+                    oldDetail = construction.Details.FirstOrDefault(o => o.Language == null);
+
                 newDetail.Id = oldDetail.Id;
                 _context.Entry(oldDetail).CurrentValues.SetValues(newDetail);
             }

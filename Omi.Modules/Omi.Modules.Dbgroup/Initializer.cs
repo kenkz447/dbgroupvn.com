@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Omi.Modules.Dbgroup.Home.Seed;
 using Omi.Modules.Dbgroup.Home.Services;
 using Omi.Modules.Dbgroup.Construction.Seed;
+using Omi.Modules.Dbgroup.Services;
 
 namespace Omi.Modules.Dbgroup
 {
@@ -12,6 +13,7 @@ namespace Omi.Modules.Dbgroup
         {
             services.AddDbContext<DbgroupDbContext>();
             services.AddScoped<HomeService>();
+            services.AddScoped<ConstructionService>();
 
             var serviceProvider = services.BuildServiceProvider();
 

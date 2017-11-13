@@ -14,6 +14,7 @@ namespace Omi.Modules.Dbgroup.ViewModels
         public string Title { get; set; }
         public string Description { get; set; }
         public string Customer { get; set; }
+        public string FinishDate { get; set; }
 
         [Required] 
         public int Area { get; set; }

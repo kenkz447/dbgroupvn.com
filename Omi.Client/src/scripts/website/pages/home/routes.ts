@@ -4,7 +4,7 @@ import IndexComponent from './Page'
 
 import { indexRouteName } from './keys'
 
-export const homeRoute: ViewRoute = {
+export const HomeRoute: ViewRoute = {
     path: '/',
     name: indexRouteName,
     exact: true,

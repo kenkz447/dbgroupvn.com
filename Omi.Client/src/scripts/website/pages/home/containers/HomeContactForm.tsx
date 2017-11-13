@@ -5,7 +5,6 @@ import { Form, Input, Row, Col, Button, Modal } from 'antd'
 import { RequestSend, RequestCacheDelete } from '../../../../shared/core/index'
 import { WebsiteRootState } from '../../../Types'
 
-
 interface DispatchProps {
     onPost?: (values) => void
     resetPostResult?: () => void

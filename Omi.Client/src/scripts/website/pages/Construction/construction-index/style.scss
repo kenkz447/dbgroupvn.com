@@ -1,0 +1,37 @@
+.construction {
+    &-item {
+        &-title {
+            background: #e2e2e2;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            position: relative;
+        }
+        &-text {
+            color: #272727;
+            text-overflow: clip;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
+    &-type-list {
+        font-size: 16px;
+        a {
+            color: rgba(0, 0, 0, .85)
+        }
+        .active {
+            font-weight: bold;
+        }
+        .ant-collapse-item-disabled {
+            .ant-collapse-header {
+                background-color: #fff;
+                cursor: unset!important;
+            }
+            .arrow {
+                display: none!important;
+            }
+        }
+    }
+}

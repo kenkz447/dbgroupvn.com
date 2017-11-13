@@ -76,7 +76,7 @@ const mapDispatchToProps = (dispatch): DispatchProps => {
     return {
         getDataSource: () => {
             const requestSendAction = RequestSend('CONSTRUCTIONS', {
-                url: `/construction/getPackages${location.search}`
+                url: `/construction/getConstructions${location.search}`
             })
             dispatch(requestSendAction)
         }

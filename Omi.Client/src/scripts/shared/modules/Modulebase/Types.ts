@@ -4,4 +4,6 @@ export interface TaxonomyViewModel {
     label: string
     icon: string
     taxonomyTypeId: number
+    parentId?: number
+    children?: Array<TaxonomyViewModel>
 }

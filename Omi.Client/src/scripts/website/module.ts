@@ -5,13 +5,14 @@ import { CRModule } from '../shared/core'
 import { LAYOUT_COMMON } from './keys'
 
 import {
-    homeRoute as Home
+    HomeRoute,
+    ConstructionRoutes
 } from './pages'
 
 import { MainMaster } from './layout'
 
 export const Module: CRModule = {
-    routes: [Home],
+    routes: [HomeRoute, ...ConstructionRoutes],
     masterPages: {
         [LAYOUT_COMMON]: MainMaster
     }

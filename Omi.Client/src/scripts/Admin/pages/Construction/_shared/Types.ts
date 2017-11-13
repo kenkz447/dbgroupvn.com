@@ -4,20 +4,18 @@ import { FileEntityInfo } from './../../../../shared/modules/FileAndMedia'
 export interface ConstructionViewModel {
     id?: number
     title?: string
-    sortText?: string
-    price?: number
+    description?: string
+    customer?: string
+    finishDate?: string
     area?: number
-    houseTypeId?: number
-    houseTypeLabel?: string
-    designThemeId?: number
-    designThemeLabel?: string
+    constructionTypeId?: number
+    constructionTypeLabel?: string
+    statusId?: number
+    constructionStatusLabel?: string
     avatar?: FileEntityInfo
     pictures?: Array<FileEntityInfo>
-    constructionIncludedItemIds?: Array<number>
-    constructionIncludedItems?: Array<TaxonomyViewModel>
     language?: string
 
-    valiablePackageIncludedItems?: Array<TaxonomyViewModel>
-    valiableDesignThemes?: Array<TaxonomyViewModel>
-    valiableHouseStyles?: Array<TaxonomyViewModel>
+    avaliableConstructionType?: Array<TaxonomyViewModel>
+    avaliableConstructionStatus?: Array<TaxonomyViewModel>
 }

@@ -15,7 +15,6 @@ export interface ConstructionFormDispatchProps {
 export interface ConstructionFormStateProps {
     initConstructionViewModel?: ConstructionViewModel
     formPostResultConstructionId?: number
-    searchParams?: string
 }
 
 export interface ConstructionFormProps extends ConstructionFormStateProps, ConstructionFormDispatchProps {
@@ -43,8 +42,8 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
 
     componentWillMount() {
         this.props.getInitialViewModel()
-    } 
- 
+    }
+
     render() {
         return (
             <div>
@@ -66,7 +65,6 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
                                 </Col>
                             </Row>
                         </TabPane>
-                        <TabPane tab="SEO" key="2">Content of Tab Pane 2</TabPane>
                     </Tabs>
                 </Form>
                 <FileSelectModal />
@@ -76,12 +74,12 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
 
     renderHidden() {
         return [
-            this.props.form.getFieldDecorator('id', {
+            this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.id), {
                 initialValue: this.props.initConstructionViewModel.id
             })(<Input type="hidden" />),
-            this.props.form.getFieldDecorator('language', {
+            this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.language), {
                 initialValue: this.props.initConstructionViewModel.language
-            })(<Input type="hidden"/>),
+            })(<Input type="hidden" />),
         ]
     }
 
@@ -90,22 +88,16 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
             <fieldset>
                 <h2 className="form-legend mb-4">Basic infomation</h2>
                 <FormItem>
-                    {this.props.form.getFieldDecorator('avatar', {
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.avatar), {
                         rules: [{ required: true, message: 'Please select avatar!' }],
                         initialValue: this.props.initConstructionViewModel.avatar
-                    })(<AvatarSelect inputName="avatar" />)}
+                    })(<AvatarSelect inputName={nameof<ConstructionViewModel>((o) => o.avatar)} />)}
                 </FormItem>
                 <FormItem label="Title">
-                    {this.props.form.getFieldDecorator('title', {
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.title), {
                         rules: [{ required: true, message: 'Title is required!' }],
                         initialValue: this.props.initConstructionViewModel.title
                     })(<Input placeholder="Title" />)}
-                </FormItem>
-                <FormItem label="Price">
-                    {this.props.form.getFieldDecorator('price', {
-                        rules: [{ required: true, message: 'Price is required!' }],
-                        initialValue: this.props.initConstructionViewModel.price
-                    })(<Input type="number" placeholder="Price" addonAfter="vnđ" />)}
                 </FormItem>
             </fieldset>
         )
@@ -115,28 +107,28 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
         return (
             <fieldset>
                 <h2 className="form-legend mb-4">Description</h2>
-                <FormItem label="Design theme">
-                    {this.props.form.getFieldDecorator('designThemeId', {
-                        rules: [{ required: true, message: 'Please select design theme!' }],
-                        initialValue: this.props.initConstructionViewModel.designThemeId
+                <FormItem label="Construction status">
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.statusId), {
+                        rules: [{ required: true, message: 'Please select status!' }],
+                        initialValue: this.props.initConstructionViewModel.statusId && this.props.initConstructionViewModel.statusId
                     })(
-                        <Select placeholder="Design theme">
+                        <Select placeholder="Select one...">
                             {
-                                this.props.initConstructionViewModel.valiableDesignThemes && this.props.initConstructionViewModel.valiableDesignThemes.map((e) => (
+                                this.props.initConstructionViewModel.avaliableConstructionStatus && this.props.initConstructionViewModel.avaliableConstructionStatus.map((e) => (
                                     <Option key={e.id} value={e.id}>{e.label}</Option>
                                 ))
                             }
                         </Select>
                         )}
                 </FormItem>
-                <FormItem label="House type"> 
-                    {this.props.form.getFieldDecorator('houseTypeId', {
-                        rules: [{ required: true, message: 'Please select house type!' }],
-                        initialValue: this.props.initConstructionViewModel.houseTypeId
+                <FormItem label="Construction type">
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.constructionTypeId), {
+                        rules: [{ required: true, message: 'Please select type!' }],
+                        initialValue: this.props.initConstructionViewModel.constructionTypeId && this.props.initConstructionViewModel.constructionTypeId
                     })(
-                        <Select placeholder="House type">
+                        <Select placeholder="Select one...">
                             {
-                                this.props.initConstructionViewModel.valiableHouseStyles && this.props.initConstructionViewModel.valiableHouseStyles.map((e) => (
+                                this.props.initConstructionViewModel.avaliableConstructionType && this.props.initConstructionViewModel.avaliableConstructionType.map((e) => (
                                     <Option key={e.id} value={e.id}>{e.label}</Option>
                                 ))
                             }
@@ -149,23 +141,20 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
                         initialValue: this.props.initConstructionViewModel.area
                     })(<Input type="number" placeholder="Area" addonAfter="m2" />)}
                 </FormItem>
-                <FormItem>
-                    {this.props.form.getFieldDecorator('sortText', {
-                        initialValue: this.props.initConstructionViewModel.sortText
-                    })(<TextArea placeholder="Sort text" />)}
+                <FormItem label="Customer">
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.customer), {
+                        initialValue: this.props.initConstructionViewModel.customer
+                    })(<Input placeholder="Customer's name" />)}
                 </FormItem>
-                <FormItem label="Included">
-                    {this.props.form.getFieldDecorator('constructionIncludedItemIds', {
-                        initialValue: this.props.initConstructionViewModel.constructionIncludedItemIds
-                    })(
-                        <Select placeholder="Include items" mode="multiple">
-                            {
-                                this.props.initConstructionViewModel.valiableConstructionIncludedItems && this.props.initConstructionViewModel.valiableConstructionIncludedItems.map((e) => (
-                                    <Option key={e.id} value={e.id}>{e.label}</Option>
-                                ))
-                            }
-                        </Select>
-                    )}
+                <FormItem label="Finished date">
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.finishDate), {
+                        initialValue: this.props.initConstructionViewModel.customer
+                    })(<Input placeholder="Finished date" />)}
+                </FormItem>
+                <FormItem label="Description">
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.description), {
+                        initialValue: this.props.initConstructionViewModel.description
+                    })(<TextArea placeholder="Sort text" />)}
                 </FormItem>
             </fieldset>
         )
@@ -176,7 +165,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
             <fieldset>
                 <h2 className="form-legend mb-4">Pictures</h2>
                 <FormItem label="Gallery">
-                    {this.props.form.getFieldDecorator('pictures', {
+                    {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.pictures), {
                         initialValue: this.props.initConstructionViewModel.pictures
                     })(<PictureWall />)}
                 </FormItem>
@@ -188,7 +177,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
         e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err)
-                this.props.post(values)    
+                this.props.post(values)
         })
     }
 }

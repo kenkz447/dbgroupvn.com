@@ -16,6 +16,7 @@ using Omi.Modules.Dbgroup.ServiceModels;
 using Omi.Modules.FileAndMedia.Base;
 using Omi.Modules.FileAndMedia.ViewModel;
 using Omi.Modules.Dbgroup.Construction.Seed;
+using System.Threading;
 
 namespace Omi.Modules.Dbgroup.Construction.Controllers
 {
@@ -48,6 +49,8 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             }
         }
 
+
+
         public BaseJsonResult GetEmptyConstructionViewModel()
             => new BaseJsonResult(Base.Properties.Resources.POST_SUCCEEDED, EmptyConstructionViewModel);
 
@@ -56,6 +59,47 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             var construction = await _constructionService.GetConstructionById(constructionId);
             var viewModel = ToConstructionViewModel(construction);
             return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, viewModel);
+        }
+
+        [HttpPost]
+        public async Task<BaseJsonResult> CreateNewConstruction([FromBody]ConstructionUpdateViewModel viewModel)
+        {
+            var constructionServiceModel = ConstructionServiceModelExt.FromConstructionUpdateViewModel(viewModel);
+            constructionServiceModel.User = CurrentUser;
+
+            var newConstruction = await _constructionService.CreateNewConstruction(constructionServiceModel);
+
+            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, newConstruction.Id);
+        }
+
+        [HttpPost]
+        public async Task<BaseJsonResult> UpdateConstruction([FromBody]ConstructionUpdateViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return new ModelStateErrorJsonResult(ModelState.Values);
+
+            var constructionServiceModel = ConstructionServiceModelExt.FromConstructionUpdateViewModel(viewModel);
+            constructionServiceModel.User = CurrentUser;
+
+            await _constructionService.UpdateConstructionAsync(constructionServiceModel);
+
+            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, viewModel.Id);
+        }
+
+        [AllowAnonymous]
+        public BaseJsonResult GetAllConstructionType()
+        {
+            var constructionTypes = _constructionService.GetAllConstructionType();
+            constructionTypes = constructionTypes.Where(o => o.ParentId == null);
+
+            return new BaseJsonResult(Base.Properties.Resources.POST_SUCCEEDED, constructionTypes.Select(o => TaxomonyViewModel.FromEntity(o)));
+        }
+
+        [AllowAnonymous]
+        public BaseJsonResult GetAllConstructionStatus()
+        {
+            var constructionStatues = _constructionService.GetAllConstructionStatus();
+            return new BaseJsonResult(Base.Properties.Resources.POST_SUCCEEDED, constructionStatues.Select(o => TaxomonyViewModel.FromEntity(o)));
         }
 
         [AllowAnonymous]
@@ -88,41 +132,24 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, viewModels);
         }
 
-        [HttpPost]
-        public async Task<BaseJsonResult> CreateNewConstruction([FromBody]ConstructionUpdateViewModel viewModel)
-        {
-            var constructionServiceModel = ConstructionServiceModelExt.FromConstructionUpdateViewModel(viewModel);
-            constructionServiceModel.User = CurrentUser;
-
-            var newConstruction = await _constructionService.CreateNewConstruction(constructionServiceModel);
-
-            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, newConstruction.Id);
-        }
-
-        [HttpPost]
-        public async Task<BaseJsonResult> UpdateConstruction([FromBody]ConstructionUpdateViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-                return new ModelStateErrorJsonResult(ModelState.Values);
-
-            var constructionServiceModel = ConstructionServiceModelExt.FromConstructionUpdateViewModel(viewModel);
-            constructionServiceModel.User = CurrentUser;
-
-            await _constructionService.UpdateConstructionAsync(constructionServiceModel);
-
-            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED);
-        }
 
         private ConstructionViewModel ToConstructionViewModel(ConstructionEntity construction)
         {
             if (construction == null)
                 return null;
 
+            var detail = construction.Details.FirstOrDefault(o => o.Language == Thread.CurrentThread.CurrentUICulture.Name);
+            if(detail == null)
+                detail = construction.Details.FirstOrDefault(o => o.Language == null);
+
             var constructionViewModel = EmptyConstructionViewModel;
 
             constructionViewModel.Id = construction.Id;
-
-            var detail = construction.Details.FirstOrDefault();
+            constructionViewModel.Title = detail.Title;
+            constructionViewModel.Area = detail.Area;
+            constructionViewModel.FinishDate = detail.FinishDate;
+            constructionViewModel.Customer = detail.Customer;
+            constructionViewModel.Description = detail.Description;
 
             var avatarFile = construction.EnitityFiles.FirstOrDefault(o => o.UsingType == (int)FileUsingType.Avatar);
             constructionViewModel.Avatar = FileEntityInfo.FromEntity(avatarFile.FileEntity);
@@ -131,12 +158,18 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             constructionViewModel.Pictures = pictureFiles.Select(o => FileEntityInfo.FromEntity(o.FileEntity));
 
             var constructionType = construction.EntityTaxonomies.FirstOrDefault(o => o.Taxonomy.TaxonomyTypeId == ConstructionCategoriesSeed.ConstructionType.Id);
-            constructionViewModel.ConstructionTypeId = constructionType.TaxonomyId;
-            constructionViewModel.ConstructionTypeLabel = constructionType.Taxonomy.Details.FirstOrDefault(o => o.Language == Omi.Base.Properties.Resources.DEFAULT_LANGUAGE).Label;
+            var constructionTypeDetail = constructionType.Taxonomy.Details.FirstOrDefault(o => o.Language == Thread.CurrentThread.CurrentUICulture.Name);
+            if(constructionTypeDetail == null)
+                constructionTypeDetail = constructionType.Taxonomy.Details.FirstOrDefault(o => o.Language == null);
+            constructionViewModel.ConstructionTypeId = constructionTypeDetail.Id;
+            constructionViewModel.ConstructionTypeLabel = constructionTypeDetail?.Label;
 
             var constructionStatus = construction.EntityTaxonomies.FirstOrDefault(o => o.Taxonomy.TaxonomyTypeId == ConstructionStatusSeed.ConstructionStatus.Id);
-            constructionViewModel.ConstructionTypeId = constructionStatus.TaxonomyId;
-            constructionViewModel.ConstructionTypeLabel = constructionStatus.Taxonomy.Details.FirstOrDefault(o => o.Language == Omi.Base.Properties.Resources.DEFAULT_LANGUAGE).Label;
+            var constructionStatusDetail = constructionStatus.Taxonomy.Details.FirstOrDefault(o => o.Language == Thread.CurrentThread.CurrentUICulture.Name);
+            if (constructionStatusDetail == null)
+                constructionStatusDetail = constructionStatus.Taxonomy.Details.FirstOrDefault(o => o.Language == null);
+            constructionViewModel.StatusId = constructionStatusDetail.Id;
+            constructionViewModel.StatusLabel = constructionStatusDetail?.Label;
 
             return constructionViewModel;
         }

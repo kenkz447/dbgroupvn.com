@@ -54,7 +54,10 @@ namespace Omi.Modules.Dbgroup.ServiceModels
             EntityId = viewModel.Id,
             Area = viewModel.Area,
             Title = viewModel.Title,
-            Language = viewModel.Language
+            Language = viewModel.Language,
+            Customer = viewModel.Customer,
+            Description = viewModel.Description,
+            FinishDate = viewModel.FinishDate
         };
 
         public static ConstructionServiceModel FromConstructionUpdateViewModel(ConstructionUpdateViewModel viewModel)
