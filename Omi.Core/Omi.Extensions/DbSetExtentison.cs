@@ -13,6 +13,6 @@ namespace Omi.Extensions
                 return entitySet.Add(entityToSeed).Entity;
 
             return entity;
-        }
+       }
     }
 }

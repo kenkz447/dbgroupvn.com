@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omi.Modules.Dbgroup", "Omi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omi.Modules.Setting", "Omi.Modules\Omi.Modules.Setting\Omi.Modules.Setting.csproj", "{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omi.DatabaseDesignHost", "Omi.Database\Omi.DatabaseDesignHost\Omi.DatabaseDesignHost.csproj", "{57E0DC7B-CC2E-443C-A812-383F0729338E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E0DC7B-CC2E-443C-A812-383F0729338E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E0DC7B-CC2E-443C-A812-383F0729338E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E0DC7B-CC2E-443C-A812-383F0729338E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E0DC7B-CC2E-443C-A812-383F0729338E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,6 +132,7 @@ Global
 		{948184FC-56BA-410F-A7CE-E783B6B836F6} = {EC56F74E-68F0-4104-8F96-0CB79A39278D}
 		{C80174C9-0F79-4BF1-A8F6-F0734D2CE2F9} = {80FF66BE-99ED-4FEC-92B8-C25DB4A846C5}
 		{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C} = {948184FC-56BA-410F-A7CE-E783B6B836F6}
+		{57E0DC7B-CC2E-443C-A812-383F0729338E} = {A18F7BB7-D96F-41BA-9F25-F0DFD4733BCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75E7F6C9-2D33-477B-B6FA-1236C7F932F7}

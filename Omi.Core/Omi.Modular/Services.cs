@@ -14,6 +14,7 @@ namespace Omi.Modular
         {
             services.LoadOmiModules();
 
+
             return services;
         }
 

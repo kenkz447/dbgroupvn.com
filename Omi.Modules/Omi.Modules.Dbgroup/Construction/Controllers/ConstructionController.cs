@@ -35,11 +35,13 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
         {
             get
             {
-                var designThemes = _constructionService.GetAllDesignThemes();
+                var constructionTypes = _constructionService.GetAllConstructionType();
+                var constructionStatues = _constructionService.GetAllConstructionStatus();
 
                 var result = new ConstructionViewModel
                 {
-                    AvaliableDesignThemes = designThemes.Select(o => TaxomonyViewModel.FromEntity(o))
+                    AvaliableConstructionStatus = constructionStatues.Select(o => TaxomonyViewModel.FromEntity(o)),
+                    AvaliableConstructionType = constructionTypes.Select(o => TaxomonyViewModel.FromEntity(o))
                 };
 
                 return result;
@@ -78,7 +80,7 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
         [AllowAnonymous]
         public async Task<BaseJsonResult> GetConstructions(ConstructionFilterViewModel viewModel)
         {
-            var serviceModel = viewModel.ToServiceModel();
+            var serviceModel = ConstructionFilterServiceModelExt.FromViewModel(viewModel);
             var entities = await _constructionService.GetConstructions(serviceModel);
 
             var viewModels = new PageEntityViewModel<ConstructionEntity, ConstructionViewModel>(entities, o => ToConstructionViewModel(o));
@@ -128,9 +130,13 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             var pictureFiles = construction.EnitityFiles.Where(o => o.UsingType == (int)FileUsingType.Picture);
             constructionViewModel.Pictures = pictureFiles.Select(o => FileEntityInfo.FromEntity(o.FileEntity));
 
-            var houseType = construction.EntityTaxonomies.FirstOrDefault(o => o.Taxonomy.TaxonomyTypeId == ConstructionTaxonomiesSeed.ConstructionType.Id);
-            constructionViewModel.HouseTypeId = houseType.TaxonomyId;
-            constructionViewModel.HouseTypeLabel = houseType.Taxonomy.Details.FirstOrDefault(o => o.Language == Omi.Base.Properties.Resources.DEFAULT_LANGUAGE).Label;
+            var constructionType = construction.EntityTaxonomies.FirstOrDefault(o => o.Taxonomy.TaxonomyTypeId == ConstructionCategoriesSeed.ConstructionType.Id);
+            constructionViewModel.ConstructionTypeId = constructionType.TaxonomyId;
+            constructionViewModel.ConstructionTypeLabel = constructionType.Taxonomy.Details.FirstOrDefault(o => o.Language == Omi.Base.Properties.Resources.DEFAULT_LANGUAGE).Label;
+
+            var constructionStatus = construction.EntityTaxonomies.FirstOrDefault(o => o.Taxonomy.TaxonomyTypeId == ConstructionStatusSeed.ConstructionStatus.Id);
+            constructionViewModel.ConstructionTypeId = constructionStatus.TaxonomyId;
+            constructionViewModel.ConstructionTypeLabel = constructionStatus.Taxonomy.Details.FirstOrDefault(o => o.Language == Omi.Base.Properties.Resources.DEFAULT_LANGUAGE).Label;
 
             return constructionViewModel;
         }

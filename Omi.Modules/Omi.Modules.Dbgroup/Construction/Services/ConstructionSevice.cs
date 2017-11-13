@@ -21,8 +21,11 @@ namespace Omi.Modules.Dbgroup.Services
             _context = context;
         }
 
-        public IEnumerable<TaxonomyEntity> GetAllDesignThemes()
-            => _context.TaxonomyEntity.Include(o => o.Details).Where(o => o.TaxonomyTypeId == ConstructionTaxonomiesSeed.ConstructionType.Id).AsNoTracking();
+        public IEnumerable<TaxonomyEntity> GetAllConstructionType()
+            => _context.TaxonomyEntity.Include(o => o.Details).Where(o => o.TaxonomyTypeId == ConstructionCategoriesSeed.ConstructionType.Id).AsNoTracking();
+
+        public IEnumerable<TaxonomyEntity> GetAllConstructionStatus()
+            => _context.TaxonomyEntity.Include(o => o.Details).Where(o => o.TaxonomyTypeId == ConstructionStatusSeed.ConstructionStatus.Id).AsNoTracking();
 
         private IQueryable<ConstructionEntity> GetConstructions()
             => _context.ConstructionEntity
@@ -85,7 +88,7 @@ namespace Omi.Modules.Dbgroup.Services
         public async Task<ConstructionEntity> UpdateConstructionAsync(ConstructionServiceModel serviceModel)
         {
             var construction = await GetConstructions().SingleAsync(o => o.Id == serviceModel.Id);
-            var newConstruction = serviceModel.ToEntity();
+            var newConstruction = ConstructionEntityExt.FromServiceModel(serviceModel);
 
             _context.Entry(construction).CurrentValues.SetValues(newConstruction);
             _context.Entry(construction).Property(o => o.CreateByUserId).IsModified = false;

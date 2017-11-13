@@ -3,7 +3,7 @@
     "Omi.DatabaseDesign": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "DbMigration"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }

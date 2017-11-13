@@ -23,23 +23,6 @@ namespace Omi.Modules.Dbgroup.ServiceModels
 
         public ApplicationUser User { get; set; }
 
-        public ConstructionEntity ToEntity()
-        {
-            var newConstruction = new ConstructionEntity
-            {
-                Id = Id,
-                Name = Name,
-                CreateByUserId = User.Id,
-                Details = new List<ConstructionDetail>() {
-                    Detail
-                },
-                EnitityFiles = GetEntityFiles(),
-                EntityTaxonomies = new List<ConstructionTaxonomy>(
-                    TaxonomyIds.Select(taxonomyId => new ConstructionTaxonomy { TaxonomyId = taxonomyId, EntityId = Id }))
-            };
-            return newConstruction;
-        }
-
         public IEnumerable<ConstructionFile> GetEntityFiles()
         {
             var packageFiles = new List<ConstructionFile>()
@@ -76,9 +59,9 @@ namespace Omi.Modules.Dbgroup.ServiceModels
 
         public static ConstructionServiceModel FromConstructionUpdateViewModel(ConstructionUpdateViewModel viewModel)
         {
-            var taxonomyIds = new List<long>(viewModel.ConstructionIncludedItemIds)
+            var taxonomyIds = new List<long>()
                     {
-                        viewModel.HouseTypeId, viewModel.DesignThemeId,
+                        viewModel.ConstructionTypeId, viewModel.StatusId,
                     };
 
             var pictureFileIds = new List<long>(viewModel.Pictures.Select(o => o.FileId));

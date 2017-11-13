@@ -17,12 +17,14 @@ namespace Omi.Modules.Dbgroup
 
             var dbContext = serviceProvider.GetService<DbgroupDbContext>();
 
-
             var homeSettingSeed = new HomeSettingSeed();
             await homeSettingSeed.SeedAsync(dbContext);
 
-            var constructionTaxonomiesSeed = new ConstructionTaxonomiesSeed();
+            var constructionTaxonomiesSeed = new ConstructionCategoriesSeed();
             await constructionTaxonomiesSeed.SeedAsync(dbContext);
+
+            var constructionStatusSeed = new ConstructionStatusSeed();
+            await constructionStatusSeed.SeedAsync(dbContext);
         }
     }
 }

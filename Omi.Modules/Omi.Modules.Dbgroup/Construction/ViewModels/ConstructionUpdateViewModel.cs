@@ -12,25 +12,21 @@ namespace Omi.Modules.Dbgroup.ViewModels
 
         [Required]
         public string Title { get; set; }
+        public string Description { get; set; }
+        public string Customer { get; set; }
 
-        public string SortText { get; set; }
-
-        [Required]
-        public int Price { get; set; }
-
-        [Required]
+        [Required] 
         public int Area { get; set; }
 
         [Required]
-        public long HouseTypeId { get; set; }
+        public long ConstructionTypeId { get; set; }
 
         [Required]
-        public long DesignThemeId { get; set; }
+        public long StatusId { get; set; }
 
-        public string Language { get; set; } = Omi.Base.Properties.Resources.DEFAULT_LANGUAGE;
+        public string Language { get; set; }
 
         public FileEntityInfo Avatar { get; set; }
         public IEnumerable<FileEntityInfo> Pictures { get; set; }
-        public IEnumerable<long> ConstructionIncludedItemIds { get; set; }
     }
 }

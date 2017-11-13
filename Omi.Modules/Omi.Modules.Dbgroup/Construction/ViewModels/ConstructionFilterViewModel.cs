@@ -12,20 +12,10 @@ namespace Omi.Modules.Dbgroup.ViewModels
         }
 
         public string SortBy { get; set; }
-        public long DesignTheme { get; set; }
-        public long HouseType { get; set; }
-        public int BudgetMin { get; set; }
-        public int BudgetMax { get; set; }
+        public long ConstructionType { get; set; }
+        public long StatusId { get; set; }
+
         public int Page { get; set; }
         public int PageSize { get; set; }
-
-        public ConstructionFilterServiceModel ToServiceModel()
-            => new ConstructionFilterServiceModel
-            {
-                SortBy = SortBy,
-                TaxonomyIds = new List<long>() { DesignTheme, HouseType },
-                Page = Page,
-                PageSize = PageSize
-            };
     }
 }
