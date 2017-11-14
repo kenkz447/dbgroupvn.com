@@ -29,11 +29,19 @@ class ConstructionStatusList extends React.Component<StateProps & DispatchProps>
         const currentStatus = currentUrl.searchParams.get('status')
         const currentType = currentUrl.searchParams.get('type')
 
+        const searchParams = new URLSearchParams(currentUrl.search)
+        searchParams.delete('status')
+
         return (
             <div className="construction-status-list">
                 <span className="construction-status-title">
                     <b className="construction-status-list-item">Status</b>
                 </span>
+                <div>
+                    <Link to={`/construction${searchParams.toString()}`}>
+                        <Radio checked={!currentUrl.searchParams.get('status')} className="construction-status-list-item">All</Radio>
+                    </Link>
+                </div>
                 {
                     this.props.allConstructionStatus.map((o) => {
 

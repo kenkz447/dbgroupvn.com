@@ -28,7 +28,7 @@ class ConstructionTypeList extends React.Component<StateProps & DispatchProps> {
 
         return (
             <div className="construction-type-list">
-                <Collapse bordered={false} defaultActiveKey={['1']}>
+                <Collapse bordered={false} defaultActiveKey={['1']} accordion>
                     <Collapse.Panel header={this.renderLink({ id: 0, label: 'All'} as any)} key="0" disabled />
                     {
                         this.props.allConstructionType.map((o) => {

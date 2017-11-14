@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
 
 import { ExtractImmutableHOC, RequestSend, SetTempValue } from '../../../../../shared/core'
-import { PageEntityViewModel,Pager, Transition } from '../../../../../shared/modules/website'
+import { PageEntityViewModel, Pager, Transition } from '../../../../../shared/modules/website'
 import { ConstructionViewModel } from '../../../../../Admin'
 
 import { WebsiteRootState } from '../../../../Types'
@@ -37,9 +37,6 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
         return (
             <Transition>
                 <Row className="construction-list" gutter={30} >
-                    <Col span={24}>
-                        
-                    </Col>
                     {
                         this.props.constructionPage && this.props.constructionPage.entities.map((item) => (
                             <Col key={item.id} span={6}>
