@@ -21,6 +21,7 @@
         "react-addons-css-transition-group": "^15.6.2",
         "react-controllables": "^0.6.0",
         "react-dom": "^16.1.0",
+        "react-image-lightbox": "^4.3.0",
         "react-pure-render": "^1.0.2",
         "react-redux": "^5.0.5",
         "react-redux-typescript": "^2.3.0",

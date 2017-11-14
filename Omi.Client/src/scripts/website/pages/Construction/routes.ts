@@ -1,15 +1,15 @@
 import { ViewRoute } from '../../../shared/core'
-
+import { WEBSITE_PAGE_CONSTRUCTION } from './keys'
 import { ConstructionIndexRoute } from './construction-index'
-//import { ConstructionDetail } from './construction-detail'
+import { ConstructionDetailRoute } from './construction-detail'
 
 const Construction: ViewRoute = {
     path: '/construction',
-    name: 'WEBSITE@PAGE_CONSTRUCTION',
+    name: WEBSITE_PAGE_CONSTRUCTION,
 }
 
 export const ConstructionRoutes = [
     Construction,
     ConstructionIndexRoute,
-    //ConstructionDetail
+    ConstructionDetailRoute
 ]

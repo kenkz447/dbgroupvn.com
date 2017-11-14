@@ -9,7 +9,7 @@ namespace Omi.Modules.Dbgroup.ViewModels
     public class ConstructionUpdateViewModel
     {
         public long Id { get; set; }
-
+        public string Name { get; set; }
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }

@@ -6,7 +6,10 @@ import { LAYOUT_COMMON } from './keys'
 
 import {
     HomeRoute,
-    ConstructionRoutes
+    ConstructionRoutes,
+
+    WEBSITE_CONSTRUCTION_MASTER,
+    ConstructionMaster
 } from './pages'
 
 import { MainMaster } from './layout'
@@ -14,6 +17,7 @@ import { MainMaster } from './layout'
 export const Module: CRModule = {
     routes: [HomeRoute, ...ConstructionRoutes],
     masterPages: {
-        [LAYOUT_COMMON]: MainMaster
+        [LAYOUT_COMMON]: MainMaster,
+        [WEBSITE_CONSTRUCTION_MASTER]: ConstructionMaster
     }
 }

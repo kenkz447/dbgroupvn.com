@@ -114,9 +114,9 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<BaseJsonResult> GetConstruction(long constructionName)
+        public async Task<BaseJsonResult> GetConstruction(string constructionName)
         {
-            var construction = await _constructionService.GetConstructionById(constructionName);
+            var construction = await _constructionService.GetConstructionByName(constructionName);
             var viewModel = ToConstructionViewModel(construction);
             return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, viewModel);
         }
@@ -145,6 +145,8 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             var constructionViewModel = EmptyConstructionViewModel;
 
             constructionViewModel.Id = construction.Id;
+            constructionViewModel.Name = construction.Name;
+
             constructionViewModel.Title = detail.Title;
             constructionViewModel.Area = detail.Area;
             constructionViewModel.FinishDate = detail.FinishDate;

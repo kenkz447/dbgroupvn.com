@@ -3,6 +3,7 @@ import { FileEntityInfo } from './../../../../shared/modules/FileAndMedia'
 
 export interface ConstructionViewModel {
     id?: number
+    name?: string
     title?: string
     description?: string
     customer?: string

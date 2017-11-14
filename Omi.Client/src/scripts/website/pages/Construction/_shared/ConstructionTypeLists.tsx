@@ -2,9 +2,9 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Collapse } from 'antd'
 
-import { ExtractImmutableHOC, RequestSend } from '../../../../../shared/core'
-import { TaxonomyViewModel } from '../../../../../shared/modules/Modulebase'
-import { WebsiteRootState } from '../../../../Types'
+import { ExtractImmutableHOC, RequestSend } from '../../../../shared/core'
+import { TaxonomyViewModel } from '../../../../shared/modules/Modulebase'
+import { WebsiteRootState } from '../../../Types'
 import { Link, NavLink } from 'react-router-dom'
 import * as classNames from 'classnames';
 
@@ -71,7 +71,7 @@ class ConstructionTypeList extends React.Component<StateProps & DispatchProps> {
         const search = currentUrl.search
 
         return (
-            <Link className={classNames({ 'active': currentType == type.name })} to={`${currentUrl.pathname}${search}`}>{type.label}</Link>
+            <Link className={classNames({ 'active': currentType == type.name })} to={`/construction${search}`}>{type.label}</Link>
         )
     }
 }
