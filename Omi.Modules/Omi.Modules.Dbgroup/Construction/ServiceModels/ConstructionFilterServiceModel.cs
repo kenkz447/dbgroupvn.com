@@ -6,19 +6,19 @@ using System.Text;
 
 namespace Omi.Modules.Dbgroup.ServiceModels
 {
-    public static class ConstructionFilterServiceModelExt {
+    public partial class ConstructionFilterServiceModel {
         public static ConstructionFilterServiceModel FromViewModel(ConstructionFilterViewModel viewModel)
             => new ConstructionFilterServiceModel
             {
                 SortBy = viewModel.SortBy,
-                TaxonomyIds = new List<long>() { viewModel.ConstructionType, viewModel.StatusId },
+                TaxonomyNames = new List<string>() { viewModel.Type, viewModel.Status },
                 Page = viewModel.Page,
                 PageSize = viewModel.PageSize
             };
     }
 
-    public class ConstructionFilterServiceModel : BaseFilterServiceModel
+    public partial class ConstructionFilterServiceModel : BaseFilterServiceModel
     {
-        public List<long> TaxonomyIds { get; set; }
+        public List<string> TaxonomyNames { get; set; }
     }
 }

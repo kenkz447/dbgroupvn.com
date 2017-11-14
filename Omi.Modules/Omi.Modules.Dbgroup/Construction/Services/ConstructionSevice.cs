@@ -45,9 +45,9 @@ namespace Omi.Modules.Dbgroup.Services
         {
             var constructions = GetConstructions().AsNoTracking();
 
-            foreach (var taxonomyId in serviceModel.TaxonomyIds)
-                if(taxonomyId != default(long))
-                    constructions = constructions.Where(o => o.EntityTaxonomies.Select(e => e.TaxonomyId).Contains(taxonomyId));
+            foreach (var taxonomyName in serviceModel.TaxonomyNames)
+                if(taxonomyName != default)
+                    constructions = constructions.Where(o => o.EntityTaxonomies.Select(e => e.Taxonomy.Name).Contains(taxonomyName));
 
             constructions = constructions.OrderByDescending(o => o.Id);
 

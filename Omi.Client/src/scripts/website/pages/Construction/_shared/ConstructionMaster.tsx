@@ -4,6 +4,7 @@ import { Layout, Row, Col, Menu, Icon } from 'antd'
 
 import { MasterHeader, MasterFooter } from '../../../layout'
 import { ConnectedConstructionTypeLists } from './ConstructionTypeLists'
+import { ConnectedConstructionStatusList } from './ConstructionStatusList'
 
 const { Content } = Layout
 export const WEBSITE_CONSTRUCTION_MASTER = "WEBSITE@LAYOUT_CONSTRUCTION_MASTER"
@@ -15,7 +16,10 @@ export const ConstructionMaster = (props: React.HTMLProps<any>) => {
                 <div className="brand-container">
                     <Row gutter={50}>
                         <Col span={5}>
-                            <ConnectedConstructionTypeLists />
+                            <div className="mb-5">
+                                <ConnectedConstructionTypeLists />
+                            </div>
+                            <ConnectedConstructionStatusList />
                         </Col>
                         <Col span={19}>
                             {props.children}

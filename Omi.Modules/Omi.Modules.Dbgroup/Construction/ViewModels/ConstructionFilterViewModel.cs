@@ -12,8 +12,16 @@ namespace Omi.Modules.Dbgroup.ViewModels
         }
 
         public string SortBy { get; set; }
-        public long ConstructionType { get; set; }
-        public long StatusId { get; set; }
+
+        /// <summary>
+        /// Construction type name
+        /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Construction status name
+        /// </summary>
+        public string Status { get; set; }
 
         public int Page { get; set; }
         public int PageSize { get; set; }

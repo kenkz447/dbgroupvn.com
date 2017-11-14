@@ -49,8 +49,6 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             }
         }
 
-
-
         public BaseJsonResult GetEmptyConstructionViewModel()
             => new BaseJsonResult(Base.Properties.Resources.POST_SUCCEEDED, EmptyConstructionViewModel);
 
@@ -124,7 +122,7 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
         [AllowAnonymous]
         public async Task<BaseJsonResult> GetConstructions(ConstructionFilterViewModel viewModel)
         {
-            var serviceModel = ConstructionFilterServiceModelExt.FromViewModel(viewModel);
+            var serviceModel = ConstructionFilterServiceModel.FromViewModel(viewModel);
             var entities = await _constructionService.GetConstructions(serviceModel);
 
             var viewModels = new PageEntityViewModel<ConstructionEntity, ConstructionViewModel>(entities, o => ToConstructionViewModel(o));
