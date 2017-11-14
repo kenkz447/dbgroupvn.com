@@ -37,13 +37,7 @@ module.exports = {
             minChunks: Infinity,
             filename: 'vendor.js',
         }),
-        new ExtractTextPlugin('style.css'),
-        new OptimizeCssAssetsPlugin({
-            assetNameRegExp: /\.s?css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: { discardComments: { removeAll: true } },
-            canPrint: true
-        })
+        new ExtractTextPlugin('style.css')
     ],
     module: {
         rules: [{
@@ -51,10 +45,28 @@ module.exports = {
                 loaders: ['ts-loader', 'ts-nameof-loader']
             },
             {
-                test: /\.scss?$/,
+                test: /\.s?(c|a)ss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['resolve-url-loader', 'css-loader', 'sass-loader']
+					use: [ 
+						 { 
+						   loader: 'css-loader',
+						   options: {
+							   modules: true
+						   }
+						 }, 
+						 { 
+							loader: 'postcss-loader', 
+							options: {
+							  ident: 'postcss',
+							  plugins: () => [ require('autoprefixer')() ]
+							}
+						 },{
+                    loader: "resolve-url-loader",
+                },
+						   {
+							   loader: 'sass-loader'
+						   }]
                 })
             },
             {
