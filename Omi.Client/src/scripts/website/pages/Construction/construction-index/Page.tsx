@@ -15,7 +15,7 @@ class Page extends React.Component {
             <div className="page">
                 <div className="mb-4">
                     <div className="mb-3">
-                        <img className="d-block mw-100 w-100" src="/src/images/construction-banner.png" />
+                        <img className="d-block mw-100 w-100" src={`${window.baseUrl}Upload/bb311320-6c27-4653-aa5c-eae8a980b9ec/2017/11/construction-banner.png`} />
                     </div>
                     <h1 className="text-uppercase">Construction</h1>
                 </div>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { Form, Icon, Input, Button, Checkbox, Card, Alert } from 'antd'
 
 import { RequestSend, ExtractImmutableHOC } from '../../../../../core'
-import { ExtendedRootState } from '../../../types'
+import { ExtendedRootState } from '../../../Types'
 
 import { connect } from 'react-redux'
 

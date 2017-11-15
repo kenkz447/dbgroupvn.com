@@ -6,7 +6,7 @@ import { ExtractImmutableHOC, RequestSend } from '../../../../shared/core'
 import { TaxonomyViewModel } from '../../../../shared/modules/Modulebase'
 import { WebsiteRootState } from '../../../Types'
 import { Link, NavLink } from 'react-router-dom'
-import * as classNames from 'classnames';
+import * as classNames from 'classnames'
 
 interface DispatchProps {
     getConstructionTypes: () => void

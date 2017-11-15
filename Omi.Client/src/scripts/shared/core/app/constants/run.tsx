@@ -4,11 +4,17 @@ import { AppContainer } from 'react-hot-loader'
 
 import { createAppContainer } from '../containers/AppContainer'
 
+import { LocaleProvider } from 'antd'
+const enUS = require('antd/lib/locale-provider/en_US')
+
 const renderAppContainer = (Container) => {
     ReactDOM.render(
-        <AppContainer>
-            <Container />
-        </AppContainer>,
+        <LocaleProvider locale={enUS}>
+            <AppContainer>
+                <Container />
+            </AppContainer>
+        </LocaleProvider>
+        ,
         document.getElementById('root')
     )
 }

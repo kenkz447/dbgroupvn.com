@@ -2,8 +2,11 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Form, Input, Row, Col, Button, Modal } from 'antd'
 
-import { RequestSend, RequestCacheDelete } from '../../../../shared/core/index'
+import { RequestSend, RequestCacheDelete } from '../../../../shared/core'
 import { WebsiteRootState } from '../../../Types'
+import { SendContactAction } from '../../../actions'
+
+const sendImg = require('../../../../../images/send.png')
 
 interface DispatchProps {
     onPost?: (values) => void
@@ -57,7 +60,7 @@ class HomeContactForm extends React.Component<OwnProps & StateProps & DispatchPr
                         <Col span={24}>
                             <div className="text-right">
                                 <Button className="home-send-btn" shape="circle" htmlType="submit">
-                                    <img src="/src/images/send.png" />
+                                    <img src={sendImg} />
                                 </Button>
                             </div>
                         </Col>
@@ -92,19 +95,8 @@ const mapStateToProps = (state: WebsiteRootState, ownProps): StateProps => {
 const mapDispatchToProps = (dispatch, ownProps): DispatchProps => {
     return {
         onPost: (values) => {
-            const requestSendAction = RequestSend(
-                'SEND_CONTACT', {
-                    url: '/contact/send',
-                    requestInit: {
-                        method: 'POST',
-                        headers: new Headers({
-                            'Accept': 'application/json, text/plain, */*',
-                            'Content-Type': 'application/json'
-                        }),
-                        body: JSON.stringify(values),
-                    }
-                })
-            dispatch(requestSendAction)
+            const sendContactAction = SendContactAction(values)
+            dispatch(sendContactAction)
         },
         resetPostResult: () => {
             const action = RequestCacheDelete('SEND_CONTACT')

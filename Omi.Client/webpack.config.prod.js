@@ -29,7 +29,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new BundleAnalyzerPlugin(),
+        //new BundleAnalyzerPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
         new UglifyESPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
@@ -37,7 +37,9 @@ module.exports = {
             minChunks: Infinity,
             filename: 'vendor.js',
         }),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css', {
+            allChunks: true
+        })
     ],
     module: {
         rules: [{
@@ -48,25 +50,26 @@ module.exports = {
                 test: /\.s?(c|a)ss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-					use: [ 
-						 { 
-						   loader: 'css-loader',
-						   options: {
-							   modules: true
-						   }
-						 }, 
-						 { 
-							loader: 'postcss-loader', 
-							options: {
-							  ident: 'postcss',
-							  plugins: () => [ require('autoprefixer')() ]
-							}
-						 },{
-                    loader: "resolve-url-loader",
-                },
-						   {
-							   loader: 'sass-loader'
-						   }]
+                    use: [{
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                localIdentName: '[local]'
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                ident: 'postcss',
+                                plugins: () => [require('autoprefixer')()]
+                            }
+                        }, {
+                            loader: "resolve-url-loader",
+                        },
+                        {
+                            loader: 'sass-loader'
+                        }
+                    ]
                 })
             },
             {

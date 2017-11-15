@@ -18,7 +18,7 @@ const pathDictonay: { [name: string]: string } = {}
  * Add the parent's path to the front of the current path to complete it
  * @param routes 
  * @param currentRoute 
- */
+ */ 
 const completeRoutePath = (routes: Array<ViewRoute>, currentRoute: ViewRoute) => {
     if (currentRoute.path == '/')
         return currentRoute.path

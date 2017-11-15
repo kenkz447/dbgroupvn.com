@@ -1,1 +1,1 @@
-export const LAYOUT_COMMON = "LAYOUT_COMMON"
+export const MAIN_MASTER = "LAYOUT_COMMON"

@@ -29,16 +29,22 @@ module.exports = {
         rules: [{
                 test: /\.tsx?$/,
                 loaders: ['ts-loader', 'ts-nameof-loader']
-            }, {
-                test: /\.css$/,
-                loader: "style-loader!css-loader"
             },
             {
-                test: /\.scss?$/,
+                test: /\.s?(c|a)ss$/,
                 use: [{
                     loader: "style-loader"
                 }, {
-                    loader: "css-loader"
+                    loader: 'css-loader',
+                    options: {
+                        localIdentName: '[local]',
+                        modules: true
+                    }
+                }, {
+                    loader: "postcss-loader",
+                    options: {
+                        plugins: () => [require('autoprefixer')()]
+                    }
                 }, {
                     loader: "resolve-url-loader",
                 }, {
@@ -61,7 +67,7 @@ module.exports = {
     },
     resolve: {
         modules: [
-            path.join(__dirname, 'src'),
+            path.join(__dirname, 'src', 'scripts'),
             'node_modules'
         ],
         extensions: ['.js', '.ts', '.tsx']

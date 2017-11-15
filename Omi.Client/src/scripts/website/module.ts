@@ -2,12 +2,12 @@ import './style.scss'
 
 import { CRModule } from '../shared/core'
 
-import { LAYOUT_COMMON } from './keys'
+import { MAIN_MASTER } from './keys'
 
 import {
     HomeRoute,
     ConstructionRoutes,
-
+    ContactRoute,
     WEBSITE_CONSTRUCTION_MASTER,
     ConstructionMaster
 } from './pages'
@@ -15,9 +15,9 @@ import {
 import { MainMaster } from './layout'
 
 export const Module: CRModule = {
-    routes: [HomeRoute, ...ConstructionRoutes],
+    routes: [HomeRoute, ContactRoute,  ...ConstructionRoutes],
     masterPages: {
-        [LAYOUT_COMMON]: MainMaster,
+        [MAIN_MASTER]: MainMaster,
         [WEBSITE_CONSTRUCTION_MASTER]: ConstructionMaster
     }
 }

@@ -7,11 +7,11 @@ import { ExtractImmutableHOC, RequestSend, SetTempValue } from '../../../../shar
 import { HomeFormValue } from '../../../../Admin'
 import { WebsiteRootState } from '../../../Types'
 import { ConnectedHomeSlider } from './HomeSlider'
-import { ConnectedHomeContactForm } from './HomeContactForm';
+import { ConnectedHomeContactForm } from './HomeContactForm'
 
 interface StateProps {
     homeContent: HomeFormValue
-    howDoesItWorkTabActive?: string
+    howDoesItWorkTabActive?: string 
 }
 
 interface DispatchProps {
