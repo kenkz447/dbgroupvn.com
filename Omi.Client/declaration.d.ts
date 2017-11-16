@@ -6,4 +6,6 @@ declare module '*.scss' {
 
 interface Window {
     baseUrl: any
+    jQuery?: any
+    $?: any
 }

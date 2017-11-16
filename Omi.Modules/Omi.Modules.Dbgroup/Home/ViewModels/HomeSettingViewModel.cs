@@ -17,6 +17,7 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
         public SettingValueViewModel HowItWorkBuildHtml { get; set; }
         public SettingValueViewModel HowItWorkDesignHtml { get; set; }
         public SettingValueViewModel WhatDoIWillReceive { get; set; }
+        public SettingValueViewModel WhatDoIWillReceiveBuild { get; set; }
     }
 
     public static class HomeSettingViewModelExt {
@@ -26,9 +27,12 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
 
             var slideImages = entity.SettingValues.FirstOrDefault(o => o.Name == "SlideImages");
             var storyHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "StoryHtml");
-            var howItWorkBuildHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkBuildHtml");
+
             var howItWorkDesignHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkDesignHtml");
             var whatDoIWillReceive = entity.SettingValues.FirstOrDefault(o => o.Name == "WhatDoIWillReceive");
+
+            var howItWorkBuildHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkBuildHtml");
+            var whatDoIWillReceiveBuild = entity.SettingValues.FirstOrDefault(o => o.Name == "WhatDoIWillReceiveBuild");
 
             return new HomeSettingViewModel
             {
@@ -38,7 +42,8 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
                 StoryHtml = SettingValueViewModelExt.FromEntity(storyHtml),
                 HowItWorkBuildHtml = SettingValueViewModelExt.FromEntity(howItWorkBuildHtml),
                 HowItWorkDesignHtml = SettingValueViewModelExt.FromEntity(howItWorkDesignHtml),
-                WhatDoIWillReceive = SettingValueViewModelExt.FromEntity(whatDoIWillReceive)
+                WhatDoIWillReceive = SettingValueViewModelExt.FromEntity(whatDoIWillReceive),
+                WhatDoIWillReceiveBuild = SettingValueViewModelExt.FromEntity(whatDoIWillReceiveBuild)
             };
         }
     }

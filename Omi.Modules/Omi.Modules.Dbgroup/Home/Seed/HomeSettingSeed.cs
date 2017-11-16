@@ -39,6 +39,11 @@ namespace Omi.Modules.Dbgroup.Home.Seed
             Name = "WhatDoIWillReceive"
         };
 
+        public static SettingValue WhatDoIWillReceiveBuild = new SettingValue
+        {
+            Name = "WhatDoIWillReceiveBuild"
+        };
+
         public async Task SeedAsync(DbContext dbConext)
         {
             var settingSet = dbConext.Set<SettingEntity>();
@@ -60,6 +65,9 @@ namespace Omi.Modules.Dbgroup.Home.Seed
 
             WhatDoIWillReceive.SettingEntityId = HomeSetting.Id;
             WhatDoIWillReceive = settingValueSet.SeedEntity(WhatDoIWillReceive);
+
+            WhatDoIWillReceiveBuild.SettingEntityId = HomeSetting.Id;
+            WhatDoIWillReceiveBuild = settingValueSet.SeedEntity(WhatDoIWillReceiveBuild);
 
             await dbConext.SaveChangesAsync();
         }
