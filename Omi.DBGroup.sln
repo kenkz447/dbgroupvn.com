@@ -43,7 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omi.Modules.Dbgroup", "Omi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omi.Modules.Setting", "Omi.Modules\Omi.Modules.Setting\Omi.Modules.Setting.csproj", "{CC7B63F0-474F-4971-BA01-6B69E3DD6F4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omi.DatabaseDesignHost", "Omi.Database\Omi.DatabaseDesignHost\Omi.DatabaseDesignHost.csproj", "{57E0DC7B-CC2E-443C-A812-383F0729338E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Omi.DatabaseDesignHost", "Omi.Database\Omi.DatabaseDesignHost\Omi.DatabaseDesignHost.csproj", "{57E0DC7B-CC2E-443C-A812-383F0729338E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,7 +28,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     componentWillReceiveProps(nextProps: StateProps) {
         if (this.props.homeContent != nextProps.homeContent) {
-            nextProps.homeContent.slideImages != null &&
+            if(nextProps.homeContent && nextProps.homeContent.slideImages && nextProps.homeContent.slideImages.value)
                 this.props.bindHomeSliderData(nextProps.homeContent.slideImages.value)
         }
     }

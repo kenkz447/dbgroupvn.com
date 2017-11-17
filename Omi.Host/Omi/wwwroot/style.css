@@ -6878,8 +6878,8 @@ fieldset {
 
 .contact-map .map-marker-hint {
   background-color: transparent !important;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .contact-map .map-marker.hint--top:before {
