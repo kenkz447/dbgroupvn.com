@@ -47,11 +47,8 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     componentWillReceiveProps(nextProps: StateProps) {
         if (this.props.homeContent != nextProps.homeContent) {
-            nextProps.homeContent.slideImages != null &&
+            if(nextProps.homeContent && nextProps.homeContent.slideImages)
                 this.props.bindHomeSliderData(nextProps.homeContent.slideImages.value)
-        }
-        if (nextProps.homeContent != null) {
-
         }
     }
 
@@ -62,9 +59,10 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
         const b = document.getElementById('whatDoIWillReceiveBuild')
         if (b)
             lightGallery(b)
-        const c = document.getElementsByClassName('home-procedure-block')
-        if (c) {
-            const howDoesItWordElm = document.getElementById('howDoesItWork')
+        
+        const howDoesItWordElm = document.getElementById('howDoesItWork')
+        const homeProcedureBlock = document.getElementsByClassName('home-procedure-block')
+        if (howDoesItWordElm && homeProcedureBlock) {
             onElementHeightChange(howDoesItWordElm, function () {
                 window['AOS'].refresh()
             })
