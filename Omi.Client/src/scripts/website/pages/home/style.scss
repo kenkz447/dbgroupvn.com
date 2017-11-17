@@ -1,0 +1,255 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+.home {
+    &-slider {
+        &-wrapper {
+            position: relative;
+        }
+        &-banner {
+            top: 50px;
+            position: absolute;
+            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            &-content {
+                background-color: rgba(255, 255, 255, .7);
+                padding: 30px 50px;
+                display: inline-block;
+            }
+            &-heading {
+                font-weight: bold;
+                font-size: 35px;
+                color: #000;
+                &-sub {
+                    font-size: 20px;
+                    margin-bottom: 20px;
+                    color: #000;
+                    line-height: .8;
+                }
+            }
+            &-text {
+                font-size: 15px;
+                color: #000;
+                margin-bottom: 42px;
+            }
+            .btn {
+                display: inline-block;
+                padding: 12px 38px;
+                background: #000;
+                color: #fff;
+                font-size: 15px;
+            }
+        }
+    }
+    &-section {
+        &-title {
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+            &:after {
+                content: " ";
+                background: #272727;
+                height: 2px;
+                width: 100%;
+                position: absolute;
+                bottom: 50%;
+                left: 0;
+            }
+            &-text {
+                background: #fff;
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #272727;
+                padding: 0 40px;
+                z-index: 1;
+                position: relative;
+            }
+        }
+    }
+    &-how-does-it-work {
+        &-tabs {
+            text-align: center;
+            margin-bottom: 40px;
+            .and {
+                display: inline-block;
+                margin: 0 20px;
+                font-size: 26px;
+                color: #828181;
+            }
+        }
+        &-tab {
+            cursor: pointer;
+            background: #fff;
+            color: #272727;
+            padding: 10px 40px;
+            font-size: 23px;
+            border: 2px solid #272727;
+            border-radius: 4px;
+            width: 165px;
+            &.active {
+                background: #272727;
+                color: #fff;
+            }
+        }
+    }
+    &-procedure {
+        color: #000;
+        position: relative;
+        padding-bottom: 50px;
+        margin-bottom: 40px;
+        &-block {
+            margin-bottom: 50px;
+            position: relative;
+            &-image,
+            &-content {
+                width: 50%;
+            }
+            &:nth-child(odd) {
+                .home-procedure-block-image {
+                    float: left;
+                    padding-right: 25px;
+                }
+                .home-procedure-block-content {
+                    float: right;
+                    padding-left: 25px;
+                }
+            }
+            &:nth-child(even) {
+                .home-procedure-block-image {
+                    float: right;
+                    padding-left: 25px;
+                }
+                .home-procedure-block-content {
+                    float: left;
+                    padding-right: 25px;
+                }
+            }
+        }
+        &-dot {
+            position: absolute;
+            top: 0.4rem;
+            left: 50%;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 100%;
+            border: 1px solid #b9b7b7;
+            background: #fff;
+            transform: translateX(-50%);
+        }
+        &-label {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        &::before {
+            content: " ";
+            height: calc(100% - 1rem);
+            width: 1px;
+            background: #b9b7b7;
+            position: absolute;
+            left: 50%;
+            top: .5rem;
+        }
+        &:after {
+            content: " ";
+            background: url('/src/images/time-line-end.png');
+            background-size: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 2.6rem;
+            width: 2.6rem;
+        }
+    }
+    &-section-dark {
+        &-area {
+            background: #272727;
+            color: #fff;
+        }
+    }
+    &-section-gray {
+        &-area {
+            background: lightgray;
+            color: #000;
+        }
+    }
+    &-section-dark,
+    &-section-gray {
+        &-area {
+            padding: 50px 0;
+        }
+        &-title {
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+            &-text {
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                z-index: 1;
+                position: relative;
+            }
+        }
+    }
+    &-what-do-i-recevice {
+        &-big-image {
+            padding: 30px;
+            img {
+                max-width: 100%;
+            }
+        }
+        &-title {
+            font-size: 18px;
+        }
+        a {
+            >img {
+                max-width: 100%;
+                display: block;
+                margin-bottom: 10px;
+                transition: all .2s ease-in-out;
+            }
+            &:hover {
+                img {
+                    transform: scale(1.05)
+                }
+            }
+        }
+    }
+    &-send-btn {
+        width: 45px;
+        height: 45px;
+        background: #272727;
+        img {
+            max-width: 100%;
+            padding: 9px;
+        }
+        &:hover,
+        &:focus {
+            background: lighten($color: #272727, $amount: 10);
+        }
+    }
+    .ant-form-item-control {
+        input {
+            height: 40px;
+            border: 1px solid gray;
+            border-radius: 0;
+            font-size: 16px;
+            padding-left: 15px;
+        }
+        textarea {
+            border: 1px solid gray;
+            border-radius: 0;
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export const MAIN_MASTER = "LAYOUT_COMMON"

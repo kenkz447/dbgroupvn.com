@@ -1,0 +1,28 @@
+.slick {
+    &-next,
+    &-prev {
+        position: absolute;
+        z-index: 1;
+        width: auto!important;
+        height: auto!important;
+        color: #fff;
+        font-size: 1.2rem;
+        button {
+            font-size: 2rem;
+        }
+    }
+    &-next {
+        right: 10px!important;
+    }
+    &-prev {
+        left: 10px!important;
+    }
+    &-dots {
+        height: unset!important;
+        bottom: 30px!important;
+        button {
+            height: 24px!important;
+            border-radius: 50%!important;
+        }
+    }
+}
