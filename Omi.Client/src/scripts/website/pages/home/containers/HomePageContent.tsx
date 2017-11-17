@@ -11,7 +11,7 @@ import { ConnectedHomeContactForm } from './HomeContactForm'
 
 interface StateProps {
     homeContent: HomeFormValue
-    howDoesItWorkTabActive?: string 
+    howDoesItWorkTabActive?: string
 }
 
 interface DispatchProps {
@@ -52,7 +52,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                         </div>
                     </div>
                 </div>
-                <div className="brand-container">
+                <div className="">
                     <div className="home-section mb-5">
                         <div className="home-section-title">
                             <div className="home-section-title-text">
@@ -63,10 +63,9 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     </div>
                     {this.renderHowDoesItWork()}
                 </div>
-                {this.renderWhatDoIReceive()}
                 <div className="brand-container">
                     {this.renderContactForm()}
-                    <hr className="mb-5"/>
+                    <hr className="mb-5" />
                     {this.renderHowDoesItWorkTabs()}
                 </div>
             </div>
@@ -91,12 +90,18 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                 </div>
                 <div className="home-section-content">
                     {this.renderHowDoesItWorkTabs()}
-                    <div className="home-procedure">
+                    <div className="">
                         <div className={classNames({ 'd-none': this.props.howDoesItWorkTabActive != 'DESIGN' })}>
-                            <div dangerouslySetInnerHTML={{ __html: this.props.homeContent.howItWorkDesignHtml.value }} />
+                            <div className="home-procedure">
+                                <div className="brand-container" dangerouslySetInnerHTML={{ __html: this.props.homeContent.howItWorkDesignHtml.value }} />
+                            </div>
+                            {this.renderWhatDoIReceive()}
                         </div>
                         <div className={classNames({ 'd-none': this.props.howDoesItWorkTabActive != 'BUILD' })}>
-                            <div dangerouslySetInnerHTML={{ __html: this.props.homeContent.howItWorkBuildHtml.value }} />
+                            <div className="home-procedure">
+                                <div className="brand-container" dangerouslySetInnerHTML={{ __html: this.props.homeContent.howItWorkBuildHtml.value }} />
+                            </div>
+                            {this.renderWhatDoIReceiveBuild()}
                         </div>
                     </div>
                 </div>
@@ -121,6 +126,22 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
         )
     }
 
+    renderWhatDoIReceiveBuild() {
+        return (
+            <div className="home-section-gray-area">
+                <div className="brand-container">
+                    <div className="home-section-gray">
+                        <div className="home-section-gray-title">
+                            <div className="home-section-gray-title-text">
+                                What do I Receive
+                            </div>
+                        </div>
+                        <div className="home-section-gray-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceiveBuild.value }} />
+                    </div>
+                </div>
+            </div>
+        )
+    }
     renderContactForm() {
         return (
             <div className="home-section mt-5 mb-5">

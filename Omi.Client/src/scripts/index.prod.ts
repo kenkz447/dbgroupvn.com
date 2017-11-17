@@ -1,6 +1,5 @@
 window.baseUrl = `${location.origin}/`
-
-require('../style/app.scss') 
+import './static'
 
 // Import main
 import initStartup from './shared/startup'

@@ -99,6 +99,7 @@
         color: #000;
         position: relative;
         padding-bottom: 50px;
+        margin-bottom: 40px;
         &-block {
             margin-bottom: 50px;
             position: relative;
@@ -173,6 +174,17 @@
         &-area {
             background: #272727;
             color: #fff;
+        }
+    }
+    &-section-gray {
+        &-area {
+            background: lightgray;
+            color: #000;
+        }
+    }
+    &-section-dark,
+    &-section-gray {
+        &-area {
             padding: 50px 0;
         }
         &-title {

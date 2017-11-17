@@ -18,6 +18,7 @@ namespace Omi.Modules.Dbgroup.Home.ServiceModels
             settingValues.Add(SettingValueExt.FromViewModel(viewModel.SlideImages));
             settingValues.Add(SettingValueExt.FromViewModel(viewModel.StoryHtml));
             settingValues.Add(SettingValueExt.FromViewModel(viewModel.WhatDoIWillReceive));
+            settingValues.Add(SettingValueExt.FromViewModel(viewModel.WhatDoIWillReceiveBuild));
 
             return new UpdateHomeSettingServiceModel
             {

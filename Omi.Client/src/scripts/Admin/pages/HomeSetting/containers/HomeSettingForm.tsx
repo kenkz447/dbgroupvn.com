@@ -64,10 +64,10 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                                 </Col>
                             </Row>
                         </Tabs.TabPane>
-                        <Tabs.TabPane tab="How It Work" key="3">
-                            {this.renderHowItWork()}
+                        <Tabs.TabPane tab="How It Work: Design" key="3">
+                            {this.renderHowItWorkDesign()}
                         </Tabs.TabPane>
-                        <Tabs.TabPane tab="What Do I Receive?" key="4">
+                        <Tabs.TabPane tab="How It Work: Build" key="4">
                             {this.renderWhatDoIWillReceive()}
                         </Tabs.TabPane>
                     </Tabs>
@@ -112,7 +112,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
         )
     }
 
-    renderHowItWork() {
+    renderHowItWorkDesign() {
         return (
             <Row gutter={30}>
                 <Col span={8}>
@@ -122,12 +122,32 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.name), {
                         initialValue: this.props.formValue.howItWorkDesignHtml.name
                     })(<Input type="hidden" />)}
-                    <Form.Item label="Design">
+                    <Form.Item label="How It Work">
                         {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.value), {
                             initialValue: this.props.formValue.howItWorkDesignHtml.value
-                        })(<Input.TextArea rows={12} />)}
+                        })(<Input.TextArea rows={30} />)}
                     </Form.Item>
                 </Col>
+                <Col span={8}>
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.id), {
+                            initialValue: this.props.formValue.whatDoIWillReceive.id
+                        })(<Input type="hidden" />)}
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.name), {
+                            initialValue: this.props.formValue.whatDoIWillReceive.name
+                        })(<Input type="hidden" />)}
+                        <Form.Item label="Receive">
+                            {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.value), {
+                                initialValue: this.props.formValue.whatDoIWillReceive.value
+                            })(<Input.TextArea rows={30} />)}
+                        </Form.Item>
+                    </Col>
+            </Row>
+        )
+    }
+
+    renderWhatDoIWillReceive() {
+        return (
+            <Row gutter={30}>
                 <Col span={8}>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.id), {
                         initialValue: this.props.formValue.howItWorkBuildHtml.id
@@ -138,27 +158,20 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     <Form.Item label="build">
                         {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.value), {
                             initialValue: this.props.formValue.howItWorkBuildHtml.value
-                        })(<Input.TextArea rows={12} />)}
+                        })(<Input.TextArea rows={30} />)}
                     </Form.Item>
                 </Col>
-            </Row>
-        )
-    }
-
-    renderWhatDoIWillReceive() {
-        return (
-            <Row gutter={30}>
                 <Col span={8}>
-                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.id), {
-                        initialValue: this.props.formValue.whatDoIWillReceive.id
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceiveBuild.id), {
+                        initialValue: this.props.formValue.whatDoIWillReceiveBuild.id
                     })(<Input type="hidden" />)}
-                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.name), {
-                        initialValue: this.props.formValue.whatDoIWillReceive.name
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceiveBuild.name), {
+                        initialValue: this.props.formValue.whatDoIWillReceiveBuild.name
                     })(<Input type="hidden" />)}
-                    <Form.Item>
-                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.value), {
-                            initialValue: this.props.formValue.whatDoIWillReceive.value
-                        })(<Input.TextArea rows={12} />)}
+                    <Form.Item label="Receive">
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceiveBuild.value), {
+                            initialValue: this.props.formValue.whatDoIWillReceiveBuild.value
+                        })(<Input.TextArea rows={30} />)}
                     </Form.Item>
                 </Col>
             </Row>
@@ -195,8 +208,8 @@ const mapDispatchToProps = (dispatch, ownProps: OwnProps): DispatchProps => {
                 requestInit: {
                     method: 'POST',
                     headers: new Headers({
-                      'Accept': 'application/json, text/plain, */*',
-                      'Content-Type': 'application/json'
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
                     }),
                     body: JSON.stringify(formValue),
                     credentials: 'include'
@@ -206,14 +219,14 @@ const mapDispatchToProps = (dispatch, ownProps: OwnProps): DispatchProps => {
         },
         onSubmitSucceeded() {
             const showNotificationAction = ShowNotification({
-              notifyType: NotificationType.success,
-              display: {
-                title: 'Saved!',
-                description: 'Update Successfuly.'
-              }
+                notifyType: NotificationType.success,
+                display: {
+                    title: 'Saved!',
+                    description: 'Update Successfuly.'
+                }
             })
             dispatch(showNotificationAction)
-          }
+        }
     }
 }
 

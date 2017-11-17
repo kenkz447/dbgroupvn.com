@@ -1,7 +1,7 @@
 window.baseUrl = 'https://localhost:44336/'
+import './static'
 
 import 'antd/dist/antd.css'
-require('../style/app.scss')
 
 // For hot reload
 import 'react-hot-loader/patch'
@@ -16,4 +16,4 @@ if (module.hot) {
         const nextStartup = require('./shared/startup')['default']
         nextStartup()
     })
-}
+} 

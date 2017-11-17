@@ -61,7 +61,7 @@ namespace Omi.Modules.Setting.Services
             foreach (var settingValues in serviceModel.SettingValues)
                 settingValues.SettingEntityId = exitsEntity.Id;
 
-            _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.Language == currentLanguage), serviceModel.SettingValues, o => o.Id);
+            _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.Language == currentLanguage || o.Language == null), serviceModel.SettingValues, o => o.Id);
 
             var resultCount = await _context.SaveChangesAsync();
 
