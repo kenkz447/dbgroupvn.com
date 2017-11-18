@@ -19,6 +19,11 @@ namespace Omi.Modules.Dbgroup.Home.Seed
             Name = "SlideImages",
         };
 
+        public static SettingValue SlideInfoHtml = new SettingValue
+        {
+            Name = "SlideInfoHtml",
+        };
+
         public static SettingValue StoryHtml = new SettingValue
         {
             Name = "StoryHtml",
@@ -53,6 +58,9 @@ namespace Omi.Modules.Dbgroup.Home.Seed
 
             SlideImages.SettingEntityId = HomeSetting.Id;
             SlideImages = settingValueSet.SeedEntity(SlideImages);
+
+            SlideInfoHtml.SettingEntityId = HomeSetting.Id;
+            SlideInfoHtml = settingValueSet.SeedEntity(SlideInfoHtml);
 
             StoryHtml.SettingEntityId = HomeSetting.Id;
             StoryHtml = settingValueSet.SeedEntity(StoryHtml);

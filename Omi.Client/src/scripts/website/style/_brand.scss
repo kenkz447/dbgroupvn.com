@@ -1,11 +1,9 @@
 $brand-gutter: 30px;
-$brand-max-width: 1500px;
-$brand-max-width-small: 1200px;
 .brand {
     height: 100vh;
     &-container {
         margin: 0 auto;
-        max-width: $brand-max-width-small;
+        max-width: 1200px;
     }
     &-layout {
         background: #fff;
@@ -161,10 +159,18 @@ $brand-max-width-small: 1200px;
     }
 }
 
-@media screen and(min-width: $brand-max-width) {
+@media screen and(min-width: 1600px) {
     .brand {
         &-container {
-            max-width: $brand-max-width;
+            max-width: 1400px;
+        }
+    }
+}
+
+@media screen and(min-width: 1700px) {
+    .brand {
+        &-container {
+            max-width: 1500px;
         }
     }
 }

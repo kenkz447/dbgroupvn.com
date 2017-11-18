@@ -84,11 +84,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     <ConnectedHomeSlider />
                     <div className="home-slider-banner brand-container">
                         <div className="home-slider-banner-content">
-                            <h1 className="home-slider-banner-heading">
-                                INTERIOR DESIGN SERVICE<br />
-                            </h1>
-                            <p className="home-slider-banner-heading-sub">WE DESIGN AND BUILD FOR YOU</p>
-                            <p className="home-slider-banner-text">Let us your space, with your input, our professional interior designers will</p>
+                            <div dangerouslySetInnerHTML={{ __html: this.props.homeContent.slideInfoHtml.value }}/>
                             <Link className="btn btn-link" to="/contact">Contact us</Link>
                         </div>
                     </div>

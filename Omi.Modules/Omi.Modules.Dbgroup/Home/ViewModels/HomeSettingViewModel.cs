@@ -13,6 +13,7 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
         public string Language { get; set; }
 
         public SettingValueViewModel SlideImages { get; set; }
+        public SettingValueViewModel SlideInfoHtml { get; set; }
         public SettingValueViewModel StoryHtml { get; set; }
         public SettingValueViewModel HowItWorkBuildHtml { get; set; }
         public SettingValueViewModel HowItWorkDesignHtml { get; set; }
@@ -26,6 +27,8 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
             var settingValues = entity.SettingValues;
 
             var slideImages = entity.SettingValues.FirstOrDefault(o => o.Name == "SlideImages");
+            var slideInfoHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "SlideInfoHtml");
+
             var storyHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "StoryHtml");
 
             var howItWorkDesignHtml = entity.SettingValues.FirstOrDefault(o => o.Name == "HowItWorkDesignHtml");
@@ -38,12 +41,13 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
             {
                 SettingEntityId = entity.Id,
                 Language = Thread.CurrentThread.CurrentCulture.Name,
-                SlideImages = SettingValueViewModelExt.FromEntity(slideImages),
-                StoryHtml = SettingValueViewModelExt.FromEntity(storyHtml),
-                HowItWorkBuildHtml = SettingValueViewModelExt.FromEntity(howItWorkBuildHtml),
-                HowItWorkDesignHtml = SettingValueViewModelExt.FromEntity(howItWorkDesignHtml),
-                WhatDoIWillReceive = SettingValueViewModelExt.FromEntity(whatDoIWillReceive),
-                WhatDoIWillReceiveBuild = SettingValueViewModelExt.FromEntity(whatDoIWillReceiveBuild)
+                SlideImages = SettingValueViewModel.FromEntity(slideImages),
+                SlideInfoHtml = SettingValueViewModel.FromEntity(slideInfoHtml),
+                StoryHtml = SettingValueViewModel.FromEntity(storyHtml),
+                HowItWorkBuildHtml = SettingValueViewModel.FromEntity(howItWorkBuildHtml),
+                HowItWorkDesignHtml = SettingValueViewModel.FromEntity(howItWorkDesignHtml),
+                WhatDoIWillReceive = SettingValueViewModel.FromEntity(whatDoIWillReceive),
+                WhatDoIWillReceiveBuild = SettingValueViewModel.FromEntity(whatDoIWillReceiveBuild)
             };
         }
     }

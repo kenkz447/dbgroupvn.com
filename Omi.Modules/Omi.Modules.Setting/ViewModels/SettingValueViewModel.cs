@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Omi.Modules.Setting.ViewModels
 {
-    public static class SettingValueViewModelExt
+    public partial class SettingValueViewModel
     {
         public static SettingValueViewModel FromEntity(SettingValue entity)
         {
@@ -18,7 +18,7 @@ namespace Omi.Modules.Setting.ViewModels
         }
     }
 
-    public class SettingValueViewModel
+    public partial class SettingValueViewModel
     {
         public long Id { get; set; }
         public string Name { get; set; }

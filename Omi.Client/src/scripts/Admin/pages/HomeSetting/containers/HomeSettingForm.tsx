@@ -52,7 +52,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
                         <Tabs.TabPane tab="Slide Images" key="1">
                             <Row gutter={30}>
-                                <Col span={8}>
+                                <Col span={24}>
                                     {this.renderSlideImages()}
                                 </Col>
                             </Row>
@@ -90,6 +90,18 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                         initialValue: this.props.formValue.slideImages.value
                     })(<PictureWall />)}
                 </Form.Item>
+
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideInfoHtml.id), {
+                    initialValue: this.props.formValue.slideInfoHtml.id
+                })(<Input type="hidden" />)}
+                {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideInfoHtml.name), {
+                    initialValue: this.props.formValue.slideInfoHtml.name
+                })(<Input type="hidden" />)}
+                <Form.Item>
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideInfoHtml.value), {
+                        initialValue: this.props.formValue.slideInfoHtml.value
+                    })(<Input.TextArea rows={30} />)}
+                </Form.Item>
             </div>
         )
     }
@@ -106,7 +118,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                 <Form.Item>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.storyHtml.value), {
                         initialValue: this.props.formValue.storyHtml.value
-                    })(<Input.TextArea rows={6} />)}
+                    })(<Input.TextArea rows={30} />)}
                 </Form.Item>
             </div>
         )

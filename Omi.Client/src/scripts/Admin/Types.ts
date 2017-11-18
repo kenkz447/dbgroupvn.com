@@ -3,6 +3,7 @@ import { SettingValueViewModel } from "../shared/modules/website"
 
 export interface HomeFormValue {
     slideImages?: SettingValueViewModel
+    slideInfoHtml?: SettingValueViewModel
     storyHtml?: SettingValueViewModel
     howItWorkDesignHtml?: SettingValueViewModel
     whatDoIWillReceive?: SettingValueViewModel
