@@ -54,6 +54,7 @@ namespace Omi.Modules.FileAndMedia.Controllers
         /// </summary>
         /// <param name="id">FileEntity Id</param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<BaseJsonResult> Delete(long id)
         {
             var serviceModel = new BaseDeleteServiceModel()
@@ -66,8 +67,10 @@ namespace Omi.Modules.FileAndMedia.Controllers
 
             if (result)
                 _logger.LogInformation($"A file was deleted.");
+            else
+                new BaseJsonResult(Omi.Base.Properties.Resources.POST_MODEL_ERRORS);
 
-            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED);
+            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, true);
         }
     }
 }

@@ -3,7 +3,7 @@ import { ExtractImmutableHOC } from '../../../core'
 
 import { PictureWallComponent, PictureWallSelectStateProps, PictureWallSelectProps, PictureWallSelectDispathProps } from '../components'
 import { ModuleRootState, FileType } from '../Types'
-import { openModal } from '../state'
+import { openModal, setCheckedFiles } from '../state'
 
 const mapStateToProps = (state: ModuleRootState, ownProps: PictureWallSelectProps): PictureWallSelectStateProps => {
     return {
@@ -15,8 +15,15 @@ const mapDispatchToProps = (dispatch, ownProps: PictureWallSelectProps): Picture
     return {
         onClick: () => {
             const handleKey = ownProps.id
-            const openModalAction = openModal(handleKey, FileType.Image, true)
+            const openModalAction = openModal({
+                handleKey,
+                acceptType: FileType.Image,
+                allowSelectMulti: true
+            })
             dispatch(openModalAction)
+
+            const setModalSelectedFilesAction = setCheckedFiles({ files: ownProps.value })
+            dispatch(setModalSelectedFilesAction)
         }
     }
 }

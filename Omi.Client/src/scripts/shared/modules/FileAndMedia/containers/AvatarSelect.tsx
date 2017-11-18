@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { ExtractImmutableHOC } from '../../../core'
 
 import { FileType, ModuleRootState } from '../Types'
-import { openModal } from '../state'
+import { openModal, setCheckedFiles } from '../state'
 import { AvatarSelectComponent, AvatarSelectDispathProps, AvatarSelectStateProps, AvatarSelectProps } from '../components'
 
 
@@ -13,11 +13,17 @@ const mapStateToProps = (state: ModuleRootState, ownProps: AvatarSelectProps): A
     }
 }
 
-const mapDispatchToProps = (dispatch): AvatarSelectDispathProps => {
+const mapDispatchToProps = (dispatch, ownProps): AvatarSelectDispathProps => {
     return {
         onClick: (handleKey: string) => {
-            const openModalAction = openModal(handleKey, FileType.Image, false)
+            const openModalAction = openModal({
+                handleKey: handleKey,
+                acceptType: FileType.Image
+            })
             dispatch(openModalAction)
+
+            const setModalSelectedFilesAction = setCheckedFiles({ files: ownProps.value })
+            dispatch(setModalSelectedFilesAction)
         }
     }
 }

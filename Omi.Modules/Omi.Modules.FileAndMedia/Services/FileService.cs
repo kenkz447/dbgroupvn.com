@@ -13,6 +13,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System;
+using System.Linq;
 
 namespace Omi.Modules.FileAndMedia.Services
 {
@@ -107,6 +108,9 @@ namespace Omi.Modules.FileAndMedia.Services
             // TODO: Filter;
 
             var entities = _context.FileEntity.AsNoTracking();
+
+            entities = entities.OrderByDescending(o => o.Id);
+
             return entities;
         }
 

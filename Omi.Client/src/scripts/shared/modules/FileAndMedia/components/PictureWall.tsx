@@ -5,7 +5,7 @@ import * as React from 'react'
 import { FileEntityInfo } from '../Types'
 
 export interface PictureWallSelectDispathProps {
-    onClick?: any
+    onClick?: () => void
 }
 export interface PictureWallSelectStateProps {
     selectedValues?: Array<FileEntityInfo>

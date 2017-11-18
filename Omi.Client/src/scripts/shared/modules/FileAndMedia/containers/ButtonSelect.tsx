@@ -60,7 +60,10 @@ const mapStateToProps = (state: ModuleRootState, ownProps: OwnProps): StateProps
 const mapDispatchToProps = (dispatch, ownProps: OwnProps): DispatchProps => {
     return {
         openModal: () => {
-            const openModalAction = openModal(ownProps.id, FileType.Image, false)
+            const openModalAction = openModal({
+                handleKey: ownProps.id,
+                acceptType: FileType.Image
+            })
             dispatch(openModalAction)
 
             if (ownProps.onClick)
