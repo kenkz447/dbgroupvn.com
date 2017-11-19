@@ -9,22 +9,20 @@ import { autobind } from 'core-decorators'
 interface Language {
     code: string
     label: string
+    default?: boolean
 }
 
 const languages: Array<Language> = [
     {
         code: 'vi',
-        label: 'Vietnamese'
+        label: 'Vietnamese',
+        default: true
     },
     {
         code: 'en',
         label: 'English'
     }
 ]
-
-interface OwnProps {
-    callback: () => void
-}
 
 class SelectInputLanguage extends React.Component<any> {
     render() {
@@ -46,9 +44,11 @@ class SelectInputLanguage extends React.Component<any> {
 
         const linkUrl = `${currentUrl.pathname}${currentUrl.search}`
 
+        const isActive = currentInputLang ? currentInputLang === language.code : language.default
+
         return (
             <li key={language.code} className="language-input-list-item">
-                <NavLink className={classNames({ 'active': currentInputLang === language.code })} to={linkUrl}>
+                <NavLink className={classNames({ 'active':  isActive})} to={linkUrl}>
                     {language.label}
                 </NavLink>
             </li>
@@ -62,4 +62,4 @@ const mapStateToProps = (state: RootState) => {
     }
 }
 
-export const ConnectedSelectInputLanguage = connect<any, any, OwnProps>(mapStateToProps)(SelectInputLanguage)
+export const ConnectedSelectInputLanguage = connect(mapStateToProps)(SelectInputLanguage)

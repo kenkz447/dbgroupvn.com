@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import { ExtractImmutableHOC, SetTempValue } from '../../../core'
 import { FileSelectModalComponent, FileSelectModalDispatchProps, FileSelectModalStateProps } from '../components'
-import { closeModal, okModal, setRecentUploadFiles } from '../state'
+import { CloseModal, OkModal, SetRecentUploadFiles } from '../state'
 import { ModuleRootState } from '../Types'
 
 const mapStateToProps = (state: ModuleRootState): FileSelectModalStateProps => {
@@ -15,15 +15,15 @@ const mapStateToProps = (state: ModuleRootState): FileSelectModalStateProps => {
 const mapDispatchToProps = (dispatch): FileSelectModalDispatchProps => {
     return {
         handleOk: () => {
-            const okModalAction = okModal()
+            const okModalAction = OkModal()
             dispatch(okModalAction)
         },
         handleCancel: () => {
-            const closeModalAction = closeModal()
+            const closeModalAction = CloseModal()
             dispatch(closeModalAction)
         },
         setRecentUploadFiles: (files) => {
-            const setTempValueAction = setRecentUploadFiles({ files })
+            const setTempValueAction = SetRecentUploadFiles({ files })
             return dispatch(setTempValueAction)
         }
     }

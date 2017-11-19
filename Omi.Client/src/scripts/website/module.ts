@@ -12,12 +12,12 @@ import {
     ConstructionMaster
 } from './pages'
 
-import { MainMaster } from './layout'
+import { ConnectedMainMaster } from './layout'
 
 export const Module: CRModule = {
     routes: [HomeRoute, ContactRoute,  ...ConstructionRoutes],
     masterPages: {
-        [MAIN_MASTER]: MainMaster,
+        [MAIN_MASTER]: ConnectedMainMaster,
         [WEBSITE_CONSTRUCTION_MASTER]: ConstructionMaster
     }
 }

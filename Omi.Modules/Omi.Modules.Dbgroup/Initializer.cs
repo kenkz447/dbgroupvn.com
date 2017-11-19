@@ -4,6 +4,8 @@ using Omi.Modules.Dbgroup.Home.Seed;
 using Omi.Modules.Dbgroup.Home.Services;
 using Omi.Modules.Dbgroup.Construction.Seed;
 using Omi.Modules.Dbgroup.Services;
+using Omi.Modules.Dbgroup.WebsiteSetting.Seed;
+using Omi.Modules.Dbgroup.WebsiteSetting.Services;
 
 namespace Omi.Modules.Dbgroup
 {
@@ -12,6 +14,7 @@ namespace Omi.Modules.Dbgroup
         public async void Init(IServiceCollection services)
         {
             services.AddDbContext<DbgroupDbContext>();
+            services.AddScoped<WebsiteSettingService>();
             services.AddScoped<HomeService>();
             services.AddScoped<ConstructionService>();
 
@@ -27,6 +30,9 @@ namespace Omi.Modules.Dbgroup
 
             var constructionStatusSeed = new ConstructionStatusSeed();
             await constructionStatusSeed.SeedAsync(dbContext);
+
+            var websiteSettingSeed = new WebsiteSettingSeed();
+            await websiteSettingSeed.SeedAsync(dbContext);
         }
     }
 }

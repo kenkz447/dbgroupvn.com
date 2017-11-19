@@ -20,9 +20,16 @@ export interface PictureWallSelectProps extends PictureWallSelectStateProps, Pic
 export class PictureWallComponent extends React.Component<PictureWallSelectProps> {
     componentWillReceiveProps(nextProps: PictureWallSelectProps = { selectedValues: [] }) {
         const value = (this.props.selectedValues || this.props.value || [])
-        const diff = differenceBy(nextProps.selectedValues, value, 'fileId')
+        const selectedValues = nextProps.selectedValues || []
+
+        let diff = []
+        if (value.length > selectedValues.length)
+            diff = differenceBy(value, selectedValues, (o) => o.fileId)
+        else
+            diff = differenceBy(selectedValues, value, (o) => o.fileId)
+
         if (diff.length > 0)
-            this.props.onChange(nextProps.selectedValues)
+            this.props.onChange(selectedValues)
     }
 
     render() {

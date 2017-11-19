@@ -65,10 +65,14 @@ namespace Omi.Modules.Setting.Services
 
             var currentLanguage = Thread.CurrentThread.CurrentCulture.Name;
 
-            foreach (var settingValues in serviceModel.SettingValues)
-                settingValues.SettingEntityId = exitsEntity.Id;
+            var filteredValues = exitsEntity.SettingValues.Where(o => o.ForCurrentRequestLanguage());
+            var excludeProperties = new List<String>
+            {
+                nameof(SettingValue.Language),
+                nameof(SettingValue.SettingEntityId)
+            };
 
-            _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.ForCurrentRequestLanguage()), serviceModel.SettingValues, o => o.Id);
+            _context.TryUpdateList(filteredValues, serviceModel.SettingValues, o => o.Id, excludeProperties);
 
             var resultCount = await _context.SaveChangesAsync();
 

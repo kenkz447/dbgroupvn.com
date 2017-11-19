@@ -5,7 +5,7 @@ import * as classnames from 'classnames'
 import { ExtractImmutableHOC, RequestSend } from '../../../core/index'
 
 import { FileEntityInfo, ModuleRootState } from '../Types'
-import { fileItemClick } from '../state'
+import { FileItemClick } from '../state'
 import { Button } from 'antd'
 
 interface FileItemDispatchProps {
@@ -28,10 +28,10 @@ const confirmDeleteFile = (callBack: () => void) => {
         callBack()
 }
 
-export const FileItemComponent = (props: FileItemProps) => {
+export function FileItemComponent (props: FileItemProps) {
     const { checkedFiles, fileInfo, fileItemClick } = props
 
-    const checked = checkedFiles.findIndex((o) => o.fileId == fileInfo.fileId) >= 0
+    const checked = checkedFiles && checkedFiles.findIndex((o) => o.fileId == fileInfo.fileId) >= 0
 
     if (props.isDeleted)
         return null
@@ -46,7 +46,13 @@ export const FileItemComponent = (props: FileItemProps) => {
             </div>
             <div className="i-actions">
                 <Button className="mr-1" icon="info-circle" shape="circle"></Button>
-                <Button type="danger" icon="delete" shape="circle" onClick={() => { confirmDeleteFile(props.deleteFile) }}></Button>
+                <Button
+                    type="danger"
+                    icon="delete"
+                    shape="circle"
+                    disabled={checked}
+                    onClick={() => { confirmDeleteFile(props.deleteFile) }}
+                ></Button>
             </div>
         </div>
     )
@@ -62,7 +68,7 @@ const mapStateToProps = (state: ModuleRootState, ownProps: FileItemProps): FileI
 const mapDispatchToProps = (dispatch, ownProps: FileItemProps): FileItemDispatchProps => {
     return {
         fileItemClick: () => {
-            const fileItemClickAction = fileItemClick(ownProps.fileInfo)
+            const fileItemClickAction = FileItemClick(ownProps.fileInfo)
             dispatch(fileItemClickAction)
         },
         deleteFile: () => {

@@ -53,7 +53,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
 
         return (
             <Card noHovering>
-                <ConnectedSelectInputLanguage callback={this.onInputLanguaeChange} />
+                <ConnectedSelectInputLanguage />
                 <Form onSubmit={this.handleSubmit}>
                     <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
                         <Tabs.TabPane tab="Slide Images" key="1">

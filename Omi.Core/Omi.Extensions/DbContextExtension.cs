@@ -9,7 +9,7 @@ namespace Omi.Extensions
 {
     public static class DbContextExtension
     {
-        public static async void TryUpdateList<TEntity, TKey>(this DbContext db, IEnumerable<TEntity> currentEntities, IEnumerable<TEntity> newEntities, Func<TEntity, TKey> getKey)
+        public static async void TryUpdateList<TEntity, TKey>(this DbContext db, IEnumerable<TEntity> currentEntities, IEnumerable<TEntity> newEntities, Func<TEntity, TKey> getKey, IEnumerable<string> ExcludeProperties = null)
             where TEntity : class, IEntityWithTypeId<TKey>
         {
             var deletedEntities = currentEntities.Except(newEntities, getKey);
@@ -29,7 +29,11 @@ namespace Omi.Extensions
                 if (existingItem != null)
                 {
                     var entityEntry = db.Entry(existingItem);
+
                     entityEntry.CurrentValues.SetValues(entity);
+
+                    foreach (var property in ExcludeProperties)
+                        entityEntry.Property(property).IsModified = false;
                 }
             }
         }

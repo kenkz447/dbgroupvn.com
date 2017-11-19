@@ -4,19 +4,18 @@ using System.Threading;
 
 namespace Omi.Modules.Setting.Entities
 {
-    public static class SettingValueExt
+    public partial class SettingValue
     {
         public static SettingValue FromViewModel(SettingValueViewModel viewModel)
             => new SettingValue
             {
                 Id = viewModel.Id,
                 Name = viewModel.Name,
-                Value = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Value),
-                Language = Thread.CurrentThread.CurrentCulture.Name
+                Value = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Value)
             };
     }
 
-    public class SettingValue : 
+    public partial class SettingValue : 
         EntityWithTypeId<long>,
         IEntityWithName,
         IEntityWithLanguage

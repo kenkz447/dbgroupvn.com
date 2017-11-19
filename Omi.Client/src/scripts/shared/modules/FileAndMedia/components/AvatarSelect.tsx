@@ -10,7 +10,7 @@ export interface AvatarSelectStateProps {
     selectedValue?: FileEntityInfo
 }
 export interface AvatarSelectProps extends AvatarSelectStateProps, AvatarSelectDispathProps {
-    inputName: string
+    id?: string
     /** Initial value */
     value?: FileEntityInfo
     onChange?: (value) => void
@@ -27,12 +27,12 @@ export class AvatarSelectComponent extends React.Component<AvatarSelectProps> {
     }
 
     render() {
-        const { selectedValue, inputName, onClick, value } = this.props
+        const { selectedValue, id, onClick, value } = this.props
         const currentValue = selectedValue.fileId ? selectedValue : value
         return (
             <div className="avatar-select">
                 <div className="avatar-select-container">
-                    <div className="avatar-select-holder" tabIndex={0} onClick={(e) => { onClick(inputName) }}>
+                    <div className="avatar-select-holder" tabIndex={0} onClick={(e) => { onClick(id) }}>
                         <span className="avatar-select-icon">
                             <Icon type="picture" />
                         </span>

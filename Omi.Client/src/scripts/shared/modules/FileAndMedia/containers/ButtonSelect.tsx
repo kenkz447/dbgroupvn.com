@@ -6,7 +6,7 @@ import { ButtonSize } from 'antd/lib/button/button'
 import { ExtractImmutableHOC } from '../../../core'
 
 import { FileType, ModuleRootState, FileEntityInfo } from '../Types'
-import { openModal } from '../state'
+import { OpenModal } from '../state'
 
 interface StateProps {
     selectedValue?: FileEntityInfo,
@@ -60,7 +60,7 @@ const mapStateToProps = (state: ModuleRootState, ownProps: OwnProps): StateProps
 const mapDispatchToProps = (dispatch, ownProps: OwnProps): DispatchProps => {
     return {
         openModal: () => {
-            const openModalAction = openModal({
+            const openModalAction = OpenModal({
                 handleKey: ownProps.id,
                 acceptType: FileType.Image
             })

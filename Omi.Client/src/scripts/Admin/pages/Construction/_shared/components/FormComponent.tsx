@@ -91,7 +91,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
                     {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.avatar), {
                         rules: [{ required: true, message: 'Please select avatar!' }],
                         initialValue: this.props.initConstructionViewModel.avatar
-                    })(<AvatarSelect inputName={nameof<ConstructionViewModel>((o) => o.avatar)} />)}
+                    })(<AvatarSelect />)}
                 </FormItem>
                 <FormItem label="Title">
                     {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.title), {

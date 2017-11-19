@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Omi.Modules.Setting.Entities;
 using Omi.Extensions;
+using System.Threading;
 
 namespace Omi.Modules.Dbgroup.Home.Seed
 {
@@ -17,36 +18,44 @@ namespace Omi.Modules.Dbgroup.Home.Seed
         public static SettingValue SlideImages = new SettingValue
         {
             Name = "SlideImages",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue SlideInfoHtml = new SettingValue
         {
             Name = "SlideInfoHtml",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue StoryHtml = new SettingValue
         {
             Name = "StoryHtml",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue HowItWorkBuildHtml = new SettingValue
         {
             Name = "HowItWorkBuildHtml",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue HowItWorkDesignHtml = new SettingValue
         {
             Name = "HowItWorkDesignHtml",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue WhatDoIWillReceive = new SettingValue
         {
-            Name = "WhatDoIWillReceive"
+            Name = "WhatDoIWillReceive",
+            Language = Thread.CurrentThread.CurrentCulture.Name
         };
 
         public static SettingValue WhatDoIWillReceiveBuild = new SettingValue
         {
-            Name = "WhatDoIWillReceiveBuild"
+            Name = "WhatDoIWillReceiveBuild",
+            Language = Thread.CurrentThread.CurrentCulture.Name
+
         };
 
         public async Task SeedAsync(DbContext dbConext)
