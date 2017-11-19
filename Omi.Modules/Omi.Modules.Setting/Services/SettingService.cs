@@ -37,11 +37,18 @@ namespace Omi.Modules.Setting.Services
             throw new NotImplementedException();
         }
 
-        public async Task<SettingEntity> Get(GetSettingServiceModel serviceModel) 
-            => await _context.SettingEntity
+        public async Task<SettingEntity> Get(GetSettingServiceModel serviceModel)
+        {
+            var settingEntity = await _context.SettingEntity
                 .Include(o => o.SettingValues)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(o => (serviceModel.Id != default) ? o.Id == serviceModel.Id : o.Name == serviceModel.Name);
+
+            settingEntity.SettingValues = settingEntity.SettingValues.Where(o => o.ForCurrentRequestLanguage());
+
+            return settingEntity;
+        }
+
 
         public async Task<int> Update(UpdateSettingServiceModel serviceModel)
         {
@@ -61,7 +68,7 @@ namespace Omi.Modules.Setting.Services
             foreach (var settingValues in serviceModel.SettingValues)
                 settingValues.SettingEntityId = exitsEntity.Id;
 
-            _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.Language == currentLanguage || o.Language == null), serviceModel.SettingValues, o => o.Id);
+            _context.TryUpdateList(exitsEntity.SettingValues.Where(o => o.ForCurrentRequestLanguage()), serviceModel.SettingValues, o => o.Id);
 
             var resultCount = await _context.SaveChangesAsync();
 

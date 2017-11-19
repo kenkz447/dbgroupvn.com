@@ -4,16 +4,18 @@ import { autobind } from 'core-decorators'
 
 import { Form, Input, Button, Tabs, Row, Col, Card } from 'antd'
 
-import { ExtractImmutableHOC, RequestSend, ShowNotification, NotificationType } from '../../../../shared/core'
+import { ExtractImmutableHOC, RequestSend, ShowNotification, NotificationType, RequestCacheDelete } from '../../../../shared/core'
 import { PictureWall } from '../../../../shared/modules/FileAndMedia'
 
 import { AdminRootState, HomeFormValue } from '../../../Types'
 import { SettingValueViewModel } from '../../../../shared/modules/website'
+import { CodeEditor, ConnectedSelectInputLanguage } from '../../../../shared/modules/Modulebase'
 
 
 interface StateProps {
     formValue?: HomeFormValue,
     submitResponseCode?: string
+    search?: any
 }
 
 interface DispatchProps {
@@ -40,6 +42,9 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
     componentWillReceiveProps(nextProps: StateProps) {
         if (nextProps.submitResponseCode === "POST_SUCCEEDED")
             this.props.onSubmitSucceeded()
+        
+        if (this.props.search != nextProps.search)
+            this.props.getFormValue()
     }
 
     render() {
@@ -48,6 +53,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
 
         return (
             <Card noHovering>
+                <ConnectedSelectInputLanguage callback={this.onInputLanguaeChange} />
                 <Form onSubmit={this.handleSubmit}>
                     <Tabs defaultActiveKey="1" tabBarExtraContent={operations}>
                         <Tabs.TabPane tab="Slide Images" key="1">
@@ -59,7 +65,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                         </Tabs.TabPane>
                         <Tabs.TabPane tab="DB Group Story" key="2">
                             <Row gutter={30}>
-                                <Col span={8}>
+                                <Col span={12}>
                                     {this.renderStory()}
                                 </Col>
                             </Row>
@@ -100,7 +106,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                 <Form.Item>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.slideInfoHtml.value), {
                         initialValue: this.props.formValue.slideInfoHtml.value
-                    })(<Input.TextArea rows={30} />)}
+                    })(<CodeEditor />)}
                 </Form.Item>
             </div>
         )
@@ -118,7 +124,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                 <Form.Item>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.storyHtml.value), {
                         initialValue: this.props.formValue.storyHtml.value
-                    })(<Input.TextArea rows={30} />)}
+                    })(<CodeEditor />)}
                 </Form.Item>
             </div>
         )
@@ -127,7 +133,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
     renderHowItWorkDesign() {
         return (
             <Row gutter={30}>
-                <Col span={8}>
+                <Col span={12}>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.id), {
                         initialValue: this.props.formValue.howItWorkDesignHtml.id
                     })(<Input type="hidden" />)}
@@ -137,22 +143,22 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     <Form.Item label="How It Work">
                         {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkDesignHtml.value), {
                             initialValue: this.props.formValue.howItWorkDesignHtml.value
-                        })(<Input.TextArea rows={30} />)}
+                        })(<CodeEditor />)}
                     </Form.Item>
                 </Col>
-                <Col span={8}>
-                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.id), {
-                            initialValue: this.props.formValue.whatDoIWillReceive.id
-                        })(<Input type="hidden" />)}
-                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.name), {
-                            initialValue: this.props.formValue.whatDoIWillReceive.name
-                        })(<Input type="hidden" />)}
-                        <Form.Item label="Receive">
-                            {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.value), {
-                                initialValue: this.props.formValue.whatDoIWillReceive.value
-                            })(<Input.TextArea rows={30} />)}
-                        </Form.Item>
-                    </Col>
+                <Col span={12}>
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.id), {
+                        initialValue: this.props.formValue.whatDoIWillReceive.id
+                    })(<Input type="hidden" />)}
+                    {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.name), {
+                        initialValue: this.props.formValue.whatDoIWillReceive.name
+                    })(<Input type="hidden" />)}
+                    <Form.Item label="Receive">
+                        {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceive.value), {
+                            initialValue: this.props.formValue.whatDoIWillReceive.value
+                        })(<CodeEditor />)}
+                    </Form.Item>
+                </Col>
             </Row>
         )
     }
@@ -160,7 +166,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
     renderWhatDoIWillReceive() {
         return (
             <Row gutter={30}>
-                <Col span={8}>
+                <Col span={12}>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.id), {
                         initialValue: this.props.formValue.howItWorkBuildHtml.id
                     })(<Input type="hidden" />)}
@@ -170,10 +176,10 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     <Form.Item label="build">
                         {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.howItWorkBuildHtml.value), {
                             initialValue: this.props.formValue.howItWorkBuildHtml.value
-                        })(<Input.TextArea rows={30} />)}
+                        })(<CodeEditor />)}
                     </Form.Item>
                 </Col>
-                <Col span={8}>
+                <Col span={12}>
                     {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceiveBuild.id), {
                         initialValue: this.props.formValue.whatDoIWillReceiveBuild.id
                     })(<Input type="hidden" />)}
@@ -183,7 +189,7 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
                     <Form.Item label="Receive">
                         {this.props.form.getFieldDecorator(nameof.full<HomeFormValue>((o) => o.whatDoIWillReceiveBuild.value), {
                             initialValue: this.props.formValue.whatDoIWillReceiveBuild.value
-                        })(<Input.TextArea rows={30} />)}
+                        })(<CodeEditor />)}
                     </Form.Item>
                 </Col>
             </Row>
@@ -202,7 +208,8 @@ class HomeSettingForm extends React.Component<OwnProps & StateProps & DispatchPr
 const mapStateToProps = (state: AdminRootState, ownProps: OwnProps): StateProps => {
     return {
         formValue: state.data.getIn(['HOME_SETTING', 'response', 'result']),
-        submitResponseCode: state.data.getIn(['HOME_SETTING_SUBMIT', 'response', 'code'])
+        submitResponseCode: state.data.getIn(['HOME_SETTING_SUBMIT', 'response', 'code']),
+        search : state.router.location.search
     }
 }
 
@@ -238,6 +245,9 @@ const mapDispatchToProps = (dispatch, ownProps: OwnProps): DispatchProps => {
                 }
             })
             dispatch(showNotificationAction)
+
+            const action = RequestCacheDelete('HOME_SETTING_SUBMIT')
+            dispatch(action)
         }
     }
 }

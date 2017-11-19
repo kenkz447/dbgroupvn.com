@@ -61,15 +61,6 @@ namespace Omi.Base.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to en-US.
-        /// </summary>
-        public static string DEFAULT_LANGUAGE {
-            get {
-                return ResourceManager.GetString("DEFAULT_LANGUAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ENTITY_NOT_FOUND.
         /// </summary>
         public static string ENTITY_NOT_FOUND {

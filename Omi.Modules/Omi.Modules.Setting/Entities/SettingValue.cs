@@ -18,7 +18,8 @@ namespace Omi.Modules.Setting.Entities
 
     public class SettingValue : 
         EntityWithTypeId<long>,
-        IEntityWithName
+        IEntityWithName,
+        IEntityWithLanguage
     {
         public string Name { get; set; }
         public string Value { get; set; }

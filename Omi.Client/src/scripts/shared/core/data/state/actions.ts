@@ -20,16 +20,26 @@ export function RequestSend(dataKey: string, payload: {
     url: string,
     requestInit?: RequestInit
 }): RequestSendAction {
+    let requestUrl = processUrl(payload.url)
+
+    const currentUrl = new URL(window.location.href)
+    const inputLanguage = currentUrl.searchParams.get('input-language')
+    if (inputLanguage) {
+        const requestURL = new URL(requestUrl)
+        requestURL.searchParams.set('input-language', inputLanguage)
+        requestUrl = requestURL.toString()
+    }
+
     return {
         type: REQUEST_SEND,
         dataKey,
-        url: processUrl(payload.url),
+        url: requestUrl,
         requestInit: payload.requestInit
     }
 }
 
 export interface RequestResponseAction extends Action {
-    dataKey: string,
+    dataKey: string
     response: any
 }
 

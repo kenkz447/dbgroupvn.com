@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Omi.Base.Middwares
 {
-    public class LocalizationInputMiddleware
+    public class RequestLanguageMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public LocalizationInputMiddleware(RequestDelegate next)
+        public RequestLanguageMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
         public async Task Invoke(HttpContext context)
         {
-            if(context.Request.Method == "POST" && context.Request.Query.ContainsKey("input-language"))
+            if(context.Request.Query.ContainsKey("input-language"))
             {
                 var inputLanguage = context.Request.Query["input-language"];
 

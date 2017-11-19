@@ -1,3 +1,5 @@
+import './style.scss'
+
 import { CRModule } from '../shared/core'
 
 import { AdminRoute, HomeSettingRoute, ConstructionRoutes } from './pages'
