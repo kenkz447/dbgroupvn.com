@@ -43,7 +43,7 @@ const checkOrUncheckFile = (action: FileItemClickAction) => (state: Map<any, any
 }
 
 const clearCheckedFiles = (action: OpenModalAction) => (state: Map<any, any>) => state.delete('CHECKED_FILES')
-const setCheckedFiles = ({ files }: SetCheckedFilesAction) => (state: Map<any, any>) => state.set('CHECKED_FILES', fromJS(files))
+const setCheckedFiles = ({ files }: SetCheckedFilesAction) => (state: Map<any, any>) => state.set('CHECKED_FILES', fromJS(files || []))
 
 const clearInitCheckedFiles = (action: OpenModalAction) => (state: Map<any, any>) => state.delete('INIT_CHECKED_FILES')
 const setInitCheckedFiles = ({ files }: SetCheckedFilesAction) => (state: Map<any, any>) => state.set('INIT_CHECKED_FILES', fromJS(files))

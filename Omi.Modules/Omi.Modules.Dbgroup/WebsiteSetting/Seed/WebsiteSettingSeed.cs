@@ -73,7 +73,7 @@ namespace Omi.Modules.Dbgroup.WebsiteSetting.Seed
             foreach (var valueEntity in settingValues)
             {
                 valueEntity.SettingEntityId = HomeSetting.Id;
-                valueEntity.Language = Thread.CurrentThread.Name;
+                valueEntity.Language = Thread.CurrentThread.CurrentCulture.Name;
                 settingValueSet.SeedEntity(valueEntity);
             }
             await dbConext.SaveChangesAsync();

@@ -1,4 +1,5 @@
 ﻿using Omi.Modules.Setting.Entities;
+using Omi.Modules.Setting.Infrastructure;
 using Omi.Modules.Setting.ViewModels;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,12 +13,24 @@ namespace Omi.Modules.Dbgroup.Home.ViewModels
         public long SettingEntityId { get; set; }
         public string Language { get; set; }
 
+        [EntitySettingValue]
         public SettingValueViewModel SlideImages { get; set; }
+
+        [EntitySettingValue]
         public SettingValueViewModel SlideInfoHtml { get; set; }
+
+        [EntitySettingValue]
         public SettingValueViewModel StoryHtml { get; set; }
+
+        [EntitySettingValue]
         public SettingValueViewModel HowItWorkBuildHtml { get; set; }
+
+        [EntitySettingValue]
         public SettingValueViewModel HowItWorkDesignHtml { get; set; }
+
+        [EntitySettingValue]
         public SettingValueViewModel WhatDoIWillReceive { get; set; }
+        [EntitySettingValue]
         public SettingValueViewModel WhatDoIWillReceiveBuild { get; set; }
     }
 
