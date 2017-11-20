@@ -45,6 +45,15 @@ namespace Omi.Modules.Dbgroup.Services
         {
             var constructions = GetConstructions().AsNoTracking();
 
+            foreach (var con in constructions)
+            {
+                var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
+                if (filteredDetails.Count() != 0)
+                    con.Details = filteredDetails;
+                else
+                    con.Details = filteredDetails.Where(o => o.Language == "vi");
+            }
+
             foreach (var taxonomyName in serviceModel.TaxonomyNames)
                 if(taxonomyName != default)
                     constructions = constructions.Where(o => o.EntityTaxonomies.Select(e => e.Taxonomy.Name).Contains(taxonomyName));
@@ -57,19 +66,54 @@ namespace Omi.Modules.Dbgroup.Services
         }
 
         public async Task<ConstructionEntity> GetNextConstruction(long constructionId)
-            => await GetConstructions().AsNoTracking().FirstOrDefaultAsync(o => o.Id > constructionId);
+        {
+            var con = await GetConstructions().AsNoTracking().FirstOrDefaultAsync(o => o.Id > constructionId);
+            var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
+            if (filteredDetails.Count() != 0)
+                con.Details = filteredDetails;
+            else
+                con.Details = filteredDetails.Where(o => o.Language == "vi");
+
+            return con;
+        }
 
         public async Task<ConstructionEntity> GetPrevConstruction(long constructionId)
-            => await GetConstructions().AsNoTracking().Where(o => o.Id < constructionId).OrderByDescending(o => o.Id).FirstOrDefaultAsync();
+        {
+            var con = await GetConstructions().AsNoTracking().Where(o => o.Id < constructionId).OrderByDescending(o => o.Id).FirstOrDefaultAsync();
+            var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
+            if (filteredDetails.Count() != 0)
+                con.Details = filteredDetails;
+            else
+                con.Details = filteredDetails.Where(o => o.Language == "vi");
+            return con;
+        }
 
         public async Task<ConstructionEntity> GetConstructionById(long constructionId)
-            => await GetConstructions().AsNoTracking().SingleAsync(o => o.Id == constructionId);
+        {
+            var con = await GetConstructions().AsNoTracking().SingleAsync(o => o.Id == constructionId);
+            var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
+            if (filteredDetails.Count() != 0)
+                con.Details = filteredDetails;
+            else
+                con.Details = filteredDetails.Where(o => o.Language == "vi");
+            return con;
+        }
 
         public async Task<ConstructionEntity> GetConstructionByName(string constructionName)
-            => await GetConstructions().AsNoTracking().SingleAsync(o => o.Name == constructionName);
+        {
+            var con = await GetConstructions().AsNoTracking().SingleAsync(o => o.Name == constructionName);
+            var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
+            if (filteredDetails.Count() != 0)
+                con.Details = filteredDetails;
+            else
+                con.Details = filteredDetails.Where(o => o.Language == "vi");
+            return con;
+        }
 
         public async Task<ConstructionEntity> CreateNewConstruction(ConstructionServiceModel serviceModel)
         {
+            serviceModel.Detail.Language = Thread.CurrentThread.Name;
+
             var newConstruction = new ConstructionEntity
             {
                 Name = serviceModel.Name,
@@ -98,16 +142,17 @@ namespace Omi.Modules.Dbgroup.Services
             _context.Entry(construction).Property(o => o.CreateByUserId).IsModified = false;
             _context.Entry(construction).Property(o => o.CreateDate).IsModified = false;
 
-            var currentInputLanguage = Thread.CurrentThread.CurrentCulture.Name;
-
             foreach (var newDetail in newConstruction.Details)
             {
-                var oldDetail = construction.Details.FirstOrDefault(o => o.Language == currentInputLanguage);
-                if(oldDetail == null)
-                    oldDetail = construction.Details.FirstOrDefault(o => o.Language == null);
-
-                newDetail.Id = oldDetail.Id;
-                _context.Entry(oldDetail).CurrentValues.SetValues(newDetail);
+                newDetail.Language = Thread.CurrentThread.CurrentCulture.Name;
+                var oldDetail = construction.Details.FirstOrDefault(o => o.Language == newDetail.Language);
+                if (oldDetail != null)
+                {
+                    newDetail.Id = oldDetail.Id;
+                    _context.Entry(oldDetail).CurrentValues.SetValues(newDetail);
+                }
+                else
+                    _context.Set<ConstructionDetail>().Add(newDetail);
             }
 
             _context.TryUpdateManyToMany(construction.EnitityFiles, newConstruction.EnitityFiles, o => o.FileEntityId);

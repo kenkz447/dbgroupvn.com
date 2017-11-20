@@ -1,14 +1,14 @@
-import * as React from 'React'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as classNames from 'classnames'
+import * as $ from 'jquery-slim'
 
 import { ExtractImmutableHOC, RequestSend, SetTempValue } from '../../../../shared/core'
 import { HomeFormValue } from '../../../../Admin'
 import { WebsiteRootState } from '../../../Types'
 import { ConnectedHomeSlider } from './HomeSlider'
 import { ConnectedHomeContactForm } from './HomeContactForm'
-import * as $ from 'jquery-slim'
 
 require('lightgallery.js')
 const lightGallery = window['lightGallery']

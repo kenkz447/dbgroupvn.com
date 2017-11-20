@@ -136,9 +136,7 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             if (construction == null)
                 return null;
 
-            var detail = construction.Details.FirstOrDefault(o => o.Language == Thread.CurrentThread.CurrentUICulture.Name);
-            if(detail == null)
-                detail = construction.Details.FirstOrDefault(o => o.Language == null);
+            var detail = construction.Details.FirstOrDefault();
 
             var constructionViewModel = EmptyConstructionViewModel;
 

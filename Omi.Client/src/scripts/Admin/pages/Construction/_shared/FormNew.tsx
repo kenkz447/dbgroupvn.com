@@ -12,7 +12,8 @@ import { ConstructionFormStateProps, ConstructionFormDispatchProps, Construction
 const mapStateToProps = (state: AdminRootState, ownProps): ConstructionFormStateProps => {
   return {
     initConstructionViewModel: state.data.getIn(['initConstructionViewModel', 'response', 'result']) || {},
-    formPostResultConstructionId: state.data.getIn(['formPostResultConstructionId', 'response', 'result'])
+    formPostResultConstructionId: state.data.getIn(['formPostResultConstructionId', 'response', 'result']),
+    search: state.router.location.search
   }
 }
 

@@ -13,6 +13,7 @@ const mapStateToProps = (state: AdminRootState, ownProps): ConstructionFormState
   return {
     initConstructionViewModel: state.data.getIn(['initConstructionViewModel', 'response', 'result']) || {},
     formPostResultConstructionId: state.data.getIn(['formPostResultConstructionId', 'response', 'result']),
+    search: state.router.location.search
   }
 }
 

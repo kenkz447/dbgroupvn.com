@@ -2,9 +2,10 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 
 import { Image } from '../../../../../shared/modules/FileAndMedia'
-import { WebsiteRootState } from '../../../../Types'
 import { WebsiteSettingFormValue } from '../../../../../Admin'
-import { ExtractImmutableHOC } from '../../../../../shared/core/index';
+import { ExtractImmutableHOC } from '../../../../../shared/core'
+
+import { WebsiteRootState } from '../../../../Types'
 
 function ConstructionBanner(props: { websiteSetting: WebsiteSettingFormValue }) {
     if (!props.websiteSetting || !props.websiteSetting.constructionBannerImage)

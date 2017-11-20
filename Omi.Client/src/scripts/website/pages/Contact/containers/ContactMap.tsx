@@ -1,29 +1,34 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { autobind } from 'core-decorators'
 
 import { ExtractImmutableHOC } from '../../../../shared/core'
 import { GoogleMap } from "../../../../shared/modules/Location"
 import { WebsiteRootState } from '../../../Types'
+import { WebsiteSettingFormValue } from '../../../../Admin'
+import { Image } from '../../../../shared/modules/FileAndMedia/components'
 
 interface StateProps {
-    markers: Array<any>
+    websiteSetting: WebsiteSettingFormValue
 }
+
 @(ExtractImmutableHOC as any)
 class ContactMap extends React.Component<StateProps> {
-    markers = [{
-        id: 1,
-        lat: 10.7208841,
-        lng: 106.694437
-    }]
+    markers = []
+
     render() {
+        if (!this.props.websiteSetting)
+            return null
+        const lat = +this.props.websiteSetting.contactMapLatitude.value
+        const lng = +this.props.websiteSetting.contactMapLongitude.value
         return (
             <div className="brand-container">
                 <div className="contact-map-conatiner">
                     <div className="contact-map">
                         <GoogleMap
-                            center={[10.7208841, 106.694437]}
+                            center={[lat, lng]}
                             zoom={10}
-                            markers={this.markers}
+                            markers={[{ id: 1, lat, lng }]}
                             renderMarkerContent={this.renderMarkerContent}
                         />
                     </div>
@@ -32,18 +37,21 @@ class ContactMap extends React.Component<StateProps> {
         )
     }
 
+    @autobind
     renderMarkerContent(marker) {
         return (
             <div className="hint__content map-marker-hint noevents" style={{ width: 250, left: -21, marginLeft: 0 }}>
                 <div className="b-marker clearfix">
                     <div className="d-inline-block float-left mr-1">
-                        <img className="w-100 b-marker-logo" src={`${window.baseUrl}Upload/bb311320-6c27-4653-aa5c-eae8a980b9ec/2017/11/Asset 2.png`} />
+                        <Image classNames="w-100 b-marker-logo" fileEntityInfo={this.props.websiteSetting.companyLogo.value} />
                     </div>
                     <div className="d-inline-block">
-                        <h4 className="h5" style={{ color: 'rgb(255, 255, 255)' }}>DB GROUP</h4>
+                        <h4 className="h5" style={{ color: 'rgb(255, 255, 255)' }}>
+                            {this.props.websiteSetting.companyName.value}
+                        </h4>
                         <span style={{ color: 'rgb(255, 255, 255)', lineHeight: 1.5 }}>
-                            No.26, Road 4, Phuoc Kien A residential area, Nha Be, Vietnam
-                                </span>
+                            {this.props.websiteSetting.companyAddress.value}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -53,7 +61,7 @@ class ContactMap extends React.Component<StateProps> {
 
 const mapStateToProps = (state: WebsiteRootState): StateProps => {
     return {
-        markers: state.temp.get('PROJECT_MARKERS')
+        websiteSetting: state.data.getIn(['WEBSITE_SETTING', 'response', 'result'])
     }
 }
 

@@ -5,6 +5,7 @@ import { Button, Tabs, Form, Input, Row, Col, Select } from 'antd'
 import { ExtractImmutableHOC } from '../../../../../shared/core'
 import { AvatarSelect, FileSelectModal, PictureWall } from '../../../../../shared/modules/FileAndMedia'
 import { ConstructionViewModel } from '../Types'
+import { ConnectedSelectInputLanguage } from '../../../../../shared/modules/Modulebase/index'
 
 export interface ConstructionFormDispatchProps {
     getInitialViewModel?: () => void
@@ -15,6 +16,7 @@ export interface ConstructionFormDispatchProps {
 export interface ConstructionFormStateProps {
     initConstructionViewModel?: ConstructionViewModel
     formPostResultConstructionId?: number
+    search?: string
 }
 
 export interface ConstructionFormProps extends ConstructionFormStateProps, ConstructionFormDispatchProps {
@@ -38,6 +40,8 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
     componentWillReceiveProps(nextProps: ConstructionFormProps) {
         if (nextProps.formPostResultConstructionId && (this.props.formPostResultConstructionId != nextProps.formPostResultConstructionId))
             this.props.redirectToEdit(nextProps.formPostResultConstructionId)
+        if (nextProps.search != this.props.search)
+            this.props.getInitialViewModel()
     }
 
     componentWillMount() {
@@ -47,6 +51,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
     render() {
         return (
             <div>
+                {!this.props.initConstructionViewModel.id || <ConnectedSelectInputLanguage />}
                 <Form layout="vertical" onSubmit={this.handleSubmit}>
                     {
                         this.renderHidden.bind(this)()
@@ -73,16 +78,21 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
     }
 
     renderHidden() {
-        return [
-            this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.id), {
-                initialValue: this.props.initConstructionViewModel.id
-            })(<Input type="hidden" />),
-            this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.language), {
-                initialValue: this.props.initConstructionViewModel.language
-            })(<Input type="hidden" />),
-        ]
+        return (
+            <div>
+                {
+                    this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.id), {
+                        initialValue: this.props.initConstructionViewModel.id
+                    })(<Input type="hidden" />)
+                }
+                {
+                    this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.language), {
+                        initialValue: this.props.initConstructionViewModel.language
+                    })(<Input type="hidden" />)
+                }
+            </div>
+        )
     }
-
     renderBasicInfomation() {
         return (
             <fieldset>
@@ -148,7 +158,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
                 </FormItem>
                 <FormItem label="Finished date">
                     {this.props.form.getFieldDecorator(nameof<ConstructionViewModel>((o) => o.finishDate), {
-                        initialValue: this.props.initConstructionViewModel.customer
+                        initialValue: this.props.initConstructionViewModel.finishDate
                     })(<Input placeholder="Finished date" />)}
                 </FormItem>
                 <FormItem label="Description">
@@ -161,6 +171,7 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
     }
 
     renderPictures() {
+        const a = this.props.form.getFieldValue(nameof<ConstructionViewModel>((o) => o.pictures))
         return (
             <fieldset>
                 <h2 className="form-legend mb-4">Pictures</h2>
