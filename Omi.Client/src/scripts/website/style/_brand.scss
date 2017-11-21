@@ -14,6 +14,11 @@ $brand-gutter: 30px;
         height: auto;
         line-height: initial;
         line-height: auto;
+        &-wrapper {
+            height: auto;
+            background: transparent;
+            padding: 0;
+        }
     }
     &-footer {
         background: #272727;
@@ -25,10 +30,18 @@ $brand-gutter: 30px;
         }
     }
     &-logo {
-        height: 130px;
+        width: 100px;
         &-image {
             max-height: 100%;
         }
+    }
+    &-loading-bar {
+        top: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        height: 2px;
+        background: #108ee9;
     }
     button {
         outline: 0;
@@ -156,6 +169,14 @@ $brand-gutter: 30px;
     }
     .anticon-caret-down {
         transform: scale(.6);
+    }
+}
+
+@media screen and(min-width: 1025px) {
+    .brand {
+        &-logo {
+            width: 130px;
+        }
     }
 }
 

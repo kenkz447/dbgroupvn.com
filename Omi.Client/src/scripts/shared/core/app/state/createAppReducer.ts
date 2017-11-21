@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import { loadingBarReducer } from 'react-redux-loading-bar'
 
 import { reducer as routes } from '../../router'
 
@@ -23,6 +24,7 @@ const appReducer: ReducerRootState = {
 export function createAppReducer(reducers) {
     return combineReducers({
         ...appReducer,
-        ...reducers
+        ...reducers,
+        loadingBar: loadingBarReducer
     })
 }

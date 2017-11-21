@@ -1,56 +1,22 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { Layout, Row, Col, Menu, Icon } from 'antd'
-
-import { RequestSend } from '../../../shared/core'
+import { Layout } from 'antd'
 
 import { MasterHeader } from './containers/MasterHeader'
 import { MasterFooter } from './containers/MasterFooter'
-import { WebsiteRootState } from '../../Types'
+import { ConnectedMasterWrapper } from './containers/MasterWrapper'
 
-const { Header, Content, Footer } = Layout
-
-interface StateProps {
-    websiteSetting?: any
-}
-
-interface DispatchProps {
-    getWebsiteSetting: () => void
-}
-
-class MainMaster extends React.Component<StateProps & DispatchProps> {
-    componentWillMount() {
-        this.props.getWebsiteSetting()
-    }
+export class MainMaster extends React.Component {
     render() {
         return (
-            <Layout className="brand brand-layout">
-                <MasterHeader />
-                <Content className="mb-5">
-                    {this.props.children}
-                </Content>
-                <MasterFooter />
-            </Layout>
+            <ConnectedMasterWrapper>
+                <Layout className="brand brand-layout">
+                    <MasterHeader />
+                    <Layout.Content className="mb-5">
+                        {this.props.children}
+                    </Layout.Content>
+                    <MasterFooter />
+                </Layout>
+            </ConnectedMasterWrapper>
         )
     }
 }
-
-const mapStateToProps = (state: WebsiteRootState): StateProps => {
-    return {
-        websiteSetting: state.data.getIn(['WEBSITE_SETTING', 'response', 'result'])
-    }
-}
-
-const mapDispatchToProps = (dispatch): DispatchProps => {
-    return {
-        getWebsiteSetting: () => {
-            const action = RequestSend('WEBSITE_SETTING', {
-                url: '/websiteSetting/getSetting'
-            })
-            dispatch(action)
-        }
-    }
-}
-
-export const ConnectedMainMaster = connect(mapStateToProps, mapDispatchToProps)(MainMaster)

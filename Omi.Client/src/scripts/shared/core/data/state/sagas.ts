@@ -1,4 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 import { openNotificationWithIcon, NotificationType } from '../../utilities'
 
@@ -11,11 +12,15 @@ function* onFetchFailed(action: RequestFailedAction) {
 
 function* onRequestSend(action: RequestSendAction) {
     try {
+        yield put(showLoading())
         const response = yield fetch(action.url, action.requestInit)
         const requestResponseAction = RequestResponse(action.dataKey, yield response.json())
         yield put(requestResponseAction)
     } catch (error) {
         yield put(RequestFailed(action.dataKey, error.message))
+    }
+    finally {
+        yield put(hideLoading())
     }
 }
 

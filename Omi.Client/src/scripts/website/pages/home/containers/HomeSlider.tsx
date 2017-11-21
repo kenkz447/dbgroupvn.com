@@ -23,7 +23,7 @@ export function HomeSlider(props: StateProps) {
         return
 
     return (
-        <div>
+        <div className="image-wrapper">
             <Carousel autoplay>
                 {props.slideImages.map(renderImage)}
             </Carousel>

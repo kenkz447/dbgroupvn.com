@@ -68,6 +68,9 @@ namespace Omi.Modules.Dbgroup.Services
         public async Task<ConstructionEntity> GetNextConstruction(long constructionId)
         {
             var con = await GetConstructions().AsNoTracking().FirstOrDefaultAsync(o => o.Id > constructionId);
+            if (con == null)
+                return null;
+
             var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
             if (filteredDetails.Count() != 0)
                 con.Details = filteredDetails;
@@ -80,6 +83,9 @@ namespace Omi.Modules.Dbgroup.Services
         public async Task<ConstructionEntity> GetPrevConstruction(long constructionId)
         {
             var con = await GetConstructions().AsNoTracking().Where(o => o.Id < constructionId).OrderByDescending(o => o.Id).FirstOrDefaultAsync();
+            if (con == null)
+                return null;
+
             var filteredDetails = con.Details.Where(o => o.Language == Thread.CurrentThread.CurrentCulture.Name);
             if (filteredDetails.Count() != 0)
                 con.Details = filteredDetails;

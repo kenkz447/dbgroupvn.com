@@ -39,7 +39,7 @@ class ConstructionTypeList extends React.Component<StateProps & DispatchProps> {
                                         {
                                             o.children.map((child) => {
                                                 return (
-                                                    <div className="ml-4 mb-2">
+                                                    <div key={child.id} className="ml-4 mb-2">
                                                         {this.renderLink(child)}
                                                     </div>
                                                 )
@@ -71,7 +71,7 @@ class ConstructionTypeList extends React.Component<StateProps & DispatchProps> {
         const search = currentUrl.search
 
         return (
-            <Link key={search} className={classNames({ 'active': currentType == type.name })} to={`/construction${search}`}>{type.label}</Link>
+            <Link key={type.id} className={classNames({ 'active': currentType == type.name })} to={`/construction${search}`}>{type.label}</Link>
         )
     }
 }
