@@ -10,6 +10,8 @@ export interface FileEntityInfo {
     fileId?: number
     src?: string
     srcThumb?: string
+    width?: number
+    height?: number
 }
 
 export interface ModuleRootState extends RootState {

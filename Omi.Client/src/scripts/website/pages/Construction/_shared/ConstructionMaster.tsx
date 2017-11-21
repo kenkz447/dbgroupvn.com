@@ -15,14 +15,12 @@ export const ConstructionMaster = (props: React.HTMLProps<any>) => {
                 <MasterHeader />
                 <Content className="mb-5">
                     <div className="brand-container">
-                        <Row gutter={50}>
-                            <Col span={5}>
-                                <div className="mb-5">
-                                    <ConnectedConstructionTypeLists />
-                                </div>
+                        <Row>
+                            <Col span={24} lg={{ span: 5 }}>
+                                <ConnectedConstructionTypeLists />
                                 <ConnectedConstructionStatusList />
                             </Col>
-                            <Col span={19}>
+                            <Col span={24} lg={{ span: 19 }}>
                                 {props.children}
                             </Col>
                         </Row>

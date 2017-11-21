@@ -15,9 +15,10 @@ const onChange = function (isVisible) {
 }
 
 export class Image extends React.Component<ImgProps> {
+    // style={{ width: this.props.fileEntityInfo.width, height: this.props.fileEntityInfo.height }}
     render() {
         return (
-            <div>
+            <div className="mw-100">
                 <VisibilitySensor onChange={onchange}>
                     {({ isVisible }) =>
                         <Img.default loader={<Spin />} className={this.props.classNames} src={`${window.baseUrl}${this.props.displayThumb ? this.props.fileEntityInfo.srcThumb : this.props.fileEntityInfo.src}`} />

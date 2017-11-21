@@ -1,3 +1,5 @@
+import './style.scss'
+
 import { ViewRoute } from '../../../shared/core'
 import { WEBSITE_PAGE_CONSTRUCTION } from './keys'
 import { ConstructionIndexRoute } from './construction-index'

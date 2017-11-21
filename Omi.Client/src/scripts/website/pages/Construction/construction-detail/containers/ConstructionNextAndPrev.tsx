@@ -32,24 +32,24 @@ export class ConstructionNextAndPrev extends React.Component<OwnProps & StatePro
             return null
 
         return (
-            <div className="clearfix">
+            <div className="construction-detail-next-prev clearfix">
                 {
-                    this.props.nextAndPrev.prev && (
-                        <div className="float-right ml-3">
-                            <NavLink to={`/construction/${this.props.nextAndPrev.prev.name}`}>
-                                <div className="construction-prev">
-                                    <span className="construction-prev-icon"><Icon type="right" /></span>
+                    this.props.nextAndPrev.next && (
+                        <div className="float-left">
+                            <NavLink to={`/construction/${this.props.nextAndPrev.next.name}`}>
+                                <div className="construction-next">
+                                    <span className="construction-next-icon"><Icon type="left" /></span>
                                 </div>
                             </NavLink>
                         </div>
                     )
                 }
                 {
-                    this.props.nextAndPrev.next && (
+                    this.props.nextAndPrev.prev && (
                         <div className="float-right">
-                            <NavLink to={`/construction/${this.props.nextAndPrev.next.name}`}>
-                                <div className="construction-next">
-                                    <span className="construction-next-icon"><Icon type="left" /></span>
+                            <NavLink to={`/construction/${this.props.nextAndPrev.prev.name}`}>
+                                <div className="construction-prev">
+                                    <span className="construction-prev-icon"><Icon type="right" /></span>
                                 </div>
                             </NavLink>
                         </div>

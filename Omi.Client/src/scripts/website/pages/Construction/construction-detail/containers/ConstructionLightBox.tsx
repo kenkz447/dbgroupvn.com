@@ -22,22 +22,20 @@ export class ConstructionLightBox extends React.Component<OwnProps, any> {
         const { photoIndex, isOpen } = this.state
 
         return (
-            <div>
-                <div>
-                    <Row gutter={15}>
-                        {
-                            this.props.images.map((o) => {
-                                return (
-                                    <Col span={3} key={o.fileId}>
-                                        <div className="lightbox-thumb mb-3" onClick={() => { this.setState({ isOpen: true }) }}>
-                                            <Image classNames="mw-100 w-100" fileEntityInfo={o} displayThumb={true} />
-                                        </div>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
-                </div>
+            <div className="lightbox-imgs">
+                <Row gutter={30}>
+                    {
+                        this.props.images.map((o) => {
+                            return (
+                                <Col span={12} md={{ span: 8 }} lg={{ span: 6 }} xl={{ span: 4 }} key={o.fileId}>
+                                    <div className="lightbox-thumb mb-3" onClick={() => { this.setState({ isOpen: true }) }}>
+                                        <Image classNames="mw-100 w-100" fileEntityInfo={o} displayThumb={true} />
+                                    </div>
+                                </Col>
+                            )
+                        })
+                    }
+                </Row>
                 {isOpen &&
                     <Lightbox
                         mainSrc={`${window.baseUrl}${this.props.images[photoIndex].src}`}

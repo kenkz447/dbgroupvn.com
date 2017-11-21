@@ -1,13 +1,15 @@
 import * as React from 'react'
-import HamburgerMenu from './Hamburger'
 import { connect } from 'react-redux'
+import * as classNames from 'classnames'
+import { Menu } from 'antd'
+import { NavLink } from 'react-router-dom'
+
 import { WebsiteRootState } from '../../../../Types'
 import { SetTempValue } from '../../../../../shared/core/tempValue'
 import { ExtractImmutableHOC } from '../../../../../shared/core'
-import * as classNames from 'classnames';
-import { Menu } from 'antd';
-import { headerMenuItems } from '../_shared';
-import { NavLink } from 'react-router-dom';
+
+import { headerMenuItems } from '../_shared'
+import HamburgerMenu from './Hamburger'
 
 interface StateProps {
     windowWidth?: number
@@ -41,7 +43,15 @@ function MobileHeaderMenu(props: StateProps & DispatchProps) {
                 <Menu className="mobile-header-menu" mode="vertical" >
                     {headerMenuItems.map((o, i) => (
                         <Menu.Item key={i} className="mobile-header-menu-item">
-                            <NavLink className="mobile-header-menu-text" exact={i == 0} activeClassName="active" to={o.path}>{o.label}</NavLink>
+                            <NavLink className="mobile-header-menu-text"
+                                exact={i == 0}
+                                activeClassName="active"
+                                to={o.path}
+                                onMouseUp={(e) => {
+                                    e.preventDefault()
+                                    props.onMenuClick(false)
+                                }}
+                            >{o.label}</NavLink>
                         </Menu.Item>
                     ))}
                 </Menu>

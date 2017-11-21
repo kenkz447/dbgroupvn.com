@@ -5,24 +5,28 @@
     &-slider {
         &-wrapper {
             position: relative;
+            .slick-dots {
+                position: absolute;
+                text-align: right;
+                top: calc(100% - 30px);
+                button {
+                    opacity: 1!important;
+                }
+            }
         }
         &-banner {
-            top: 50px;
-            position: absolute;
-            width: 100%;
-            left: 50%;
-            transform: translateX(-50%);
             &-content {
                 background-color: rgba(255, 255, 255, .7);
-                padding: 30px 50px;
                 display: inline-block;
+                padding: 30px;
             }
             &-heading {
                 font-weight: bold;
-                font-size: 35px;
+                font-size: 1.1rem;
+                margin-bottom: 10px;
                 color: #000;
                 &-sub {
-                    font-size: 20px;
+                    font-size: .9rem;
                     margin-bottom: 20px;
                     color: #000;
                     line-height: .8;
@@ -31,22 +35,27 @@
             &-text {
                 font-size: 15px;
                 color: #000;
-                margin-bottom: 42px;
+                margin-bottom: 30px;
             }
             .btn {
                 display: inline-block;
-                padding: 12px 38px;
+                padding: 6px 19px;
                 background: #000;
                 color: #fff;
-                font-size: 15px;
+                font-size: 1rem;
             }
         }
     }
     &-section {
+        &-content {
+            padding: 0 30px;
+        }
         &-title {
             text-align: center;
             position: relative;
-            margin-bottom: 30px;
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 15px;
             &:after {
                 content: " ";
                 background: #272727;
@@ -63,7 +72,7 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 color: #272727;
-                padding: 0 40px;
+                padding: 0 20px;
                 z-index: 1;
                 position: relative;
             }
@@ -72,23 +81,24 @@
     &-how-does-it-work {
         &-tabs {
             text-align: center;
-            margin-bottom: 40px;
+            margin: 0 auto;
+            max-width: 320px;
             .and {
                 display: inline-block;
-                margin: 0 20px;
-                font-size: 26px;
+                font-size: 20px;
                 color: #828181;
+                width: 20%;
             }
         }
         &-tab {
             cursor: pointer;
             background: #fff;
             color: #272727;
-            padding: 10px 40px;
-            font-size: 23px;
+            padding: 5px 20px;
+            font-size: 1rem;
             border: 2px solid #272727;
             border-radius: 4px;
-            width: 165px;
+            width: 40%;
             &.active {
                 background: #272727;
                 color: #fff;
@@ -101,73 +111,57 @@
         padding-bottom: 50px;
         margin-bottom: 40px;
         &-block {
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             position: relative;
             &-image,
             &-content {
-                width: 50%;
+                width: 100%;
+                padding: 0 0 0 30px;
             }
-            &:nth-child(odd) {
-                .home-procedure-block-image {
-                    float: left;
-                    padding-right: 25px;
-                }
-                .home-procedure-block-content {
-                    float: right;
-                    padding-left: 25px;
-                }
-            }
-            &:nth-child(even) {
-                .home-procedure-block-image {
-                    float: right;
-                    padding-left: 25px;
-                }
-                .home-procedure-block-content {
-                    float: left;
-                    padding-right: 25px;
-                }
+            &-image {
+                margin-bottom: 15px;
             }
         }
         &-dot {
             position: absolute;
-            top: 0.4rem;
-            left: 50%;
+            top: 0rem;
+            left: 0;
             width: 1rem;
             height: 1rem;
             border-radius: 100%;
-            border: 1px solid #b9b7b7;
+            border: 2px solid #b9b7b7;
             background: #fff;
             transform: translateX(-50%);
         }
         &-label {
             font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 1rem;
+            margin-bottom: .5rem;
             display: block;
         }
         p {
-            font-size: 18px;
+            font-size: 1rem;
             line-height: 1.8;
             text-align: justify;
         }
         &::before {
             content: " ";
-            height: calc(100% - 1rem);
-            width: 1px;
+            height: calc(100% - 2rem);
+            width: 2px;
             background: #b9b7b7;
             position: absolute;
-            left: 50%;
-            top: .5rem;
+            left: 0;
+            top: 0;
         }
         &:after {
             content: " ";
-            background: url('/src/images/time-line-end.png');
+            background: url('../../../../images/time-line-end.png');
             background-size: 100%;
             position: absolute;
-            left: 50%;
+            left: 0;
             transform: translateX(-50%);
-            height: 2.6rem;
-            width: 2.6rem;
+            height: 2rem;
+            width: 2rem;
         }
     }
     &-section-dark {
@@ -185,31 +179,28 @@
     &-section-dark,
     &-section-gray {
         &-area {
-            padding: 50px 0;
+            padding: 30px 0;
+            margin: 0 -30px;
         }
         &-title {
-            text-align: center;
-            position: relative;
-            margin-bottom: 30px;
             &-text {
-                display: inline-block;
-                font-size: 20px;
-                font-weight: bold;
-                text-transform: uppercase;
-                z-index: 1;
-                position: relative;
+                background: transparent;
+                color: inherit;
+            }
+            &::after {
+                background: transparent;
             }
         }
     }
     &-what-do-i-recevice {
         &-big-image {
-            padding: 30px;
+            padding-bottom: 30px;
             img {
                 max-width: 100%;
             }
         }
         &-title {
-            font-size: 18px;
+            font-size: .8rem;
         }
         a {
             >img {
@@ -220,7 +211,7 @@
             }
             &:hover {
                 img {
-                    transform: scale(1.05)
+                    transform: scale(1)
                 }
             }
         }
@@ -250,6 +241,166 @@
             border: 1px solid gray;
             border-radius: 0;
             font-size: 16px;
+        }
+    }
+    .db-story-text {
+        font-size: .9rem;
+        color: #000;
+        text-align: justify;
+        line-height: 1.8;
+        b {
+            font-size: 1rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        span {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .home {
+        &-slider {
+            &-wrapper {
+                margin-bottom: 40px;
+            }
+            &-banner {
+                top: 50px;
+                width: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                position: absolute;
+                &-content {
+                    padding: 30px 50px;
+                }
+                &-heading {
+                    font-size: 35px;
+                    &-sub {
+                        font-size: 20px;
+                    }
+                }
+                &-text {
+                    margin-bottom: 42px;
+                }
+                .btn {
+                    padding: 12px 38px;
+                }
+            }
+        }
+        &-section {
+            &-content {
+                padding: 0;
+            }
+            &-title {
+                margin-bottom: 30px;
+                &-text {
+                    padding: 0 40px;
+                }
+            }
+        }
+        &-how-does-it-work {
+            &-tabs {
+                margin-bottom: 40px;
+                max-width: unset;
+                .and {
+                    font-size: 26px;
+                    width: 50px;
+                }
+            }
+            &-tab {
+                padding: 10px 40px;
+                font-size: 23px;
+                width: 165px;
+            }
+        }
+        &-procedure {
+            padding-bottom: 50px;
+            margin-bottom: 40px;
+            &-block {
+                margin-bottom: 50px;
+                &-image,
+                &-content {
+                    width: 50%;
+                }
+                &:nth-child(odd) {
+                    .home-procedure-block-image {
+                        float: left;
+                        padding-right: 25px;
+                    }
+                    .home-procedure-block-content {
+                        float: right;
+                        padding-left: 25px;
+                    }
+                }
+                &:nth-child(even) {
+                    .home-procedure-block-image {
+                        float: right;
+                        padding-left: 25px;
+                    }
+                    .home-procedure-block-content {
+                        float: left;
+                        padding-right: 25px;
+                    }
+                }
+            }
+            &-dot {
+                top: 0.4rem;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            &-label {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            p {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+            &::before {
+                content: " ";
+                left: 50%;
+                top: .5rem;
+            }
+            &:after {
+                content: " ";
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        &-what-do-i-recevice {
+            &-big-image {
+                padding: 30px;
+                img {
+                    max-width: 100%;
+                }
+            }
+            &-title {
+                font-size: 18px;
+            }
+            a {
+                >img {
+                    margin-bottom: 10px;
+                }
+                &:hover {
+                    img {
+                        transform: scale(1.05)
+                    }
+                }
+            }
+        }
+        .db-story-text {
+            -moz-column-count: 2;
+            -webkit-column-count: 2;
+            column-count: 2;
+            font-size: 18px;
+            -moz-column-gap: 2em;
+            -webkit-column-gap: 2em;
+            column-gap: 66px;
+            b {
+                font-size: 22px;
+            }
         }
     }
 }

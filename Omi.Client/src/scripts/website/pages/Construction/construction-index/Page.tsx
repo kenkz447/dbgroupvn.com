@@ -16,7 +16,7 @@ class Page extends React.Component {
             <div className="page">
                 <div className="mb-4">
                     <ConnectedConstructionBanner />
-                    <h1 className="text-uppercase">Construction</h1>
+                    <h1 className="construction-page-title text-uppercase">Construction</h1>
                 </div>
                 <ConstructionList />
             </div>

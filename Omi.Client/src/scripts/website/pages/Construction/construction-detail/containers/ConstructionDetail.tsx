@@ -48,7 +48,7 @@ class ConstructionDetail extends React.Component<StateProps & DispatchProps & Ow
                     <ConstructionCarousel pictures={constructionToRender.pictures} />
                 </div>
                 <Row className="mb-4">
-                    <Col span={16}>
+                    <Col span={24} lg={{span:16}}>
                         {this.renderProjectDescription(constructionToRender)}
                     </Col>
                     <Col span={24}>

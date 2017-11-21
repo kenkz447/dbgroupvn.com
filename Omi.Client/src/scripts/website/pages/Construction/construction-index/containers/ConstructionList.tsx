@@ -36,26 +36,28 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
 
         return (
             <Transition>
-                <Row className="construction-list" gutter={30} >
-                    {
-                        this.props.constructionPage && this.props.constructionPage.entities.map((item) => (
-                            <Col key={item.id} span={6}>
-                                <ConstructionItem construction={item} />
-                            </Col>)
-                        )
-                    }
-                    {
-                        this.props.constructionPage.entities.length &&
-                        <Col span={24}>
-                            <div className="clearfix">
-                                <div className="float-right">
-                                    <ConstructionListPager baseURL={new URL(location.href)}  {...this.props.constructionPage.pager} />
+                <div className="brand-row-container">
+                    <Row className="construction-list" gutter={30} >
+                        {
+                            this.props.constructionPage && this.props.constructionPage.entities.map((item) => (
+                                <Col key={item.id} span={24} sm={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
+                                    <ConstructionItem construction={item} />
+                                </Col>)
+                            )
+                        }
+                        {
+                            this.props.constructionPage.entities.length &&
+                            <Col span={24}>
+                                <div className="clearfix">
+                                    <div className="float-right">
+                                        <ConstructionListPager baseURL={new URL(location.href)}  {...this.props.constructionPage.pager} />
+                                    </div>
                                 </div>
-                            </div>
-                        </Col>
-                    }
+                            </Col>
+                        }
 
-                </Row>
+                    </Row>
+                </div>
             </Transition>
         )
     }

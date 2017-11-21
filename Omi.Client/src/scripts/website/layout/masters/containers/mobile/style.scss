@@ -20,8 +20,15 @@
         box-shadow: 3px 15px 30px -15px rgba(0, 0, 0, 0.4);
         transition: all .3s;
         overflow: hidden;
+        a {
+            opacity: 0;
+            transition: all .3s;
+        }
         &.show {
             height: 150px;
+            a {
+                opacity: 1;
+            }
         }
     }
     .active {

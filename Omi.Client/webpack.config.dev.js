@@ -21,7 +21,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new HtmlWebpackPlugin({
-            template: 'index.dev.html',
+            template: 'src/templates/index.html',
             inject: 'body'
         })
     ],

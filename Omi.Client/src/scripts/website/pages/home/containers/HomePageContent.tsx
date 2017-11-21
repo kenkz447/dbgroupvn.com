@@ -80,7 +80,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
         return (
             <div>
-                <div className="home-slider-wrapper mb-5">
+                <div className="home-slider-wrapper mb-3 mb-lg-5">
                     <ConnectedHomeSlider />
                     <div className="home-slider-banner brand-container">
                         <div className="home-slider-banner-content">
@@ -90,7 +90,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     </div>
                 </div>
                 <div className="brand-container">
-                    <div className="home-section mb-5">
+                    <div className="home-section mb-3 mb-lg-5">
                         <div className="home-section-title">
                             <div className="home-section-title-text">
                                 DB group story
@@ -103,7 +103,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
                 <div className="brand-container">
                     {this.renderContactForm()}
-                    <hr className="mb-5" />
+                    <hr className="mb-3 mb-lg-5" />
                     {this.renderHowDoesItWorkTabs()}
                 </div>
             </div>
@@ -120,7 +120,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
     }
     renderHowDoesItWork() {
         return (
-            <div id="howDoesItWork" className="home-section mb-5 d-none">
+            <div id="howDoesItWork" className="home-section mb-3 mb-lg-5 d-none">
                 <div className="brand-container">
                     <div className="home-section-title">
                         <div className="home-section-title-text">
@@ -130,7 +130,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                 </div>
                 <div className="home-section-content">
                     {this.renderHowDoesItWorkTabs()}
-                    <div className="">
+                    <div className="mt-4">
                         <div className={classNames({ 'd-none': this.props.howDoesItWorkTabActive != 'DESIGN' })}>
                             <div className="home-procedure">
                                 <div className="brand-container" dangerouslySetInnerHTML={{ __html: this.props.homeContent.howItWorkDesignHtml.value }} />
@@ -151,15 +151,15 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     renderWhatDoIReceive() {
         return (
-            <div className="home-section-dark-area">
+            <div className="home-section-area home-section-dark-area">
                 <div className="brand-container">
-                    <div className="home-section-dark">
-                        <div className="home-section-dark-title">
-                            <div className="home-section-dark-title-text">
+                    <div className="home-section home-section-dark">
+                        <div className="home-section-title home-section-dark-title">
+                            <div className="home-section-title-text home-section-dark-title-text">
                                 What do I Receive
                             </div>
                         </div>
-                        <div className="home-section-dark-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceive.value }} />
+                        <div className="home-section-content home-section-dark-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceive.value }} />
                     </div>
                 </div>
             </div>
@@ -168,15 +168,15 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     renderWhatDoIReceiveBuild() {
         return (
-            <div className="home-section-gray-area">
+            <div className="home-section-area home-section-gray-area">
                 <div className="brand-container">
-                    <div className="home-section-gray">
-                        <div className="home-section-gray-title">
-                            <div className="home-section-gray-title-text">
+                    <div className="home-section home-section-gray">
+                        <div className="home-section-title home-section-gray-title">
+                            <div className="home-section-title-text home-section-gray-title-text">
                                 What do I Receive
                             </div>
                         </div>
-                        <div className="home-section-gray-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceiveBuild.value }} />
+                        <div className="home-section-content home-section-gray-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceiveBuild.value }} />
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
     }
     renderContactForm() {
         return (
-            <div className="home-section mt-5 mb-5">
+            <div className="home-section mt-5 mb-3 mb-lg-5">
                 <div className="home-section-title">
                     <div className="home-section-title-text">
                         get in touch

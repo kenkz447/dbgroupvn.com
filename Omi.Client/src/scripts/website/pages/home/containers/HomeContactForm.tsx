@@ -33,7 +33,7 @@ class HomeContactForm extends React.Component<OwnProps & StateProps & DispatchPr
             <div>
                 <Form onSubmit={this.handleSubmit}>
                     <Row gutter={60}>
-                        <Col span={12}>
+                        <Col span={24} lg={{span: 12}}>
                             <Form.Item className="mb-3">
                                 {this.props.form.getFieldDecorator('fullname')(
                                     <Input placeholder="Full name" />
@@ -50,15 +50,15 @@ class HomeContactForm extends React.Component<OwnProps & StateProps & DispatchPr
                                 )}
                             </Form.Item>
                         </Col>
-                        <Col span={12}>
-                            <Form.Item>
+                        <Col span={24} lg={{span: 12}}>
+                            <Form.Item className="mb-3">
                                 {this.props.form.getFieldDecorator('message')(
                                     <Input.TextArea rows={6} placeholder="Message" />
                                 )}
                             </Form.Item>
                         </Col>
                         <Col span={24}>
-                            <div className="text-right">
+                            <div className="text-center text-lg-right">
                                 <Button className="home-send-btn" shape="circle" htmlType="submit">
                                     <img src={sendImg} />
                                 </Button>

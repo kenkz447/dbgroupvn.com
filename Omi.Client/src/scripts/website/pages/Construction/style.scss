@@ -1,0 +1,18 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+.construction {
+    &-type-list,
+    &-status-list {
+        margin: 0 30px 30px 30px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .construction {
+        &-type-list,
+        &-status-list {
+            margin-left: 0;
+        }
+    }
+}

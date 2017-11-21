@@ -21,10 +21,10 @@ class ContactInfo extends React.Component<StateProps> {
                     <div className="text-center mb-5" dangerouslySetInnerHTML={{__html: this.props.websiteSetting.contactWelcomeHtml.value}}>
                     </div>
                     <Row>
-                        <Col span={12}>
+                        <Col span={24} lg={{span:12}} className="mb-5 mb-lg-0">
                             <div className="mb-2 mb-lg-0" dangerouslySetInnerHTML={{__html: this.props.websiteSetting.contactInfoHtml.value}} />
                         </Col>
-                        <Col span={12}>
+                        <Col span={24} lg={{span:12}}>
                             <p className="contact-info-label h5 mb-4">
                                 <strong>LEAVE US A NOTE</strong>
                             </p>

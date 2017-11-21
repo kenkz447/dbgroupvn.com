@@ -41,7 +41,7 @@ module.exports = {
             allChunks: true
         }),
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: 'src/templates/index.html',
             inject: 'body'
         })
     ],

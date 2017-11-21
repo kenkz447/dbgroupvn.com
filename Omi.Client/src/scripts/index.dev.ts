@@ -1,4 +1,4 @@
-window.baseUrl = 'https://localhost:44336/'
+window.baseUrl = 'http://localhost:31414/'
 import './static'
 
 import 'antd/dist/antd.css'

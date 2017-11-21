@@ -8,10 +8,10 @@ export function MasterFooter() {
         <Footer className="brand-footer">
             <div className="brand-container">
                 <Row>
-                    <Col span={12}>
+                    <Col span={24} lg={{span:12}}>
                         <span className="brand-footer-copyright">&#169; 2017 dbgroup. All rights reserved</span>
                     </Col>
-                    <Col span={12}>
+                    <Col span={24} lg={{span:12}}>
                     </Col>
                 </Row>
             </div>

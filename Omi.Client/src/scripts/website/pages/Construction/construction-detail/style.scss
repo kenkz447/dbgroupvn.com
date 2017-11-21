@@ -1,11 +1,20 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 .construction {
-    &-detail-section {
-        font-size: 18px;
-        line-height: 1.8;
-        &-label {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 10px;
+    &-detail {
+        &-section {
+            font-size: 18px;
+            line-height: 1.8;
+            padding: 0 30px;
+            &-label {
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+        }
+        &-next-prev {
+            padding: 0 30px;
         }
     }
     &-next,
@@ -21,6 +30,9 @@
 }
 
 .lightbox {
+    &-imgs {
+        padding: 0 30px;
+    }
     &-thumb {
         cursor: pointer;
         overflow: hidden;
@@ -34,6 +46,27 @@
             img {
                 transform: scale(1.1);
             }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .construction {
+        &-detail {
+            &-section {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            &-next-prev {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+    .lightbox {
+        &-imgs {
+            padding-left: 0;
+            padding-right: 0;
         }
     }
 }
