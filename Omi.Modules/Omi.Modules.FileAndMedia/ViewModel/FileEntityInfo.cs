@@ -1,9 +1,11 @@
 ﻿using Omi.Modules.FileAndMedia.Entities;
 using Omi.Modules.FileAndMedia.Misc;
+using SixLabors.Primitives;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Omi.Modules.FileAndMedia.ViewModel
 {
@@ -19,22 +21,26 @@ namespace Omi.Modules.FileAndMedia.ViewModel
             if (entity == null)
                 return default;
 
+            var fileMeta = entity.GetMeta();
+
             var FileEntityInfo = new FileEntityInfo
             {
                 FileId = entity.Id,
-                Src = entity.Src
+                Src = entity.Src,
+                Height = fileMeta.GetHeight(),
+                Width = fileMeta.GetWidth(),
             };
 
-            var fileMeta = entity.GetMeta();
-
             if (fileMeta.ThumbnailFileName != null)
-                FileEntityInfo.srcThumb = $"{Path.GetDirectoryName(entity.Src)}/{fileMeta.ThumbnailFileName}".Replace('\\', '/');
+                FileEntityInfo.SrcThumb = $"{Path.GetDirectoryName(entity.Src)}/{fileMeta.ThumbnailFileName}".Replace('\\', '/');
 
             return FileEntityInfo;
         }
 
         public long FileId { get; set; }
         public string Src { get; set; }
-        public string srcThumb {get;set;}
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public string SrcThumb {get;set;}
     }
 }
