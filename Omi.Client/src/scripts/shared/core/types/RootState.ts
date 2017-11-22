@@ -8,6 +8,7 @@ export interface ReducerRootState {
     page
     data
     temp
+    localization
 }
 
 export interface RootState extends ReducerRootState {
@@ -20,4 +21,5 @@ export interface RootState extends ReducerRootState {
     page: Map<string, any>
     data: Map<string, any>
     temp: Map<string, any>
+    localization: Map<string, any>
 }

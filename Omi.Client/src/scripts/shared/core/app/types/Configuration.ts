@@ -7,19 +7,23 @@ import map = require('lodash/map')
 import { ViewRoute, CRModule } from '../../types'
 
 import { createAppReducer, createAppStore } from '../state'
-import { IConfigurationService } from '../interfaces'
+import { IConfiguration } from '../interfaces'
 
 import { AppInit } from '../constants'
 
-export class ConfigurationService implements IConfigurationService {
+
+export class Configuration implements IConfiguration {
     routes: Array<ViewRoute> = []
     sagaMiddleWares = []
     reducers = {}
     layouts = {}
     baseUrl = ''
+    supportLanguages = []
+    
     constructor() {
 
     }
+
 
     @autobind
     useModule(module: CRModule) {

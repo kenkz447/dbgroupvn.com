@@ -6,10 +6,11 @@ import { reducer as routes } from '../../router'
 
 import { ReducerRootState } from '../../types'
 import { reducer as menus } from '../../menu'
-import { reducer as layout} from '../../layout'
-import { reducer as page} from '../../page'
-import { reducer as data} from '../../data'
-import { reducer as temp} from '../../tempValue'
+import { reducer as layout } from '../../layout'
+import { reducer as page } from '../../page'
+import { reducer as data } from '../../data'
+import { reducer as temp } from '../../tempValue'
+import { reducer as localization } from '../../localization'
 
 const appReducer: ReducerRootState = {
     router: routerReducer,
@@ -18,7 +19,8 @@ const appReducer: ReducerRootState = {
     layout,
     page,
     data,
-    temp
+    temp,
+    localization
 }
 
 export function createAppReducer(reducers) {

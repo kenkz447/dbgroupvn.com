@@ -1,23 +1,44 @@
 import { initRoutes } from '../../router'
 import { initMenu, extractMenuFormRoutes } from '../../menu'
 
-import { IConfigurationService } from '../interfaces'
+import { IConfiguration } from '../interfaces'
 
 import { initLayout } from '../../layout'
 import { completeRouteData } from '../../router/helpers/'
+import { setLanguages } from '../../localization/languages';
 
-export const AppInit = (configuration: IConfigurationService) => {
+export const AppInit = (configuration: IConfiguration) => {
     const { createStore, routes, reducers, layouts } = configuration
 
     initLayout(layouts)
-
-    // Complementary routes data
-    completeRouteData(routes)
+    setLanguages(configuration.supportLanguages)
     
+    // Complementary routes data
+    const baseRoutes = completeRouteData(routes)
+    const langRoutes = []
+
+    for (const lang of configuration.supportLanguages) {
+        if (lang.isPrimary)
+            continue
+
+        for (const route of baseRoutes) {
+            if (route.name.startsWith('ADMIN'))
+                continue
+
+            const langRoute = Object.assign({}, route)
+            langRoute.path = langRoute.path.replace('/', `/${lang.code}/`)
+            langRoute.name = `${lang.code.toUpperCase()}:${langRoute.name}`
+            if (langRoute.parent)
+                langRoute.parent = `${lang.code.toUpperCase()}:${langRoute.parent}`
+            langRoutes.push(langRoute)
+        }
+    }
+    const appRoutes = baseRoutes.concat(langRoutes)
+
     const store = createStore()
 
     // Initial routes
-    store.dispatch(initRoutes(routes))
+    store.dispatch(initRoutes(appRoutes))
 
     // Initial menu
     const menuCollection = extractMenuFormRoutes(routes)

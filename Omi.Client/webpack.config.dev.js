@@ -38,6 +38,9 @@ module.exports = {
                     loader: 'css-loader',
                 }, {
                     loader: "resolve-url-loader",
+                    options: {
+                        silent: true
+                    }
                 }, {
                     loader: "sass-loader",
                 }]

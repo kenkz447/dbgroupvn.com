@@ -265,6 +265,10 @@
         &-slider {
             &-wrapper {
                 margin-bottom: 40px;
+                .slick-dots {
+                    text-align: center;
+                    top: calc(100% - 60px);
+                }
             }
             &-banner {
                 top: 50px;
@@ -295,8 +299,17 @@
             }
             &-title {
                 margin-bottom: 30px;
+                margin-left: 0;
+                margin-right: 0;
                 &-text {
                     padding: 0 40px;
+                }
+            }
+            &-dark,
+            &-gray {
+                &-area {
+                    margin-right: left;
+                    margin-right: 0;
                 }
             }
         }

@@ -8,8 +8,9 @@ import middlewares, { sagaMiddleware } from '../../state/middleware'
 import { layoutSagas } from '../../layout'
 import { dataSagas } from '../../data'
 import { notificationSagas } from '../../notification'
+import { localizationSagas } from '../../localization'
 
-const coreSagas = [layoutSagas, dataSagas, notificationSagas]
+const coreSagas = [layoutSagas, dataSagas, notificationSagas, localizationSagas]
 
 function startSagas(sagas) {
     return function* rootSaga() {

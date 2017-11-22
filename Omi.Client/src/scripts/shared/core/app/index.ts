@@ -1,1 +1,1 @@
-export * from './types/ConfigurationService'
+export * from './types/Configuration'

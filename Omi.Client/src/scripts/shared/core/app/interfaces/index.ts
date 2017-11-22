@@ -1,1 +1,1 @@
-export * from './IConfigurationService'
+export * from './IConfiguration'

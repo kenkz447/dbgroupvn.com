@@ -1,5 +1,6 @@
 import { ViewRoute } from './ViewRoute'
 import { LayoutCollection } from '../layout'
+import { LanguageInfo } from '../index'
 export interface ModuleMiddlewares {
     sagas?: () => void,
     epic?: any,
@@ -13,4 +14,5 @@ export interface CRModule {
         [name: string]: (state, action) => void
     }
     masterPages?: LayoutCollection
+    supportedLanguage?: Array<LanguageInfo>
 }
