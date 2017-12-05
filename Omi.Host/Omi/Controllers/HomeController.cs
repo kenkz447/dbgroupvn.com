@@ -10,7 +10,8 @@ namespace Omi.Controllers
     {
         public IActionResult Index ()
         {
-            return File("~index.html", "text/html");
+            Response.Headers.Add("Content-Encoding", "gzip");
+            return File("~index.html.gz", "text/html");
         }
     }
 }

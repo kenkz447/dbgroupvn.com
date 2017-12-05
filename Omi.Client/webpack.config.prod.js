@@ -5,7 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyESPlugin = require('uglify-es-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CompressionPlugin = require("compression-webpack-plugin")
+const ChangeExtensionPlugin = require('change-extension-plugin')
 
 const pkg = require('./package.json');
 
@@ -29,7 +31,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        //new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         new webpack.optimize.ModuleConcatenationPlugin(),
         new UglifyESPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
@@ -37,13 +39,23 @@ module.exports = {
             minChunks: Infinity,
             filename: 'vendor.js',
         }),
-        new ExtractTextPlugin('style.css', {
-            allChunks: true
-        }),
-        new HtmlWebpackPlugin({
+        new ExtractTextPlugin('style.css'),
+		new CompressionPlugin({
+			test: /\.(css|js)$/,
+			deleteOriginalAssets: true
+		}),
+		new HtmlWebpackPlugin({
             template: 'src/templates/index.html',
             inject: 'body'
-        })
+        }),
+		new ChangeExtensionPlugin({
+			extensions: ['js', 'css'],
+			compressionMethod: 'gz',
+		}),
+		new CompressionPlugin({
+			test: /\.html$/,
+			deleteOriginalAssets: true
+		}),
     ],
     module: {
         rules: [{

@@ -13,7 +13,9 @@ using Omi.Base.Middwares;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using System.Collections.Generic;
-
+using Microsoft.AspNetCore.Http;
+using System;
+using Microsoft.Net.Http.Headers;
 namespace Omi
 {
     public class Startup
@@ -93,9 +95,29 @@ namespace Omi
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
 
-            app.UseCors("AllowAll");
+            if (env.IsDevelopment())
+                app.UseCors("AllowAll");
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = context =>
+                {
+                    var headers = context.Context.Response.GetTypedHeaders();
+                    if (headers.ContentType != null && headers.ContentType.MediaType == "application/x-gzip")
+                    {
+                        if (context.File.Name.EndsWith("js.gz"))
+                            headers.ContentType = new MediaTypeHeaderValue("application/javascript");
+                        else if (context.File.Name.EndsWith("css.gz"))
+                            headers.ContentType = new MediaTypeHeaderValue("text/css");
+
+                        context.Context.Response.Headers.Add("Content-Encoding", "gzip");
+                        headers.CacheControl = new CacheControlHeaderValue()
+                        {
+                            MaxAge = TimeSpan.FromDays(30),
+                        };
+                    }
+                }
+            });
 
             app.UseAuthentication();
 
