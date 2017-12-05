@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { WebsiteRootState } from '../../../Types'
-import { RequestSend } from '../../../../shared/core'
+import { RequestSend, ExtractImmutableHOC } from '../../../../shared/core'
+import { WebsiteSettingFormValue } from '../../../../Admin'
 
 interface StateProps {
-    websiteSetting?: any
+    websiteSetting?: WebsiteSettingFormValue
     children?: any
     isFetching: boolean
 }
@@ -16,6 +17,9 @@ interface DispatchProps {
 function MasterWrapper(props: StateProps & DispatchProps) {
     if (props.websiteSetting == null)
         props.getWebsiteSetting()
+    
+    if (props.websiteSetting && props.websiteSetting.siteTitle)
+        document.title = props.websiteSetting.siteTitle.value || location.origin
 
     return (
         <div className="brand-wrapper">
@@ -43,4 +47,4 @@ const mapDispatchToProps = (dispatch): DispatchProps => {
     }
 }
 
-export const ConnectedMasterWrapper = connect<StateProps, DispatchProps, any>(mapStateToProps, mapDispatchToProps)(MasterWrapper)
+export const ConnectedMasterWrapper = connect<StateProps, DispatchProps, any>(mapStateToProps, mapDispatchToProps)(ExtractImmutableHOC(MasterWrapper))

@@ -19,6 +19,12 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0001" />    
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0001" />    
     <PackageReference Include="Unidecode.NET" Version="1.1.1" />    
+    <PackageReference Include="MailKit " Version="1.22.0" />    
+    <PackageReference Include="Wangkanai.Detection.Device" Version="2.0.0-beta5-fix" />
     <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="1.7.8" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="MailKit" Version="1.22.0" />
   </ItemGroup>
 </Project>
