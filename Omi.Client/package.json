@@ -55,6 +55,8 @@
         "@types/redux-immutable": "^3.0.34",
         "@types/webpack-env": "^1.13.0",
         "autoprefixer": "^7.1.6",
+        "change-extension-plugin": "^1.1.2",
+        "compression-webpack-plugin": "^1.0.1",
         "copy-webpack-plugin": "^4.2.1",
         "cross-env": "^5.0.1",
         "css-loader": "^0.28.4",
