@@ -51,7 +51,6 @@ class ConstructionFormComponent extends React.Component<ConstructionFormProps> {
     render() {
         return (
             <div>
-                {!this.props.initConstructionViewModel.id || <ConnectedSelectInputLanguage />}
                 <Form layout="vertical" onSubmit={this.handleSubmit}>
                     {
                         this.renderHidden.bind(this)()

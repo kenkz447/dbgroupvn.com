@@ -1,5 +1,5 @@
 export const headerMenuItems = [
     { path: '/', label: 'Home' },
-    { path: '/construction', label: 'Construction' },
+    { path: '/project', label: 'Project' },
     { path: '/contact', label: 'Contact' },
 ]

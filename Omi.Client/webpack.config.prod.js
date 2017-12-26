@@ -22,7 +22,7 @@ module.exports = {
     output: {
         publicPath: '/',
         path: path.join(__dirname, '../Omi.Host', 'Omi', 'wwwroot'),
-        filename: 'app.js'
+        filename: 'app.[hash].js'
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -37,25 +37,23 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: Infinity,
-            filename: 'vendor.js',
+            filename: 'vendor.[hash].js',
         }),
-        new ExtractTextPlugin('style.css'),
-		new CompressionPlugin({
-			test: /\.(css|js)$/,
-			deleteOriginalAssets: true
-		}),
-		new HtmlWebpackPlugin({
+        new ExtractTextPlugin('style.[hash].css'),
+        new CompressionPlugin({
+            test: /\.(css|js)$/
+        }),
+        new HtmlWebpackPlugin({
             template: 'src/templates/index.html',
             inject: 'body'
         }),
-		new ChangeExtensionPlugin({
-			extensions: ['js', 'css'],
-			compressionMethod: 'gz',
-		}),
-		new CompressionPlugin({
-			test: /\.html$/,
-			deleteOriginalAssets: true
-		}),
+        new ChangeExtensionPlugin({
+            extensions: ['js', 'css'],
+            compressionMethod: 'gz',
+        }),
+        new CompressionPlugin({
+            test: /\.html$/,
+        }),
     ],
     module: {
         rules: [{

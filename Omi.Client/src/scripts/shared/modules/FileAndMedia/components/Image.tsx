@@ -13,6 +13,8 @@ interface ImgProps {
 
 export class Image extends React.Component<ImgProps> {
     render() {
+        if (!this.props.fileEntityInfo)
+            return null
         return (
             <div className="mw-100 text-center">
                 <Img.default loader={<Spin />} className={this.props.classNames} src={`${window.baseUrl}${this.props.displayThumb ? this.props.fileEntityInfo.srcThumb : this.props.fileEntityInfo.src}`} />

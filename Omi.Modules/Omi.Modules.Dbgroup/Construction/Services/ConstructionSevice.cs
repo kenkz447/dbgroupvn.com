@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Omi.Base.Collection;
+using Omi.Data;
 using Omi.Extensions;
 using Omi.Modules.Dbgroup;
 using Omi.Modules.Dbgroup.Construction.Entities;
 using Omi.Modules.Dbgroup.Construction.Seed;
 using Omi.Modules.Dbgroup.ServiceModels;
+using Omi.Modules.FileAndMedia.Services;
 using Omi.Modules.ModuleBase.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace Omi.Modules.Dbgroup.Services
     public class ConstructionService
     {
         private readonly DbgroupDbContext _context;
+
         public ConstructionService(DbgroupDbContext context)
         {
             _context = context;
@@ -118,7 +121,7 @@ namespace Omi.Modules.Dbgroup.Services
 
         public async Task<ConstructionEntity> CreateNewConstruction(ConstructionServiceModel serviceModel)
         {
-            serviceModel.Detail.Language = Thread.CurrentThread.Name;
+            serviceModel.Detail.Language = Thread.CurrentThread.CurrentCulture.Name;
 
             var newConstruction = new ConstructionEntity
             {
@@ -167,6 +170,26 @@ namespace Omi.Modules.Dbgroup.Services
             await _context.SaveChangesAsync();
 
             return newConstruction;
+        }
+
+        public async Task<int> DeleteConstruction(IList<long> ids, ApplicationUser user)
+        {
+            var entities = _context.ConstructionEntity
+                .Include(o => o.EnitityFiles)
+                .ThenInclude(o => o.FileEntity)
+                .Where(o => ids.Contains(o.Id));
+
+            foreach (var entity in entities)
+            {
+                var entry = _context.Entry(entity);
+                entry.State = EntityState.Deleted;
+
+                _context.FileEntity.RemoveRange(
+                    entity.EnitityFiles.Select(o => o.FileEntity)
+                    );
+            }
+
+            return await _context.SaveChangesAsync();
         }
     }
 }

@@ -11,10 +11,10 @@ export const ConstructionIndex: ViewRoute = {
     component: PageComponent,
     menus: [{
         menuName: MENU_HEADER,
-        label: 'Construction',
+        label: 'Project',
         exact: false
     }, {
         menuName: CONSTRUCTION_MENU_SIDER,
-        label: 'Construction',
+        label: 'Project',
     }]
 }

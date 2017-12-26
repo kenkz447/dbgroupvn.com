@@ -6,7 +6,7 @@ import { ConstructionIndexRoute } from './construction-index'
 import { ConstructionDetailRoute } from './construction-detail'
 
 const Construction: ViewRoute = {
-    path: '/construction',
+    path: '/project',
     name: WEBSITE_PAGE_CONSTRUCTION,
 }
 

@@ -12,7 +12,7 @@ interface OwnProps {
 export const ConstructionItem = (props: OwnProps) => {
     return (
         <div className="construction-item mb-4">
-            <NavLink className="construction-link" to={`/construction/${props.construction.name}`}>
+            <NavLink className="construction-link" to={`/project/${props.construction.name}`}>
                 <div className="effect">
                     <figure className="effect-hover">
                         <Image classNames="mw-100 d-block" fileEntityInfo={props.construction.avatar} />
