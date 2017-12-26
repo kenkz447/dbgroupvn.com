@@ -17,6 +17,7 @@ using Omi.Modules.FileAndMedia.Base;
 using Omi.Modules.FileAndMedia.ViewModel;
 using Omi.Modules.Dbgroup.Construction.Seed;
 using System.Threading;
+using Omi.Modules.Dbgroup.Construction.ViewModels;
 
 namespace Omi.Modules.Dbgroup.Construction.Controllers
 {
@@ -120,16 +121,22 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<BaseJsonResult> GetConstructions(ConstructionFilterViewModel viewModel)
+        public async Task<OkObjectResult> GetConstructions(ConstructionFilterViewModel viewModel)
         {
             var serviceModel = ConstructionFilterServiceModel.FromViewModel(viewModel);
             var entities = await _constructionService.GetConstructions(serviceModel);
 
             var viewModels = new PageEntityViewModel<ConstructionEntity, ConstructionViewModel>(entities, o => ToConstructionViewModel(o));
 
-            return new BaseJsonResult(Omi.Base.Properties.Resources.POST_SUCCEEDED, viewModels);
+            return Ok(viewModels);
         }
 
+        [HttpDelete]
+        public async Task<OkObjectResult> Delete([FromBody]ConstructionDeleteViewModel viewModel)
+        {
+            await _constructionService.DeleteConstruction(viewModel.Ids, CurrentUser);
+            return Ok(viewModel);
+        }
 
         private ConstructionViewModel ToConstructionViewModel(ConstructionEntity construction)
         {
@@ -150,6 +157,7 @@ namespace Omi.Modules.Dbgroup.Construction.Controllers
             constructionViewModel.Description = detail.Description;
 
             var avatarFile = construction.EnitityFiles.FirstOrDefault(o => o.UsingType == (int)FileUsingType.Avatar);
+            if(avatarFile != null)
             constructionViewModel.Avatar = FileEntityInfo.FromEntity(avatarFile.FileEntity);
 
             var pictureFiles = construction.EnitityFiles.Where(o => o.UsingType == (int)FileUsingType.Picture);

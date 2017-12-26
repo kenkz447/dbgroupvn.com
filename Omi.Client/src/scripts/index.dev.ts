@@ -1,4 +1,4 @@
-window.baseUrl = 'http://localhost:31414/'
+window.baseUrl = 'https://localhost:44336/'
 
 import './static'
 // For hot reload

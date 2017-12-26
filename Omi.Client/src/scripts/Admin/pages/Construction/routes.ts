@@ -8,7 +8,7 @@ import { ConstructionIndex } from './construction-index'
 import { ConstructionUpdate } from './construction-update'
 
 export const Construction: ViewRoute = {
-    path: '/construction',
+    path: '/project',
     name: CONSTRUCTION,
     parent: AdminRoute.name
 }

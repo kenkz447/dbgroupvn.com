@@ -19,12 +19,14 @@ namespace Omi.Modules.Dbgroup
 
         public DbSet<ConstructionEntity> ConstructionEntity { get; set; }
         public DbSet<TaxonomyEntity> TaxonomyEntity { get; set; }
+        public DbSet<FileAndMedia.Entities.FileEntity> FileEntity { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.RegisterCustomMappings<ModuleBaseModelBuilder>();
             builder.RegisterCustomMappings<SettingModelBuilder>();
             builder.RegisterCustomMappings<DbgroupModelBuilder>();
+            builder.RegisterCustomMappings<FileAndMedia.ModuleBaseModelBuilder>();
             base.OnModelCreating(builder);
         }
     }
