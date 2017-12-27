@@ -39,14 +39,14 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
                 <div className="brand-row-container">
                     <Row className="construction-list" gutter={30} >
                         {
-                            this.props.constructionPage && this.props.constructionPage.entities.map((item) => (
+                            this.props.constructionPage.entities && this.props.constructionPage.entities.map((item) => (
                                 <Col key={item.id} span={24} sm={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>
                                     <ConstructionItem construction={item} />
                                 </Col>)
                             )
                         }
                         {
-                            this.props.constructionPage.entities.length &&
+                            this.props.constructionPage.entities &&
                             <Col span={24}>
                                 <div className="clearfix">
                                     <div className="float-right">
@@ -65,7 +65,7 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
 
 const mapStateToProps = (state: WebsiteRootState): StateProps => {
     return {
-        constructionPage: state.data.getIn(['WEBSITE_PROJECT', 'response', 'result']),
+        constructionPage: state.data.getIn(['WEBSITE_PROJECT', 'response']),
         search: state.router.location.search
     }
 }
