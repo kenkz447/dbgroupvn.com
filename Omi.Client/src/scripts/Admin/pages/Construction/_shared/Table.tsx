@@ -31,7 +31,7 @@ const columns = [{
     dataIndex: 'title',
     sorter: true,
     render: (text, entity: ConstructionViewModel) => {
-        return <NavLink to={`/website/admin/construction/update?${nameof<ConstructionViewModel>((o) => o.id)}=${entity.id}`}>{text}</NavLink>
+        return <NavLink to={`/website/admin/project/update?constructionId=${entity.id}`}>{text}</NavLink>
     }
 }]
 
