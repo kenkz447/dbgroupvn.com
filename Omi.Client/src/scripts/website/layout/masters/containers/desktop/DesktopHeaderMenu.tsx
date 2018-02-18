@@ -33,7 +33,7 @@ function DesktopHeaderMenu(props: StateProps) {
                         </li>
                     ))
                 }
-                <li className="header-menu-item">
+                {/* <li className="header-menu-item">
                     <Menu className="border-0" mode="horizontal" >
                         <Menu.SubMenu className="header-menu-dropdown" title={<span className="header-menu-text">Language <Icon type="caret-down" /></span>}>
                             {
@@ -45,7 +45,7 @@ function DesktopHeaderMenu(props: StateProps) {
                             }
                         </Menu.SubMenu>
                     </Menu>
-                </li>
+                </li> */}
             </ul>
         </div>
     )

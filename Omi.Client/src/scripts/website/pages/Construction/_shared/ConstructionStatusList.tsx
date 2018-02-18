@@ -39,7 +39,7 @@ class ConstructionStatusList extends React.Component<StateProps & DispatchProps>
                     <b className="construction-status-list-item">Status</b>
                 </span>
                 <div>
-                    <Link to={`/construction${searchParams.toString()}`}>
+                    <Link to={`/project${searchParams.toString()}`}>
                         <Radio checked={!currentUrl.searchParams.get('status')} className="construction-status-list-item">All</Radio>
                     </Link>
                 </div>
@@ -54,7 +54,7 @@ class ConstructionStatusList extends React.Component<StateProps & DispatchProps>
                         const search = currentUrl.search
                         return (
                             <div key={o.id}>
-                                <Link to={`/construction${search.toString()}`}>
+                                <Link to={`/project${search.toString()}`}>
                                     <Radio checked={o.name === currentStatus} className="construction-status-list-item">{o.label}</Radio>
                                 </Link>
                             </div>

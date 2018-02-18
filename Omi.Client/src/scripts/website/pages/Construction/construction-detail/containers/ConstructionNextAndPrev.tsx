@@ -36,7 +36,7 @@ export class ConstructionNextAndPrev extends React.Component<OwnProps & StatePro
                 {
                     this.props.nextAndPrev.next && (
                         <div className="float-left">
-                            <NavLink to={`/construction/${this.props.nextAndPrev.next.name}`}>
+                            <NavLink to={`/project/${this.props.nextAndPrev.next.name}`}>
                                 <div className="construction-next">
                                     <span className="construction-next-icon"><Icon type="left" /></span>
                                 </div>
@@ -47,7 +47,7 @@ export class ConstructionNextAndPrev extends React.Component<OwnProps & StatePro
                 {
                     this.props.nextAndPrev.prev && (
                         <div className="float-right">
-                            <NavLink to={`/construction/${this.props.nextAndPrev.prev.name}`}>
+                            <NavLink to={`/project/${this.props.nextAndPrev.prev.name}`}>
                                 <div className="construction-prev">
                                     <span className="construction-prev-icon"><Icon type="right" /></span>
                                 </div>

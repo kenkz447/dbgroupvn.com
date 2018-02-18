@@ -71,7 +71,7 @@ class ConstructionTypeList extends React.Component<StateProps & DispatchProps> {
         const search = currentUrl.search
 
         return (
-            <Link key={type.id} className={classNames({ 'active': currentType == type.name })} to={`/construction${search}`}>{type.label}</Link>
+            <Link key={type.id} className={classNames({ 'active': currentType == type.name })} to={`/project${search}`}>{type.label}</Link>
         )
     }
 }

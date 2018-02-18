@@ -41,6 +41,8 @@ function onElementHeightChange(elm, callback) {
 
 @(ExtractImmutableHOC as any)
 class HomePageContent extends React.Component<StateProps & DispatchProps> {
+    ref_HowDoItWork: HTMLDivElement
+
     componentDidMount() {
         this.props.getHomeContent()
     }
@@ -123,7 +125,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
             <div id="howDoesItWork" className="home-section mb-3 mb-lg-5 d-none">
                 <div className="brand-container">
                     <div className="home-section-title">
-                        <div className="home-section-title-text">
+                        <div ref={(e) => this.ref_HowDoItWork = e} className="home-section-title-text">
                             HOW DOES IT WORK?
                 </div>
                     </div>
@@ -199,6 +201,9 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     howDoesItWorkTabClick = (tabName) => () => {
         this.props.setHowDoesItWorkTabActive(tabName)
+        this.ref_HowDoItWork.scrollIntoView({
+            behavior: 'smooth'
+        })
     }
 }
 
