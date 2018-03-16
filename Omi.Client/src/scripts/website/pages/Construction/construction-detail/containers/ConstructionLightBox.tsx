@@ -25,10 +25,10 @@ export class ConstructionLightBox extends React.Component<OwnProps, any> {
             <div className="lightbox-imgs">
                 <Row gutter={30}>
                     {
-                        this.props.images.map((o) => {
+                        this.props.images.map((o, i) => {
                             return (
                                 <Col span={12} md={{ span: 8 }} lg={{ span: 6 }} xl={{ span: 4 }} key={o.fileId}>
-                                    <div className="lightbox-thumb mb-3" onClick={() => { this.setState({ isOpen: true }) }}>
+                                    <div className="lightbox-thumb mb-3" onClick={() => { this.setState({ isOpen: true, photoIndex: i }) }}>
                                         <Image classNames="mw-100 w-100" fileEntityInfo={o} displayThumb={true} />
                                     </div>
                                 </Col>

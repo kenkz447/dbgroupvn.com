@@ -7,7 +7,7 @@ import { WEBSITE_CONSTRUCTION_MASTER } from '../_shared'
 
 import { ROUTE_NAME } from './keys'
 import { ConstructionList } from './containers/ConstructionList'
-import { ConnectedConstructionBanner } from './containers/ConstructionBanner';
+import { ConnectedConstructionBanner } from './containers/ConstructionBanner'
 
 @(CreatePageWrap({ pageKey: ROUTE_NAME, layoutType: WEBSITE_CONSTRUCTION_MASTER }))
 class Page extends React.Component {
@@ -16,7 +16,7 @@ class Page extends React.Component {
             <div className="page">
                 <div className="mb-4">
                     <ConnectedConstructionBanner />
-                    <h1 className="construction-page-title text-uppercase">Construction</h1>
+                    <h1 className="construction-page-title text-uppercase">Project</h1>
                 </div>
                 <ConstructionList />
             </div>

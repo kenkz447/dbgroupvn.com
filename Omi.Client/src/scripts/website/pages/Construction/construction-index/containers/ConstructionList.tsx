@@ -37,7 +37,7 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
         return (
             <Transition>
                 <div className="brand-row-container">
-                    <Row className="construction-list" gutter={30} >
+                    <Row className="construction-list" gutter={30} type="flex">
                         {
                             this.props.constructionPage.entities && this.props.constructionPage.entities.map((item) => (
                                 <Col key={item.id} span={24} sm={{ span: 12 }} lg={{ span: 8 }} xl={{ span: 6 }}>

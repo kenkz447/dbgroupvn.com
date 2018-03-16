@@ -13,7 +13,7 @@ interface StateProps {
 const renderImage = (fileEntityInfo: FileEntityInfo) => {
     return (
         <div key={fileEntityInfo.fileId}>
-            <Image classNames="mw-100" fileEntityInfo={fileEntityInfo} />
+            <Image classNames="w-100 mw-100" fileEntityInfo={fileEntityInfo} />
         </div>
     )
 }
