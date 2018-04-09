@@ -26,7 +26,7 @@ class ContactInfo extends React.Component<StateProps> {
                         </Col>
                         <Col span={24} lg={{span:12}}>
                             <p className="contact-info-label h5 mb-4">
-                                <strong>LEAVE US A NOTE</strong>
+                                <strong>Để lại lời nhắn</strong>
                             </p>
                             <ConnectedContactForm />
                         </Col>

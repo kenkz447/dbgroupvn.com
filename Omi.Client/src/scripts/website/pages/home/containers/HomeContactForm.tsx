@@ -36,7 +36,7 @@ class HomeContactForm extends React.Component<OwnProps & StateProps & DispatchPr
                         <Col span={24} lg={{span: 12}}>
                             <Form.Item className="mb-3">
                                 {this.props.form.getFieldDecorator('fullname')(
-                                    <Input placeholder="Full name" />
+                                    <Input placeholder="Tên của bạn" />
                                 )}
                             </Form.Item>
                             <Form.Item className="mb-3">
@@ -46,14 +46,14 @@ class HomeContactForm extends React.Component<OwnProps & StateProps & DispatchPr
                             </Form.Item>
                             <Form.Item className="mb-3">
                                 {this.props.form.getFieldDecorator('phone')(
-                                    <Input type="number" placeholder="Phone" />
+                                    <Input type="number" placeholder="Điện thoại" />
                                 )}
                             </Form.Item>
                         </Col>
                         <Col span={24} lg={{span: 12}}>
                             <Form.Item className="mb-3">
                                 {this.props.form.getFieldDecorator('message')(
-                                    <Input.TextArea rows={6} placeholder="Message" />
+                                    <Input.TextArea rows={6} placeholder="Tin nhắn" />
                                 )}
                             </Form.Item>
                         </Col>

@@ -1,5 +1,5 @@
 export const headerMenuItems = [
-    { path: '/', label: 'Home' },
-    { path: '/project', label: 'Project' },
-    { path: '/contact', label: 'Contact' },
+    { path: '/', label: 'Trang chủ' },
+    { path: '/project', label: 'Dự án' },
+    { path: '/contact', label: 'Liên hệ' },
 ]

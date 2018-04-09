@@ -34,7 +34,7 @@ class ContactForm extends React.Component<OwnProps & StateProps & DispatchProps>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Item className="mb-3">
                         {this.props.form.getFieldDecorator('fullname')(
-                            <Input placeholder="Full name" />
+                            <Input placeholder="Tên của bạn" />
                         )}
                     </Form.Item>
                     <Form.Item className="mb-3">
@@ -44,12 +44,12 @@ class ContactForm extends React.Component<OwnProps & StateProps & DispatchProps>
                     </Form.Item>
                     <Form.Item className="mb-3">
                         {this.props.form.getFieldDecorator('phone')(
-                            <Input type="number" placeholder="Phone" />
+                            <Input type="number" placeholder="Điện thoại" />
                         )}
                     </Form.Item>
                     <Form.Item>
                         {this.props.form.getFieldDecorator('message')(
-                            <Input.TextArea rows={6} placeholder="Message" />
+                            <Input.TextArea rows={6} placeholder="Tin nhắn" />
                         )}
                     </Form.Item>
                     <div>
@@ -64,8 +64,8 @@ class ContactForm extends React.Component<OwnProps & StateProps & DispatchProps>
 
     showSuccessModal() {
         Modal.success({
-            title: 'This is a success message',
-            content: 'some messages...some messages...'
+            title: 'Tin nhắn được gởi',
+            content: 'Cảm ơn bạn đã dành thơi gian cho chúng tôi, đội ngũ Db Group sẽ phản hồi lại trong thời gian sớm nhất.'
         })
     }
 

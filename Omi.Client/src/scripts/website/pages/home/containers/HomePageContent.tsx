@@ -49,19 +49,19 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
 
     componentWillReceiveProps(nextProps: StateProps) {
         if (this.props.homeContent != nextProps.homeContent) {
-            if(nextProps.homeContent && nextProps.homeContent.slideImages)
+            if (nextProps.homeContent && nextProps.homeContent.slideImages)
                 this.props.bindHomeSliderData(nextProps.homeContent.slideImages.value)
         }
     }
 
     componentDidUpdate() {
-        const a = document.getElementById('whatDoIWillReceiveDesign')
-        if (a)
-            lightGallery(a)
-        const b = document.getElementById('whatDoIWillReceiveBuild')
-        if (b)
-            lightGallery(b)
-        
+        const whatDoIWillReceiveDesign = document.getElementById('whatDoIWillReceiveDesign')
+        if (whatDoIWillReceiveDesign)
+            lightGallery(whatDoIWillReceiveDesign)
+        const whatDoIWillReceiveBuild = document.getElementById('whatDoIWillReceiveBuild')
+        if (whatDoIWillReceiveBuild)
+            lightGallery(whatDoIWillReceiveBuild)
+
         const howDoesItWordElm = document.getElementById('howDoesItWork')
         const homeProcedureBlock = document.getElementsByClassName('home-procedure-block')
         if (howDoesItWordElm && homeProcedureBlock) {
@@ -72,7 +72,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
             window['AOS'].init()
             setTimeout(() => {
                 howDoesItWordElm.classList.remove('d-none')
-            },300)
+            }, 300)
         }
     }
 
@@ -86,8 +86,8 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     <ConnectedHomeSlider />
                     <div className="home-slider-banner brand-container">
                         <div className="home-slider-banner-content">
-                            <div dangerouslySetInnerHTML={{ __html: this.props.homeContent.slideInfoHtml.value }}/>
-                            <Link className="btn btn-link" to="/contact">Contact us</Link>
+                            <div dangerouslySetInnerHTML={{ __html: this.props.homeContent.slideInfoHtml.value }} />
+                            <Link className="btn btn-link" to="/contact">Liên hệ</Link>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     <div className="home-section mb-3 mb-lg-5">
                         <div className="home-section-title">
                             <div className="home-section-title-text">
-                                DB group story
+                                CÂU CHUYỆN TỪ DB GROUP
                             </div>
                         </div>
                         <div className="home-section-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.storyHtml.value }} />
@@ -114,9 +114,9 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
     renderHowDoesItWorkTabs() {
         return (
             <div className="home-how-does-it-work-tabs">
-                <button className={classNames("btn home-how-does-it-work-tab", { 'active': this.props.howDoesItWorkTabActive == 'DESIGN' })} onClick={this.howDoesItWorkTabClick('DESIGN')}>DESIGN</button>
+                <button className={classNames("btn home-how-does-it-work-tab", { 'active': this.props.howDoesItWorkTabActive == 'DESIGN' })} onClick={this.howDoesItWorkTabClick('DESIGN')}>THIẾT KẾ</button>
                 <span className="and">&</span>
-                <button className={classNames("btn home-how-does-it-work-tab", { 'active': this.props.howDoesItWorkTabActive == 'BUILD' })} onClick={this.howDoesItWorkTabClick('BUILD')}>BUILD</button>
+                <button className={classNames("btn home-how-does-it-work-tab", { 'active': this.props.howDoesItWorkTabActive == 'BUILD' })} onClick={this.howDoesItWorkTabClick('BUILD')}>XÂY DỰNG</button>
             </div>
         )
     }
@@ -126,8 +126,8 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                 <div className="brand-container">
                     <div className="home-section-title">
                         <div ref={(e) => this.ref_HowDoItWork = e} className="home-section-title-text">
-                            HOW DOES IT WORK?
-                </div>
+                            PHƯƠNG THỨC HOẠT ĐỘNG
+                        </div>
                     </div>
                 </div>
                 <div className="home-section-content">
@@ -158,7 +158,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     <div className="home-section home-section-dark">
                         <div className="home-section-title home-section-dark-title">
                             <div className="home-section-title-text home-section-dark-title-text">
-                                What do I Receive
+                               Bạn sẽ nhận được
                             </div>
                         </div>
                         <div className="home-section-content home-section-dark-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceive.value }} />
@@ -175,7 +175,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
                     <div className="home-section home-section-gray">
                         <div className="home-section-title home-section-gray-title">
                             <div className="home-section-title-text home-section-gray-title-text">
-                                What do I Receive
+                                Bạn sẽ nhận được
                             </div>
                         </div>
                         <div className="home-section-content home-section-gray-content" dangerouslySetInnerHTML={{ __html: this.props.homeContent.whatDoIWillReceiveBuild.value }} />
@@ -189,7 +189,7 @@ class HomePageContent extends React.Component<StateProps & DispatchProps> {
             <div className="home-section mt-5 mb-3 mb-lg-5">
                 <div className="home-section-title">
                     <div className="home-section-title-text">
-                        get in touch
+                        Gởi lời nhắn đến db group
                     </div>
                 </div>
                 <div className="home-section-content">
