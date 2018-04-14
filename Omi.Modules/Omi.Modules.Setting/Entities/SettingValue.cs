@@ -11,7 +11,7 @@ namespace Omi.Modules.Setting.Entities
             {
                 Id = viewModel.Id,
                 Name = viewModel.Name,
-                Value = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Value)
+                Value = (viewModel.Value is string) ? viewModel.Value as string : Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Value)
             };
     }
 

@@ -9,11 +9,20 @@ namespace Omi.Modules.Setting.ViewModels
     {
         public static SettingValueViewModel FromEntity(SettingValue entity)
         {
+            var value = entity.Value as object;
+            try
+            {
+                value = Newtonsoft.Json.JsonConvert.DeserializeObject(entity.Value);
+            }
+            catch
+            {
+
+            }
             return new SettingValueViewModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Value = entity.Value != default ? Newtonsoft.Json.JsonConvert.DeserializeObject(entity.Value) : null
+                Value = value
             };
         }
     }

@@ -55,7 +55,6 @@ class ConstructionListComponent extends React.Component<StateProps & DispatchPro
                                 </div>
                             </Col>
                         }
-
                     </Row>
                 </div>
             </Transition>
